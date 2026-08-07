@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL Pro - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white rounded-xl shadow-md p-6 space-y-6">
+        <h1 class="text-2xl font-bold text-slate-800 text-center">SSC CGL Pro</h1>
+
+        <!-- Authentication Section -->
+        <div id="auth-section" class="space-y-4">
+            <h2 class="text-lg font-semibold text-slate-700">Phone Verification</h2>
+            
+            <div id="phone-input-container" class="space-y-3">
+                <input type="tel" id="phone-number" placeholder="+919876543210" class="border border-slate-300 p-2.5 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="send-otp-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium p-2.5 rounded-lg transition">Send OTP</button>
+            </div>
+
+            <div id="otp-verify-container" class="hidden space-y-3">
+                <input type="text" id="otp-code" placeholder="Enter 6-digit OTP" class="border border-slate-300 p-2.5 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <button id="verify-otp-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium p-2.5 rounded-lg transition">Verify OTP</button>
+            </div>
+
+            <div id="recaptcha-container"></div>
+        </div>
+
+        <!-- Navigation to Mock Test (Enabled after login) -->
+        <div id="app-nav" class="hidden space-y-3 border-t border-slate-200 pt-4">
+            <h2 class="text-lg font-semibold text-slate-700">Select Test</h2>
+            <a href="test.html?test=test-01" class="block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium p-2.5 rounded-lg transition">Start Test 01</a>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="border-t border-slate-200 pt-4">
+            <h2 class="text-lg font-semibold text-slate-700 mb-3">Live Leaderboard</h2>
+            <div id="leaderboard-list" class="space-y-1">
+                <p class="text-sm text-slate-500 text-center py-2">Loading scores...</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/leaderboard.js"></script>
+</body>
+</html>
