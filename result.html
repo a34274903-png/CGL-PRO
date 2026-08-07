@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard - SSC CGL Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="w-full max-w-xl bg-white rounded-xl shadow-md p-6 space-y-6">
+        <h1 class="text-2xl font-bold text-slate-800 text-center">Test Scorecard</h1>
+        
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center space-y-2">
+            <p class="text-sm text-emerald-700 font-medium">Your Final Score</p>
+            <p id="final-score" class="text-4xl font-extrabold text-emerald-600">0 / 0</p>
+        </div>
+
+        <div class="flex space-x-4">
+            <a href="index.html" class="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white font-medium p-2.5 rounded-lg transition">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script type="module">
+        window.addEventListener('DOMContentLoaded', () => {
+            const score = localStorage.getItem('last_score') || '0';
+            const total = localStorage.getItem('last_total') || '0';
+            document.getElementById('final-score').innerText = `${score} / ${total}`;
+        });
+    </script>
+</body>
+</html>
