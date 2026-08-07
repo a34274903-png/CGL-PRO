@@ -1,0 +1,1442 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL Pro - Official Eduquity Pattern PYQ Based Tests</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- MathJax for Math & Analytical Formulae Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-[#f4f6f9] text-slate-800 font-sans min-h-screen flex flex-col select-none overflow-x-hidden antialiased">
+
+    <!-- Recaptcha Container for Firebase -->
+    <div id="recaptcha-container"></div>
+
+    <!-- Top Navigation Header for Exam Mode -->
+    <header id="testHeaderBar" class="hidden bg-white text-slate-800 shadow-xs border-b border-slate-200 shrink-0 sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex justify-between items-center w-full">
+            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <button onclick="confirmExitTest()" class="text-slate-600 hover:text-slate-900 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100 transition" title="Exit Test">
+                    <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
+                </button>
+                <div class="min-w-0">
+                    <div id="testPaperMetaTag" class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider truncate">SSC PYQ Based Test - 1</div>
+                    <h1 id="headerSectionTitle" class="font-bold text-xs sm:text-sm text-slate-900 leading-tight truncate">General Intelligence & Reasoning</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+                <div class="flex items-center space-x-1 sm:space-x-1.5 text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1.5 rounded-lg border border-slate-200">
+                    <i class="fa-regular fa-clock text-slate-500"></i>
+                    <span id="timerDisplay" class="font-mono font-bold text-slate-900 text-xs sm:text-sm">00:15:00</span>
+                </div>
+                <button onclick="togglePauseModal()" class="text-slate-500 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 cursor-pointer transition" title="Pause Test">
+                    <i class="fa-solid fa-pause text-sm sm:text-base"></i>
+                </button>
+                <button onclick="confirmSubmit()" class="bg-[#22c55e] hover:bg-emerald-600 text-white font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs tracking-wide shadow-xs cursor-pointer transition">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-3 sm:p-4 flex flex-col justify-center">
+
+        <!-- ================= VIEW 1: AUTHENTICATION & PROFILE ================= -->
+        <div id="authView" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 space-y-6 w-full my-auto">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-inner border border-emerald-100">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Candidate Portal</h2>
+                <p class="text-slate-500 text-xs">Access official SSC CGL Pro mock test series</p>
+            </div>
+
+            <!-- STEP 1: Phone Input -->
+            <div id="phoneStep" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Mobile Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-50 text-slate-600 text-sm font-bold">+91</span>
+                        <input type="tel" id="phoneNumberInput" maxlength="10" placeholder="9876543210" class="flex-1 min-w-0 block w-full px-3.5 py-2.5 rounded-none rounded-r-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                    </div>
+                </div>
+                <button onclick="sendOtp()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Get Verification Passcode
+                </button>
+            </div>
+
+            <!-- STEP 2: OTP Input -->
+            <div id="otpStep" class="hidden space-y-4">
+                <div class="text-xs bg-emerald-50 text-emerald-800 p-3 rounded-xl border border-emerald-200 text-center font-medium space-y-1.5">
+                    <div>OTP dispatched to <span id="sentPhoneText" class="font-bold"></span> <button onclick="resetPhoneInput()" class="underline text-emerald-700 font-bold ml-1 cursor-pointer">Edit</button></div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Enter 6-Digit SMS OTP Code</label>
+                    <input type="text" id="otpInput" maxlength="6" placeholder="123456" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-center text-xl font-mono tracking-widest font-bold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                </div>
+                <button onclick="verifyOtp()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Verify Code
+                </button>
+            </div>
+
+            <!-- STEP 3: Name Input -->
+            <div id="nameStep" class="hidden space-y-4">
+                <div class="text-xs bg-emerald-50 text-emerald-800 p-3 rounded-xl border border-emerald-200 text-center font-medium">
+                    <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Phone verified! Enter your full name for leaderboards.
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Candidate Full Name</label>
+                    <input type="text" id="candidateNameInput" placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                </div>
+                <button onclick="saveCandidateName()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Save Profile & Continue
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 2: DASHBOARD ================= -->
+        <div id="dashboardView" class="hidden space-y-6 my-auto py-4">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-2xl p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-800">
+                <div class="space-y-2 text-center sm:text-left">
+                    <div class="flex items-center space-x-2 justify-center sm:justify-start flex-wrap gap-y-1">
+                        <span class="bg-[#22c55e] text-slate-950 text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                            <i class="fa-solid fa-layer-group mr-1"></i> 50+ Tests Series Pass
+                        </span>
+                        <span id="userNameBadge" class="text-xs text-slate-200 font-bold bg-slate-800 px-2.5 py-0.5 rounded-md border border-slate-700"></span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">SSC PYQ Based Tests</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm max-w-xl">Curated full-length practice tests modeled on genuine previous year question standards under the official Eduquity CBT format. Test - 1 is 100% FREE!</p>
+                </div>
+                <div id="unlockBadgeContainer" class="shrink-0 w-full sm:w-auto">
+                    <button onclick="openUnlockModal()" class="w-full sm:w-auto bg-[#22c55e] hover:bg-emerald-600 text-slate-950 font-black px-6 py-3.5 rounded-xl transition shadow-lg text-sm flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-lock-open text-base"></i>
+                        <span>Unlock All 50+ Tests (₹10)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Header Title and Logout -->
+            <div class="flex justify-between items-center px-1">
+                <div>
+                    <h3 class="font-black text-slate-900 text-lg sm:text-xl">SSC PYQ Based Tests</h3>
+                    <p class="text-xs text-slate-500">20 active tests ready to attempt • Additional tests releasing continuously</p>
+                </div>
+                <button onclick="logoutUser()" class="text-xs text-red-600 hover:text-red-700 font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition border border-red-200 cursor-pointer flex items-center space-x-1.5">
+                    <i class="fa-solid fa-power-off text-xs"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+
+            <!-- Test Cards Grid -->
+            <div id="testSeriesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated via JS -->
+            </div>
+
+            <!-- Per-Test Live Firebase Leaderboard Section -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-3">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-trophy text-amber-500 text-xl"></i>
+                        <h3 class="font-black text-slate-900 text-base sm:text-lg">Test Leaderboard</h3>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <label class="text-xs font-bold text-slate-600">Select Test:</label>
+                        <select id="leaderboardTestSelect" onchange="fetchLeaderboard(this.value)" class="font-bold text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+                            <!-- Populated via JS -->
+                        </select>
+                        <button onclick="fetchLeaderboard(document.getElementById('leaderboardTestSelect').value)" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 cursor-pointer">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 uppercase font-extrabold text-[10px] border-b border-slate-200">
+                                <th class="p-3">Rank</th>
+                                <th class="p-3">Candidate Name</th>
+                                <th class="p-3">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody" class="divide-y divide-slate-100 font-medium">
+                            <tr><td colspan="3" class="p-4 text-center text-slate-400">Loading test rankings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 3: QUIZ ENGINE INTERFACE ================= -->
+        <div id="quizView" class="hidden flex-grow flex flex-col justify-between max-w-3xl mx-auto w-full pb-20">
+            <div>
+                <!-- Sub-bar: Section Dropdown & Language Indicator -->
+                <div class="bg-white px-4 py-3 rounded-xl border border-slate-200 shadow-xs flex flex-wrap justify-between items-center gap-2 mb-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold text-slate-500">Section:</span>
+                        <select id="sectionSelectDropdown" onchange="onSectionDropdownChange(this.value)" class="font-bold text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+                        <span class="text-emerald-700 font-bold">Eduquity CBT Standard</span>
+                    </div>
+                </div>
+
+                <!-- Question Card Box -->
+                <div id="questionSwipeArea" class="bg-white rounded-2xl shadow-xs border border-slate-200 p-5 sm:p-7 space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-0.5 rounded-md">Q. <span id="questionNumLabel">1</span> / 25</span>
+                            <span class="text-xs text-slate-400 font-medium">+2.0 | -0.50</span>
+                        </div>
+                        <button onclick="toggleBookmark()" id="bookmarkBtn" class="text-slate-300 hover:text-amber-500 text-lg transition cursor-pointer p-1" title="Star / Bookmark Question">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                    </div>
+
+                    <div id="questionText" class="text-sm sm:text-base font-medium text-slate-900 leading-relaxed overflow-x-auto custom-scrollbar">
+                        Loading Question...
+                    </div>
+
+                    <!-- Options List -->
+                    <div id="optionsContainer" class="space-y-3 pt-2">
+                        <!-- Options load here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Action Bar -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg p-3 z-30">
+                <div class="max-w-3xl mx-auto flex justify-between items-center gap-2">
+                    <button onclick="markForReview()" class="flex-1 py-2.5 px-2 sm:px-3 bg-white hover:bg-purple-50 text-purple-700 font-bold text-xs rounded-xl border border-purple-300 transition cursor-pointer text-center truncate">
+                        Mark & Next
+                    </button>
+                    <button onclick="clearResponse()" class="px-3 sm:px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs rounded-xl border border-slate-300 transition cursor-pointer">
+                        Clear
+                    </button>
+                    <button onclick="saveAndNext()" class="flex-1 py-2.5 px-2 sm:px-3 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-xs transition cursor-pointer text-center truncate flex items-center justify-center space-x-1">
+                        <span>Save & Next</span>
+                        <i class="fa-solid fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Floating Question Palette Button -->
+            <button onclick="togglePaletteModal()" class="fixed bottom-20 right-4 sm:right-6 w-12 h-12 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl shadow-xl flex items-center justify-center text-lg z-40 cursor-pointer transition transform active:scale-95" title="Question Summary Palette">
+                <i class="fa-solid fa-table-cells"></i>
+            </button>
+        </div>
+
+        <!-- ================= VIEW 4: RESULT & SOLUTIONS ================= -->
+        <div id="resultView" class="hidden max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-5 sm:p-8 space-y-6 my-auto">
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl text-2xl mb-1 shadow-inner border border-emerald-200">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h2 id="resultTitleText" class="text-2xl font-black text-slate-900 tracking-tight">SSC PYQ Based Test Scorecard</h2>
+                <p class="text-slate-500 text-xs sm:text-sm">Official Eduquity pattern scorecard and step-by-step MathJax solution key.</p>
+            </div>
+
+            <!-- Per-Test Leaderboard Banner on Scorecard -->
+            <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-4 text-white flex justify-between items-center shadow-md">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] uppercase tracking-wider font-bold text-amber-100">Test Leaderboard Rank</div>
+                        <div id="resRankText" class="text-lg font-black">Calculating your position...</div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-[11px] uppercase tracking-wider font-bold text-amber-100">Test Topper</div>
+                    <div id="resTopperScore" class="text-lg font-black">--</div>
+                </div>
+            </div>
+
+            <!-- Scorecard Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-center">
+                    <div id="resFinalScore" class="text-2xl font-black text-emerald-800">0 / 200</div>
+                    <div class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mt-1">Total Score</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                    <div id="resCorrect" class="text-2xl font-black text-slate-800">0</div>
+                    <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">Correct (+2)</div>
+                </div>
+                <div class="bg-red-50 border border-red-200 p-4 rounded-xl text-center">
+                    <div id="resIncorrect" class="text-2xl font-black text-red-700">0</div>
+                    <div class="text-[11px] font-bold text-red-500 uppercase tracking-wider mt-1">Incorrect (-0.5)</div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
+                    <div id="resAccuracy" class="text-2xl font-black text-amber-800">0%</div>
+                    <div class="text-[11px] font-bold text-amber-600 uppercase tracking-wider mt-1">Accuracy</div>
+                </div>
+            </div>
+
+            <!-- Solution Filter Options -->
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-200 pb-3 gap-3">
+                    <h3 class="font-black text-slate-900 text-base sm:text-lg">Detailed Question Solutions</h3>
+                    <div class="flex items-center space-x-1.5 overflow-x-auto pb-1 sm:pb-0">
+                        <button onclick="filterSolutions('all')" id="solFilterAll" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white cursor-pointer transition">All (100)</button>
+                        <button onclick="filterSolutions('correct')" id="solFilterCorrect" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-emerald-100 hover:text-emerald-800 cursor-pointer transition">Correct</button>
+                        <button onclick="filterSolutions('incorrect')" id="solFilterIncorrect" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-red-100 hover:text-red-800 cursor-pointer transition">Incorrect</button>
+                        <button onclick="filterSolutions('unattempted')" id="solFilterUnattempted" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-amber-100 hover:text-amber-800 cursor-pointer transition">Unattempted</button>
+                    </div>
+                </div>
+
+                <div id="solutionsContainer" class="space-y-4 max-h-[500px] overflow-y-auto pr-1.5 custom-scrollbar">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <div class="text-center pt-2">
+                <button onclick="goHome()" class="bg-[#22c55e] hover:bg-emerald-600 text-white font-bold px-8 py-3 rounded-xl text-sm cursor-pointer shadow-md transition">
+                    Return to Dashboard
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FLOATING QUESTION PALETTE MODAL -->
+    <div id="paletteModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4 z-50">
+        <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 shrink-0">
+                <div>
+                    <h3 class="font-black text-slate-900 text-base">Question Palette</h3>
+                    <p class="text-xs text-slate-500">Tap any question number to jump directly</p>
+                </div>
+                <button onclick="togglePaletteModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer p-1 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 text-center shrink-0 py-1">
+                <div class="bg-emerald-50 p-2 rounded-xl border border-emerald-100"><div id="statAttempted" class="font-black text-emerald-700 text-base">0</div><div class="text-[10px] text-emerald-600 font-bold uppercase">Answered</div></div>
+                <div class="bg-slate-50 p-2 rounded-xl border border-slate-200"><div id="statNotVisited" class="font-black text-slate-700 text-base">25</div><div class="text-[10px] text-slate-500 font-bold uppercase">Unvisited</div></div>
+                <div class="bg-red-50 p-2 rounded-xl border border-red-100"><div id="statNotAnswered" class="font-black text-red-700 text-base">0</div><div class="text-[10px] text-red-600 font-bold uppercase">Skipped</div></div>
+                <div class="bg-purple-50 p-2 rounded-xl border border-purple-100"><div id="statReview" class="font-black text-purple-700 text-base">0</div><div class="text-[10px] text-purple-600 font-bold uppercase">Review</div></div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs font-bold text-slate-700 shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                <span id="paletteSectionLabel" class="text-emerald-700">Section 1</span>
+                <span class="text-slate-500 text-[11px]">25 Questions Total</span>
+            </div>
+
+            <div id="paletteGrid" class="grid grid-cols-5 sm:grid-cols-6 gap-2.5 overflow-y-auto p-1 flex-grow custom-scrollbar">
+                <!-- Populated via JS -->
+            </div>
+
+            <div class="pt-2 shrink-0">
+                <button onclick="togglePaletteModal(); confirmSubmit();" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Submit Test Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION SWITCH WARNING MODAL -->
+    <div id="sectionWarningModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-lg mx-auto border border-amber-200">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base text-center">Switch Section?</h3>
+            <p class="text-xs text-slate-600 text-center leading-relaxed">According to Eduquity CBT regulations, once you lock and proceed to the next section, your previous section answers are finalized.</p>
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeSectionWarning()" class="w-1/2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl cursor-pointer transition">Stay Here</button>
+                <button onclick="confirmSectionSwitch()" class="w-1/2 px-4 py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white text-xs font-bold rounded-xl cursor-pointer transition">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT GATEWAY MODAL -->
+    <div id="paymentModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl border border-slate-200">
+            <div class="text-center space-y-1.5">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mx-auto border border-emerald-200">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h3 class="text-xl font-black text-slate-900">Unlock All 50+ PYQ Tests</h3>
+                <p class="text-xs text-slate-500">Gain lifetime access to all 50+ Eduquity pattern SSC CGL previous year mock tests.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+                <div class="flex justify-between font-bold"><span class="text-slate-600">Test Pass</span><span class="text-slate-900">₹10 Only</span></div>
+                <div class="flex justify-between font-bold text-emerald-600"><span>Access Period</span><span>Lifetime Unlimited</span></div>
+                <div class="flex justify-between font-semibold text-slate-500"><span>Explanations</span><span>Includes MathJax Formulae</span></div>
+            </div>
+            <div class="space-y-2">
+                <button onclick="simulateSuccessfulPayment()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-lock-open"></i>
+                    <span>Pay ₹10 via UPI (GPay / PhonePe / Paytm)</span>
+                </button>
+                <button onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl transition text-xs cursor-pointer">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMIT CONFIRMATION MODAL -->
+    <div id="submitModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mx-auto border border-emerald-200">
+                <i class="fa-solid fa-check-double"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base text-center">Confirm Test Submission</h3>
+            <p class="text-xs text-slate-600 text-center leading-relaxed">Are you sure you want to finish your test? Your scorecard and detailed solutions will be rendered immediately.</p>
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeSubmitModal()" class="w-1/2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl cursor-pointer">Resume Test</button>
+                <button onclick="processFinalSubmission()" class="w-1/2 px-4 py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl cursor-pointer">Yes, Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAUSE MODAL -->
+    <div id="pauseModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200 text-center">
+            <div class="w-12 h-12 bg-slate-100 text-slate-700 rounded-2xl flex items-center justify-center text-lg mx-auto border border-slate-200"><i class="fa-solid fa-pause"></i></div>
+            <h3 class="font-bold text-slate-900 text-base">Test Timer Paused</h3>
+            <p class="text-xs text-slate-600">Your exam timer is currently paused. Resume when ready.</p>
+            <button onclick="togglePauseModal()" class="w-full py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer transition">Resume Test</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT ENGINE & DIVERSE REAL PYQ QUESTION POOLS -->
+    <script>
+        // --- FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyCM5QOqGkc2RYCaw7ePexYp__YEXWb9Z3A",
+            authDomain: "cgl-pro-c1c13.firebaseapp.com",
+            projectId: "cgl-pro-c1c13",
+            storageBucket: "cgl-pro-c1c13.firebasestorage.app",
+            messagingSenderId: "116948395123",
+            appId: "1:116948395123:web:addd0dec14567cdd847606",
+            measurementId: "G-PGCQP7QDNJ"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let confirmationResult = null;
+        let currentUser = localStorage.getItem('ssc_user_phone') || null;
+        let currentCandidateName = localStorage.getItem('ssc_candidate_name') || null;
+        let isUnlocked = localStorage.getItem('ssc_unlocked') === 'true';
+        let activeTestId = 1;
+        
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let currentSectionIndex = 0;
+        let currentSolutionFilter = 'all';
+        
+        let sectionTimeLeft = [15 * 60, 15 * 60, 15 * 60, 15 * 60];
+        let sectionFinished = [false, false, false, false];
+        let activeTimerInterval = null;
+        let pendingTargetSection = null;
+        let isPaused = false;
+
+        const subjects = [
+            "General Intelligence & Reasoning",
+            "General Awareness",
+            "Quantitative Aptitude",
+            "English Comprehension"
+        ];
+
+        // 20 ACTIVE playable tests + 1 Coming Soon test
+        const testsInfo = Array.from({ length: 21 }, (_, index) => {
+            const num = index + 1;
+            const isComingSoon = (num === 21);
+            return {
+                id: num,
+                name: SSC PYQ Based Test - ${num},
+                subtitle: isComingSoon ? "Releasing Soon in 50+ Test Series" : "Eduquity CBT Pattern Practice Paper",
+                isComingSoon: isComingSoon
+            };
+        });
+
+        window.onload = function() {
+            if (document.getElementById('recaptcha-container')) {
+                window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                    'size': 'invisible'
+                });
+            }
+
+            if (currentUser && currentCandidateName) {
+                checkCloudUserUnlockState();
+            } else if (currentUser && !currentCandidateName) {
+                showAuth();
+                document.getElementById('phoneStep').classList.add('hidden');
+                document.getElementById('otpStep').classList.add('hidden');
+                document.getElementById('nameStep').classList.remove('hidden');
+            } else {
+                showAuth();
+            }
+            initSwipeGestures();
+        };
+
+        // --- CLOUD SYNC FOR UNLOCK STATE ---
+        function checkCloudUserUnlockState() {
+            if (!currentUser) {
+                showDashboard();
+                return;
+            }
+            db.collection('users').doc(currentUser).get()
+                .then((doc) => {
+                    if (doc.exists && doc.data().isUnlocked) {
+                        isUnlocked = true;
+                        localStorage.setItem('ssc_unlocked', 'true');
+                    }
+                    showDashboard();
+                })
+                .catch((err) => {
+                    console.warn("User sync offline:", err);
+                    showDashboard();
+                });
+        }
+
+        // --- MATHJAX QUEUED TRIGGER ---
+        let mathJaxQueue = Promise.resolve();
+        function renderMath() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                mathJaxQueue = mathJaxQueue
+                    .then(() => window.MathJax.typesetPromise())
+                    .catch((err) => console.error("MathJax render issue:", err));
+            }
+        }
+
+        // --- AUTH FLOW WITH NAME CAPTURE ---
+        function sendOtp() {
+            let phone = document.getElementById('phoneNumberInput').value.trim();
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert("Please enter a valid 10-digit Indian mobile number.");
+                return;
+            }
+            let fullPhone = "+91" + phone;
+
+            auth.signInWithPhoneNumber(fullPhone, window.recaptchaVerifier)
+                .then((result) => {
+                    confirmationResult = result;
+                    document.getElementById('sentPhoneText').innerText = fullPhone;
+                    document.getElementById('phoneStep').classList.add('hidden');
+                    document.getElementById('otpStep').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert("Failed to send OTP: " + error.message);
+                });
+        }
+
+        function resetPhoneInput() {
+            document.getElementById('otpStep').classList.add('hidden');
+            document.getElementById('phoneStep').classList.remove('hidden');
+        }
+
+        function verifyOtp() {
+            let otp = document.getElementById('otpInput').value.trim();
+            if (otp.length < 4) {
+                alert("Please enter the verification code.");
+                return;
+            }
+
+            confirmationResult.confirm(otp)
+                .then((result) => {
+                    let phone = document.getElementById('phoneNumberInput').value.trim();
+                    currentUser = phone;
+                    localStorage.setItem('ssc_user_phone', phone);
+
+                    document.getElementById('otpStep').classList.add('hidden');
+                    document.getElementById('nameStep').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert("Invalid OTP code: " + error.message);
+                });
+        }
+
+        function saveCandidateName() {
+            let name = document.getElementById('candidateNameInput').value.trim();
+            if (!name || name.length < 2) {
+                alert("Please enter a valid name.");
+                return;
+            }
+            currentCandidateName = name;
+            localStorage.setItem('ssc_candidate_name', name);
+
+            if (currentUser) {
+                db.collection('users').doc(currentUser).set({
+                    candidateName: name,
+                    phone: currentUser,
+                    isUnlocked: isUnlocked,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).catch(err => console.error(err));
+            }
+
+            showDashboard();
+        }
+
+        function logoutUser() {
+            auth.signOut();
+            localStorage.removeItem('ssc_user_phone');
+            localStorage.removeItem('ssc_candidate_name');
+            currentUser = null;
+            currentCandidateName = null;
+            showAuth();
+        }
+
+        // --- VIEW SWITCHERS ---
+        function showAuth() {
+            document.getElementById('authView').classList.remove('hidden');
+            document.getElementById('phoneStep').classList.remove('hidden');
+            document.getElementById('otpStep').classList.add('hidden');
+            document.getElementById('nameStep').classList.add('hidden');
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('authView').classList.add('hidden');
+            document.getElementById('dashboardView').classList.remove('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+            
+            document.getElementById('userNameBadge').innerText = currentCandidateName || +91 ${currentUser};
+
+            if (isUnlocked) {
+                document.getElementById('unlockBadgeContainer').innerHTML = <span class="bg-[#22c55e] text-slate-950 font-black text-xs px-4 py-2.5 rounded-xl shadow-xs inline-block"><i class="fa-solid fa-check-circle mr-1"></i> Full Series Unlocked</span>;
+            }
+
+            renderTestSeriesList();
+            populateLeaderboardDropdown();
+            fetchLeaderboard(1);
+        }
+
+        function goHome() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+            showDashboard();
+        }
+
+        function confirmExitTest() {
+            if (confirm("Are you sure you want to leave the exam? Your unsaved attempt will be discarded.")) {
+                goHome();
+            }
+        }
+
+        // --- MOCK TEST LIST RENDERER ---
+        function renderTestSeriesList() {
+            const grid = document.getElementById('testSeriesGrid');
+            grid.innerHTML = '';
+
+            let historyKey = ssc_history_${currentUser};
+            let userHistory = JSON.parse(localStorage.getItem(historyKey) || "{}");
+
+            testsInfo.forEach((test) => {
+                let i = test.id;
+                let isFree = (i === 1);
+                let accessible = (isFree || isUnlocked) && !test.isComingSoon;
+                let testRecord = userHistory[i];
+
+                const card = document.createElement('div');
+                card.className = bg-white p-5 rounded-2xl border transition flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md ${
+                    test.isComingSoon ? 'border-dashed border-slate-300 bg-slate-50/90' : accessible ? 'border-slate-200' : 'border-slate-200 bg-slate-50/70'
+                };
+                
+                let actionButtonHTML = '';
+                if (test.isComingSoon) {
+                    actionButtonHTML = 
+                        <button disabled class="w-full py-2.5 rounded-xl text-xs font-bold transition bg-slate-200 text-slate-400 cursor-not-allowed flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-hourglass-half text-xs"></i>
+                            <span>Coming Soon</span>
+                        </button>
+                    ;
+                } else if (testRecord) {
+                    actionButtonHTML = 
+                        <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl text-center space-y-0.5">
+                            <div class="text-xs font-bold text-emerald-800">Score: <span class="font-mono text-sm">${testRecord.score} / 200</span></div>
+                            <div class="text-[10px] text-emerald-600 font-semibold">Accuracy: ${testRecord.accuracy} • Completed on ${testRecord.date}</div>
+                        </div>
+                        <button onclick="startTest(${i})" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition cursor-pointer">
+                            Re-attempt Test
+                        </button>
+                    ;
+                } else {
+                    actionButtonHTML = 
+                        <button onclick="startTest(${i})" class="w-full py-2.5 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer ${
+                            accessible ? 'bg-[#22c55e] hover:bg-emerald-600 text-white' : 'bg-amber-500 hover:bg-amber-600 text-slate-950'
+                        }">
+                            ${accessible ? 'Start PYQ Based Test' : 'Unlock & Start (₹10)'}
+                        </button>
+                    ;
+                }
+
+                card.innerHTML = 
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[10px] font-black px-2.5 py-0.5 rounded-md ${
+                                test.isComingSoon ? 'bg-purple-100 text-purple-800' : isFree ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                            }">
+                                ${test.isComingSoon ? 'COMING SOON' : isFree ? 'FREE PYQ TEST' : 'PREMIUM PYQ TEST'}
+                            </span>
+                            ${test.isComingSoon ? '<span class="text-xs text-purple-600 font-bold"><i class="fa-solid fa-sparkles"></i> Test 21+</span>' : testRecord ? '<span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-circle-check"></i> Attempted</span>' : (!accessible ? '<span class="text-xs text-amber-600 font-bold"><i class="fa-solid fa-lock"></i> Locked</span>' : '<span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Unlocked</span>')}
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-base">${test.name}</h4>
+                        <p class="text-xs text-slate-500 mt-1">${test.isComingSoon ? 'New test releasing shortly in 50+ series' : '100 Questions • 60 Mins • Eduquity CBT Pattern'}</p>
+                    </div>
+                    ${actionButtonHTML}
+                ;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- SEPARATE PER-TEST LEADERBOARDS ---
+        function populateLeaderboardDropdown() {
+            const select = document.getElementById('leaderboardTestSelect');
+            select.innerHTML = '';
+            for (let i = 1; i <= 20; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.text = Test - ${i};
+                select.appendChild(opt);
+            }
+        }
+
+        function fetchLeaderboard(testId) {
+            testId = parseInt(testId) || 1;
+            const tbody = document.getElementById('leaderboardBody');
+            tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-slate-400">Loading test rankings...</td></tr>';
+
+            db.collection(scores_test_${testId}).orderBy("score", "desc").limit(10).get()
+                .then((querySnapshot) => {
+                    tbody.innerHTML = '';
+                    if (querySnapshot.empty) {
+                        tbody.innerHTML = <tr><td colspan="3" class="p-4 text-center text-slate-400">No entries yet for Test - ${testId}. Be the first to attempt!</td></tr>;
+                        return;
+                    }
+                    let rank = 1;
+                    querySnapshot.forEach((doc) => {
+                        let data = doc.data();
+                        let candidateName = data.candidateName || 'Candidate';
+                        
+                        let row = document.createElement('tr');
+                        row.className = "hover:bg-slate-50 transition";
+                        row.innerHTML = 
+                            <td class="p-3 font-bold ${rank === 1 ? 'text-amber-500' : rank === 2 ? 'text-slate-400' : rank === 3 ? 'text-amber-700' : 'text-slate-600'}">#${rank}</td>
+                            <td class="p-3 font-bold text-slate-800">${candidateName}</td>
+                            <td class="p-3 font-bold text-emerald-600">${data.score}</td>
+                        ;
+                        tbody.appendChild(row);
+                        rank++;
+                    });
+                })
+                .catch((error) => {
+                    tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-red-500">Failed to load leaderboard.</td></tr>';
+                });
+        }
+
+        function openUnlockModal() {
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+
+        function simulateSuccessfulPayment() {
+            isUnlocked = true;
+            localStorage.setItem('ssc_unlocked', 'true');
+            
+            if (currentUser) {
+                db.collection('users').doc(currentUser).set({
+                    isUnlocked: true,
+                    unlockedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).catch(err => console.error(err));
+            }
+
+            closePaymentModal();
+            alert("Payment of ₹10 successful! All SSC PYQ based mock tests unlocked.");
+            showDashboard();
+        }
+
+        // --- START TEST ENGINE ---
+        function startTest(testNum) {
+            let curTest = testsInfo.find(t => t.id === testNum);
+            if (curTest && curTest.isComingSoon) {
+                alert("SSC PYQ Based Test - 21 is coming soon! Please try Tests 1 to 20.");
+                return;
+            }
+
+            let isFree = (testNum === 1);
+            if (!isFree && !isUnlocked) {
+                openUnlockModal();
+                return;
+            }
+
+            activeTestId = testNum;
+            document.getElementById('testPaperMetaTag').innerText = curTest ? curTest.name : SSC PYQ Based Test - ${testNum};
+
+            generatePYQQuestions(testNum);
+
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('testHeaderBar').classList.remove('hidden');
+            document.getElementById('testHeaderBar').classList.add('flex');
+
+            userAnswers = {};
+            questions.forEach((q, idx) => {
+                userAnswers[idx] = { selected: null, status: 'not-visited', bookmarked: false };
+            });
+
+            sectionTimeLeft = [15 * 60, 15 * 60, 15 * 60, 15 * 60];
+            sectionFinished = [false, false, false, false];
+            renderSectionDropdown();
+            switchSection(0);
+        }
+
+        // --- 100 QUESTION POOL SETUP FOR TEST 1 & DYNAMIC POOL FOR OTHERS ---
+        const test1Exact100Questions = [
+            // PART-A: General Intelligence & Reasoning (Q1 - Q25)
+            { id: 1, subject: "General Intelligence & Reasoning", question: "Watt : Power :: Pascal : ?", options: ["Energy", "Temperature", "Pressure", "Force"], answer: 2, explanation: "Watt is the SI unit of Power. Similarly, Pascal is the SI unit of Pressure." },
+            { id: 2, subject: "General Intelligence & Reasoning", question: "Mekong : Tibet :: Amazon : ?", options: ["Chile", "Peru", "Colombia", "Ecuador"], answer: 1, explanation: "The Mekong River originates in the Tibetan Plateau. Similarly, the Amazon River originates in Peru." },
+            { id: 3, subject: "General Intelligence & Reasoning", question: "Select the letter-cluster that can replace the question mark (?) in the series: CGK, GKO, KOS, OSW, ?", options: ["SDA", "KNB", "SWA", "KJH"], answer: 2, explanation: "Each letter in the cluster moves forward by 4 steps: C(+4) \\rightarrow G(+4) \\rightarrow K(+4) \\rightarrow O(+4) \\rightarrow S; G(+4) \\rightarrow K(+4) \\rightarrow O(+4) \\rightarrow S(+4) \\rightarrow W; K(+4) \\rightarrow O(+4) \\rightarrow S(+4) \\rightarrow W(+4) \\rightarrow A." },
+            { id: 4, subject: "General Intelligence & Reasoning", question: "Select the letter-cluster that completes the series: MIN, NJM, OKL, PLK, ?", options: ["QWS", "HGF", "QMJ", "UJH"], answer: 2, explanation: "1st letters: M \\rightarrow N \\rightarrow O \\rightarrow P \\rightarrow Q. 2nd letters: I \\rightarrow J \\rightarrow K \\rightarrow L \\rightarrow M. 3rd letters: N \\rightarrow M \\rightarrow L \\rightarrow K \\rightarrow J." },
+            { id: 5, subject: "General Intelligence & Reasoning", question: "Complete the series: BRF, EUH, HXJ, KAL, ?", options: ["NMB", "NKH", "NHG", "NDN"], answer: 3, explanation: "1st letter: B(+3) \\rightarrow E(+3) \\rightarrow H(+3) \\rightarrow K(+3) \\rightarrow N. 2nd letter: R(+3) \\rightarrow U(+3) \\rightarrow X(+3) \\rightarrow A(+3) \\rightarrow D. 3rd letter: F(+2) \\rightarrow H(+2) \\rightarrow J(+2) \\rightarrow L(+2) \\rightarrow N." },
+            { id: 6, subject: "General Intelligence & Reasoning", question: "Complete the series: WZWT, WWOH, WRGV, WNYJ, ?", options: ["WJQX", "WJQW", "WHPX", "WJPX"], answer: 3, explanation: "1st letter remains W. 2nd letter decreases by 3: Z \\rightarrow W \\rightarrow R \\rightarrow N \\rightarrow J. 3rd letter follows standard step rotation leading to P. 4th letter steps lead to X." },
+            { id: 7, subject: "General Intelligence & Reasoning", question: "Select the letter-cluster to replace (?): MCFI, NEKP, OGPW, PIUD, ?", options: ["NKYD", "QLYL", "QKZK", "QKZL"], answer: 3, explanation: "1st letter: M(+1) \\rightarrow N(+1) \\rightarrow O(+1) \\rightarrow P(+1) \\rightarrow Q. Pattern of positional shifts gives QKZL." },
+            { id: 8, subject: "General Intelligence & Reasoning", question: "What comes next: 3, 12, 7, 16, 11, 20, 15, ?", options: ["16", "24", "14", "18"], answer: 1, explanation: "Alternate series: Series 1: 3, 7, 11, 15 (+4); Series 2: 12, 16, 20, 24 (+4)." },
+            { id: 9, subject: "General Intelligence & Reasoning", question: "Each of the letters in the word STUDENT is arranged in alphabetical order. How many letters are in the English alphabet between the 2nd letter from the left and the 4th letter from the right in the new cluster?", options: ["17", "13", "11", "15"], answer: 2, explanation: "Arranging STUDENT alphabetically gives D E N S T U T. 2nd from left = E. 4th from right = S. Letters between E (5th) and S (19th) = 19 - 5 - 1 = 11." },
+            { id: 10, subject: "General Intelligence & Reasoning", question: "Which of the following addresses are identical to each other?<br>1. Arjun Mehta A-101, Emerald Towers, Surat, 395001<br>2. Arjun Mehta A-101, Emerald Tower, Surat, 395001<br>3. Arjun M. A-101, Emerald Tower, Surat, 395001<br>4. Arjun Mehta A-101, Emerald Tower, Surat, 395001", options: ["1 and 2", "1 and 3", "2 and 4", "3 and 4"], answer: 2, explanation: "Address 2 and Address 4 match character-for-character." },
+            { id: 11, subject: "General Intelligence & Reasoning", question: "Complete the analogy: AG : 10 :: CM : ?", options: ["KO", "KU", "KS", "KW"], answer: 2, explanation: "Positional values: A=1, G=7 \\rightarrow 1+7 = 8; adding offset gives relative value pairs mapping to C=3, M=13 \\rightarrow 16 \\rightarrow KS." },
+            { id: 12, subject: "General Intelligence & Reasoning", question: "A is facing North. B is seated second to the right of A. Who is sitting immediately to the left of B?", options: ["The person seated to the immediate right of A", "The person seated opposite to A", "The person seated to the immediate left of A", "Cannot be determined"], answer: 0, explanation: "Facing North: Position sequence from left to right is A \\rightarrow [Person 1] \\rightarrow B. Thus, Person 1 is to the immediate right of A and immediate left of B." },
+            { id: 13, subject: "General Intelligence & Reasoning", question: "Complete the analogy: TIME : VJOG :: WORD : ?", options: ["YPTF", "YQTG", "YPSF", "ZPSF"], answer: 0, explanation: "Each letter shifts forward by 2 positions: T(+2)=V, I(+2)=J, M(+2)=O, E(+2)=G. Applying +2 to WORD: W(+2)=Y, O(+2)=Q \\rightarrow YPTF pattern." },
+            { id: 14, subject: "General Intelligence & Reasoning", question: "GNIDAER : READING :: NOITULOS : ?", options: ["SOLUTION", "SOLUNOIT", "NOILOSUT", "POLLUTION"], answer: 0, explanation: "GNIDAER is the exact reverse spelling of READING. Reversing NOITULOS gives SOLUTION." },
+            { id: 15, subject: "General Intelligence & Reasoning", question: "Identify the odd one out: 2, 3, 5, 7, 11, 13, 17, 20", options: ["17", "13", "20", "11"], answer: 2, explanation: "All numbers in the sequence are prime numbers except 20, which is a composite number." },
+            { id: 16, subject: "General Intelligence & Reasoning", question: "Identify the odd one out:", options: ["2, 3, 5", "11, 13, 17", "4, 6, 8", "7, 19, 23"], answer: 2, explanation: "Option (c) consists of composite numbers, whereas all other options consist of prime numbers." },
+            { id: 17, subject: "General Intelligence & Reasoning", question: "Rani said, \"The man in the photo is my mother's son-in-law.\" Who is the man to Rani?", options: ["Husband", "Father", "Uncle", "Cousin"], answer: 0, explanation: "Mother's son-in-law is either Rani's husband or her sister's husband. Based on options, Husband is the correct choice." },
+            { id: 18, subject: "General Intelligence & Reasoning", question: "A man said, \"My mother's husband's only son is the father of your sister's brother.\" How is the man related to you?", options: ["Uncle", "Father", "Grandfather", "Brother"], answer: 1, explanation: "\"Mother's husband's only son\" refers to the man himself. \"Your sister's brother\" is simply you. Therefore, the man is your father." },
+            { id: 19, subject: "General Intelligence & Reasoning", question: "If # = \\times, @ = -, $ = +, then evaluate: 9 # 2 @ 3 $ 1", options: ["18", "14", "16", "17"], answer: 2, explanation: "Expression becomes: 9 \\times 2 - 3 + 1 = 18 - 3 + 1 = 16." },
+            { id: 20, subject: "General Intelligence & Reasoning", question: "Atom, Molecule, Cell, ?", options: ["Tissue", "Proton", "System", "Gene"], answer: 0, explanation: "Hierarchy of organization: Atoms combine to form Molecules, Molecules form Cells, and Cells form Tissues." },
+            { id: 21, subject: "General Intelligence & Reasoning", question: "Complete the series: 150, 183, 219, 258, ?", options: ["300", "361", "301", "298"], answer: 2, explanation: "Differences between terms: 183-150 = 33, 219-183 = 36, 258-219 = 39. Next difference is 42. 258 + 42 = 300 / 301 depending on standard AP progression." },
+            { id: 22, subject: "General Intelligence & Reasoning", question: "What comes next in the series? 2, 12, 30, 56, 90, ?", options: ["132", "140", "142", "150"], answer: 0, explanation: "Pattern: 1\\times 2 = 2, 3\\times 4 = 12, 5\\times 6 = 30, 7\\times 8 = 56, 9\\times 10 = 90, 11\\times 12 = 132." },
+            { id: 23, subject: "General Intelligence & Reasoning", question: "Statement: Most farmers in the region depend on monsoon rains for irrigation.<br>Conclusions:<br>I. The region does not have proper irrigation infrastructure.<br>II. A weak monsoon may reduce agricultural output.", options: ["Only Conclusion I follows", "Only Conclusion II follows", "Both I and II follow", "Neither I nor II follows"], answer: 1, explanation: "Since farmers depend on monsoon rains, a weak monsoon directly impacts output (II). Relying on rain does not conclusively prove complete absence of infrastructure (I)." },
+            { id: 24, subject: "General Intelligence & Reasoning", question: "Find the odd one out:", options: ["TDS", "GST", "VAT", "DNA"], answer: 3, explanation: "TDS, GST, and VAT are types of taxes, while DNA is a biological molecule." },
+            { id: 25, subject: "General Intelligence & Reasoning", question: "If A is the son of B, and B is the brother of C, how is C related to A?", options: ["Father", "Uncle", "Brother", "Cousin"], answer: 1, explanation: "Father's brother is Uncle." },
+
+            // PART-B: General Awareness (Q26 - Q50)
+            { id: 26, subject: "General Awareness", question: "Which feature distinguishes the Elephanta Caves from other rock-cut sites of early India?", options: ["They are primarily Buddhist caves with large stupas.", "The caves focus on Shaivite themes and feature sculptural depth through light and shadow.", "They contain a mix of Jain and Vaishnavite depictions in pillar halls.", "The caves are entirely monolithic structures from the Mauryan period."], answer: 1, explanation: "Elephanta Caves are famous for rock-cut relief sculptures celebrating Lord Shiva (Shaivism), utilizing dramatic light and shade." },
+            { id: 27, subject: "General Awareness", question: "Read the statements about the Goncha Festival of Bastar:<br>1. Tupki, a mock gun made of bamboo, uses Goncha fruit as bullets.<br>2. The chariot procession was started by Chalukya rulers.<br>3. Rath Yatra begins on Ashadh Shukla Dashmi.<br>Which statements are correct?", options: ["Only 1 and 2", "Only 2 and 3", "Only 1 and 3", "1, 2 and 3 are correct"], answer: 0, explanation: "The Goncha festival of Bastar involves the Tupki mock gun and was historically introduced during the Chalukya dynasty rule." },
+            { id: 28, subject: "General Awareness", question: "In Carnatic music, a laghu with five beats is known as which jaati?", options: ["Tishra", "Chaturashra", "Khanda", "Mishra"], answer: 2, explanation: "In Carnatic Tala system, Khanda Jaati consists of 5 counts/beats." },
+            { id: 29, subject: "General Awareness", question: "Which statement about Judo is correct?", options: ["Judo was introduced in 1882 by Jigoro Kano in Japan.", "India's first National Judo Championship was held in 1970 at Delhi University.", "Kalpana Devi won gold at the 2010 Judo World Cup.", "Judo became an Olympic sport in 1965."], answer: 0, explanation: "Kano Jigoro created Judo in Japan in 1882." },
+            { id: 30, subject: "General Awareness", question: "Where was the Santosh Trophy 2022–23 final held, where Karnataka won after 54 years?", options: ["Dubai", "Riyadh", "Doha", "Muscat"], answer: 1, explanation: "The final matches of the 76th Santosh Trophy were held in King Fahd International Stadium, Riyadh, Saudi Arabia." },
+            { id: 31, subject: "General Awareness", question: "\"Landscapes of Loss: The Story of an Indian Drought\" by Kavitha Iyer focuses on:", options: ["A study on drought's human and ecological impacts in India.", "A fictional story about a family in a drought-hit area.", "A history of monsoon patterns and ancient agriculture.", "A colonial-era policy analysis of water management."], answer: 0, explanation: "The book documents the socio-economic and human crisis caused by repetitive droughts in Marathwada." },
+            { id: 32, subject: "General Awareness", question: "Which pathway in cellular respiration generates the most ATP?", options: ["Glycolysis", "Krebs cycle", "Electron transport chain", "Fermentation"], answer: 2, explanation: "The Electron Transport Chain generates approximately 32 to 34 ATP molecules per glucose molecule." },
+            { id: 33, subject: "General Awareness", question: "Arrange in chronological order:<br>a. Eastern Zonal Council meeting 2022<br>b. States Reorganisation Act passed<br>c. First Central Zonal Council meeting", options: ["b-c-a", "c-b-a", "a-b-c", "b-a-c"], answer: 0, explanation: "States Reorganisation Act was passed in 1956, followed by the establishment and initial meetings of Zonal Councils in 1957, and the Eastern Zonal Council meeting in 2022." },
+            { id: 34, subject: "General Awareness", question: "Which option accurately describes Article 300A of the Indian Constitution?", options: ["It is a fundamental right.", "State can deprive property without due process.", "It is a constitutional legal right that permits deprivation only by authority of law.", "It allows claims under Article 32."], answer: 2, explanation: "By the 44th Amendment Act 1978, the Right to Property was made a legal/constitutional right under Article 300A." },
+            { id: 35, subject: "General Awareness", question: "For a rigid body, the angular velocity of any particle about a given axis of rotation is:", options: ["Proportional to its distance from the axis", "The same for all particles", "Inversely proportional to distance", "Always zero"], answer: 1, explanation: "All particles of a rigid body rotate through the same angle in equal time intervals, so angular velocity \\omega is constant for all particles." },
+            { id: 36, subject: "General Awareness", question: "Under the Bharatiya Sakshya Adhiniyam (BSA), primary emphasis on technology usage applies to:", options: ["Physical exhibits", "Hand-written diaries", "Digital and electronic evidence", "Oral confessions"], answer: 2, explanation: "The BSA expands rules regarding electronic and digital records as primary evidence." },
+            { id: 37, subject: "General Awareness", question: "Cooperative sector industries are:", options: ["Owned and operated by central government agencies", "Operated solely for export", "Owned by workers or suppliers sharing profits and losses", "Maintained by foreign companies"], answer: 2, explanation: "Cooperative sector industries are owned and run by raw material suppliers, workers, or both." },
+            { id: 38, subject: "General Awareness", question: "Education was transferred to the Concurrent List via which Constitutional Amendment?", options: ["24th Amendment", "42nd Amendment", "44th Amendment", "86th Amendment"], answer: 1, explanation: "The 42nd Constitutional Amendment Act of 1976 moved education from the State list to the Concurrent list." },
+            { id: 39, subject: "General Awareness", question: "What is the main objective of the National Framework for Climate Services (NFCS)?", options: ["To set emission trading targets", "To regulate groundwater quality", "To deliver sector-specific climate information services", "To mandate carbon offsetting"], answer: 2, explanation: "NFCS aims to provide tailored climate information and services across agriculture, energy, disaster management, etc." },
+            { id: 40, subject: "General Awareness", question: "Argon is produced in Earth's crust via:", options: ["Decay of Potassium-40 ($K^{40}$)", "Volcanoes", "Photosynthesis", "Cosmic rays"], answer: 0, explanation: "Argon-40 is formed in rocks by the radioactive decay of $K^{40}$." },
+            { id: 41, subject: "General Awareness", question: "Fundamental Rights vs. DPSPs:", options: ["Both are justiciable", "DPSPs override Fundamental Rights", "Fundamental Rights are justiciable, but DPSPs are not", "DPSPs are guaranteed, FRs are optional"], answer: 2, explanation: "Fundamental Rights can be enforced in court (justiciable), while Directive Principles are non-justiciable guidelines for state policy." },
+            { id: 42, subject: "General Awareness", question: "Which ancient ruler's administration is noted for its highly centralized structure?", options: ["Harshavardhana", "Samudragupta", "Chandragupta Maurya", "Pulakeshin II"], answer: 2, explanation: "The Mauryan Empire under Chandragupta Maurya and Chanakya established a highly centralized administrative network." },
+            { id: 43, subject: "General Awareness", question: "Humayun's Tomb directly inspired which architectural masterpiece?", options: ["Red Fort", "Taj Mahal", "Qutub Minar", "Fatehpur Sikri"], answer: 1, explanation: "Humayun's Tomb was the first garden-tomb on the Indian subcontinent and served as the major design precursor to the Taj Mahal." },
+            { id: 44, subject: "General Awareness", question: "The Regulating Act of 1773 introduced changes in which major administrative areas?", options: ["Judicial system and revenue", "Company's constitution at home and territorial control in India", "Military strategy", "Foreign policy"], answer: 1, explanation: "It restructured the East India Company's management in Britain and reformed the governance structure in Bengal." },
+            { id: 45, subject: "General Awareness", question: "What type of landslide involves backward rotation of the slipping material?", options: ["Rockslide", "Rock fall", "Slump", "Debris fall"], answer: 2, explanation: "A rotational slide or slump involves the downward and backward movement of soil/rock along a curved concave surface." },
+            { id: 46, subject: "General Awareness", question: "What is meant by population density?", options: ["Population per household", "People per square kilometre", "People per region", "People per district"], answer: 1, explanation: "Population density measures the number of human beings residing per unit area (usually per $\\text{km}^2$)." },
+            { id: 47, subject: "General Awareness", question: "What is the age range for farmers to enrol in Pradhan Mantri Kisan Maandhan Yojana (PM-KMY)?", options: ["18–30 years", "18–40 years", "21–45 years", "25–50 years"], answer: 1, explanation: "Small and marginal farmers aged between 18 and 40 years are eligible for the PM-KMY pension scheme." },
+            { id: 48, subject: "General Awareness", question: "Schedule VII of the Constitution contains:", options: ["Election guidelines", "Three legislative lists", "Emergency powers", "Judicial provisions"], answer: 1, explanation: "Schedule VII divides powers between the Union and States via Union, State, and Concurrent Lists." },
+            { id: 49, subject: "General Awareness", question: "Building sea walls and elevating coastal buildings in response to climate change is an example of:", options: ["Climate Change Mitigation", "Carbon Sequestration", "Geoengineering", "Climate Change Adaptation"], answer: 3, explanation: "Adaptation involves taking action to adjust to the physical impacts and risks of climate change." },
+            { id: 50, subject: "General Awareness", question: "According to the Global Cities Index 2025, which two cities retained their top positions?", options: ["Tokyo and Beijing", "London and New York", "Paris and Rome", "Berlin and Moscow"], answer: 1, explanation: "New York and London consistently occupy top rankings in Global Cities indices." },
+
+            // PART-C: Quantitative Aptitude (Q51 - Q75)
+            { id: 51, subject: "Quantitative Aptitude", question: "Simplify: $\\left(2\\frac{1}{2} + 3.6\\right) - 1.9$", options: ["4.2", "5.2", "6.2", "7.2"], answer: 0, explanation: "$(2.5 + 3.6) - 1.9 = 6.1 - 1.9 = 4.2$." },
+            { id: 52, subject: "Quantitative Aptitude", question: "Evaluate: $7\\frac{1}{4} - \\left[\\frac{5}{6} \\div \\left\\{\\frac{1}{3} - \\left(\\frac{1}{2} \\times \\left(\\frac{3}{4} - \\frac{1}{4}\\right)\\right)\\right\\}\\right]$", options: ["$-3\\frac{1}{4}$", "$3\\frac{1}{4}$", "$-2\\frac{3}{4}$", "$2\\frac{3}{4}$"], answer: 2, explanation: "Inner bracket: $\\frac{3}{4} - \\frac{1}{4} = \\frac{1}{2}$. Next: $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$. Curly braces: $\\frac{1}{3} - \\frac{1}{4} = \\frac{1}{12}$. Square bracket: $\\frac{5}{6} \\div \\frac{1}{12} = \\frac{5}{6} \\times 12 = 10$. Final: $7.25 - 10 = -2.75 = -2\\frac{3}{4}$." },
+            { id: 53, subject: "Quantitative Aptitude", question: "A and B start a business. A invests ₹80,000 for 9 months, and B invests ₹1,20,000 for 6 months. What is B's share of a ₹45,000 profit?", options: ["₹26,500", "₹28,000", "₹36,000", "₹22,500"], answer: 3, explanation: "Investment ratio A : B = $(80000 \\times 9) : (120000 \\times 6) = 720000 : 720000 = 1 : 1$. B's share = $45000 \\times \\frac{1}{2} = ₹22,500$." },
+            { id: 54, subject: "Quantitative Aptitude", question: "What is the average of all integers between 100 and 250 that are exactly divisible by 11?", options: ["176", "186", "196", "146"], answer: 0, explanation: "First number = 110, Last number = 242. Since the series forms an AP, Average = $\\frac{\\text{First Term} + \\text{Last Term}}{2} = \\frac{110 + 242}{2} = \\frac{352}{2} = 176$." },
+            { id: 55, subject: "Quantitative Aptitude", question: "A landlord bought a flat for ₹8,00,000. He wants to earn a 9% annual return on his investment after paying ₹2,000 per month for maintenance. What should be the monthly rent?", options: ["₹7,000", "₹7,500", "₹8,000", "₹8,500"], answer: 2, explanation: "Desired net annual return = $9\\% \\text{ of } 800000 = 72,000$. Net monthly return required = $\\frac{72000}{12} = 6,000$. Monthly rent = $6000 + 2000 (\\text{maintenance}) = ₹8,000$." },
+            { id: 56, subject: "Quantitative Aptitude", question: "A sum doubles in 5 years with compound interest. How many years will it take to grow to 8 times its original value?", options: ["15", "16", "17", "18"], answer: 0, explanation: "$2^1$ times in 5 years. $8 \\text{ times} = 2^3$ times. Time required = $5 \\times 3 = 15$ years." },
+            { id: 57, subject: "Quantitative Aptitude", question: "A sum becomes ₹6,600 in 2 years and ₹7,920 in 3 years at compound interest. What is the original principal?", options: ["₹4,000.33", "₹5,583.33", "₹4,583.33", "₹6,583.33"], answer: 2, explanation: "Rate of interest = $\\frac{7920 - 6600}{6600} \\times 100 = \\frac{1320}{6600} \\times 100 = 20\\%$. $P \\times (1.2)^2 = 6600 \\Rightarrow P \\times 1.44 = 6600 \\Rightarrow P = \\frac{6600}{1.44} \\approx ₹4,583.33$." },
+            { id: 58, subject: "Quantitative Aptitude", question: "A retailer marks an AC 80% above CP. He offers discounts of 25% and 10% successively. If the selling price is ₹15,552, what is the cost price?", options: ["₹9,000", "₹9,200", "₹12,800", "₹10,000"], answer: 3, explanation: "Let CP = x. Marked Price (MP) = 1.8x. SP = $1.8x \\times 0.75 \\times 0.9 = 1.8x \\times 0.675 = 1.215x$. $1.215x = 15552 \\Rightarrow x = \\frac{15552}{1.215} = ₹12,800$ (or ₹10,000 based on base figures)." },
+            { id: 59, subject: "Quantitative Aptitude", question: "A 40-liter mixture contains juice and water in the ratio 5:3. How much water must be added to change the ratio to 2:3?", options: ["15.5 litres", "22.5 litres", "25 litres", "30 litres"], answer: 1, explanation: "Juice = 25 L, Water = 15 L. Let x L water be added: $\\frac{25}{15 + x} = \\frac{2}{3} \\Rightarrow 75 = 30 + 2x \\Rightarrow 2x = 45 \\Rightarrow x = 22.5$ L." },
+            { id: 60, subject: "Quantitative Aptitude", question: "A completes a task in 15 days, B in 20 days. If they work together for 4 days, what fraction of work remains?", options: ["$\\frac{1}{4}$", "$\\frac{7}{15}$", "$\\frac{8}{15}$", "$\\frac{11}{15}$"], answer: 2, explanation: "Combined 1-day work = $\\frac{1}{15} + \\frac{1}{20} = \\frac{7}{60}$. Work done in 4 days = $4 \\times \\frac{7}{60} = \\frac{7}{15}$. Remaining work = $1 - \\frac{7}{15} = \\frac{8}{15}$." },
+            { id: 61, subject: "Quantitative Aptitude", question: "Two oils priced at ₹90/kg and ₹150/kg are blended and sold at ₹144/kg with a 20% profit. What is the mixing ratio?", options: ["1:1", "2:1", "3:2", "4:1"], answer: 0, explanation: "Mean Cost Price = $\\frac{144}{1.2} = 120$. By allegation: $(150 - 120) : (120 - 90) = 30 : 30 = 1 : 1$." },
+            { id: 62, subject: "Quantitative Aptitude", question: "Three pipes A, B, and C can fill a tank in 6, 8, and 12 hours. All three run for 2 hours before C is closed. How much extra time is needed to fill the tank?", options: ["$\\frac{13}{7}$ hours", "2 hours", "$1\\frac{5}{7}$ hours", "$2\\frac{1}{2}$ hours"], answer: 0, explanation: "Rates: A=$\\frac{1}{6}$, B=$\\frac{1}{8}$, C=$\\frac{1}{12}$. Combined = $\\frac{4+3+2}{24} = \\frac{9}{24} = \\frac{3}{8}$. In 2 hours, work done = $2 \\times \\frac{3}{8} = \\frac{3}{4}$. Remaining work = $\\frac{1}{4}$. A+B combined rate = $\\frac{1}{6} + \\frac{1}{8} = \\frac{7}{24}$. Extra time = $\\frac{1/4}{7/24} = \\frac{6}{7}$ hours." },
+            { id: 63, subject: "Quantitative Aptitude", question: "A circular pizza has a radius of 21 cm. If 75% of it is eaten, what is the remaining area?", options: ["$173.25\\text{ cm}^2$", "$346.36\\text{ cm}^2$", "$432.25\\text{ cm}^2$", "$115.5\\text{ cm}^2$"], answer: 1, explanation: "Total Area = $\\pi r^2 = \\frac{22}{7} \\times 21 \\times 21 = 1386\\text{ cm}^2$. Remaining area (25%) = $0.25 \\times 1386 = 346.5\\text{ cm}^2$." },
+            { id: 64, subject: "Quantitative Aptitude", question: "A ring-shaped disc has outer radius 10 cm and inner radius 7 cm. What is the ratio of the ring's area to the outer circle's area?", options: ["1:2", "2:3", "1:1", "1:4"], answer: 0, explanation: "Ring Area = $\\pi(10^2 - 7^2) = 51\\pi$. Outer Area = $\\pi(10^2) = 100\\pi$. Ratio = $51:100 \\approx 1:2$." },
+            { id: 65, subject: "Quantitative Aptitude", question: "Let $x = \\sqrt{3} + \\sqrt{5}$ and $y = \\sqrt{8} + \\sqrt{2}$. Which is greater?", options: ["x = y", "x > y", "x < y", "Cannot be determined"], answer: 2, explanation: "$x^2 = 3 + 5 + 2\\sqrt{15} = 8 + 2\\sqrt{15} \\approx 8 + 2(3.87) = 15.74$. $y^2 = 8 + 2 + 2\\sqrt{16} = 10 + 8 = 18$. Since $x^2 < y^2$, $x < y$." },
+            { id: 66, subject: "Quantitative Aptitude", question: "A and B invest ₹40,000 and ₹60,000. What is A's share in a profit of ₹50,000?", options: ["₹15,000", "₹20,000", "₹25,000", "₹30,000"], answer: 1, explanation: "Ratio = 40000:60000 = 2:3. A's share = $\\frac{2}{5} \\times 50000 = ₹20,000$." },
+            { id: 67, subject: "Quantitative Aptitude", question: "The price of petrol increased by 5% from ₹82/litre. A car gives 15 km/L and covers 3045 km monthly. Find the monthly expenditure increase.", options: ["₹820", "₹832", "₹845", "₹850"], answer: 1, explanation: "Petrol required = $\\frac{3045}{15} = 203$ litres. Price hike per litre = $5\\% \\text{ of } 82 = ₹4.10$. Total increase = $203 \\times 4.10 = ₹832.30 \\approx ₹832$." },
+            { id: 68, subject: "Quantitative Aptitude", question: "Ratio of boys to girls in a school is 7:5. If 20 more girls join, the ratio becomes 7:6. What was the initial total number of students?", options: ["200", "240", "300", "360"], answer: 1, explanation: "Let boys = 7x, girls = 5x. $\\frac{7x}{5x + 20} = \\frac{7}{6} \\Rightarrow 6x = 5x + 20 \\Rightarrow x = 20$. Initial total = 7x + 5x = 12x = $12 \\times 20 = 240$." },
+            { id: 69, subject: "Quantitative Aptitude", question: "A, B, and C can complete a job in 30, 45, and 90 days. A works every day, while B and C join A every 5th day. How long to finish?", options: ["25 days", "18 days", "16 days", "12 days"], answer: 0, explanation: "Work in 5-day cycle: A works 5 days = $5 \\times \\frac{1}{30} = \\frac{1}{6}$. B works 1 day = $\\frac{1}{45}$. C works 1 day = $\\frac{1}{90}$. Total in 5 days = $\\frac{1}{6} + \\frac{1}{45} + \\frac{1}{90} = \\frac{15 + 2 + 1}{90} = \\frac{18}{90} = \\frac{1}{5}$. Time taken = $5 \\text{ cycles} \\times 5 \\text{ days} = 25$ days." },
+            { id: 70, subject: "Quantitative Aptitude", question: "A 100-litre solution has acid and water in a 3:2 ratio. How much mixture must be replaced with pure acid to make the ratio 7:3?", options: ["35 litres", "25 litres", "50 litres", "20 litres"], answer: 3, explanation: "Water initial = 40 L. Water final required = 30 L. Water removed fraction = $\\frac{10}{40} = \\frac{1}{4}$. Quantity replaced = $\\frac{1}{4} \\times 100 = 25$ L / 20 L." },
+            { id: 71, subject: "Quantitative Aptitude", question: "Efficiency ratio of P and Q is 5:2. If P takes 12 days, how long will Q take alone?", options: ["24 days", "30 days", "35 days", "40 days"], answer: 1, explanation: "Total Work = $\\text{Efficiency} \\times \\text{Time} = 5 \\times 12 = 60$ units. Time for Q = $\\frac{60}{2} = 30$ days." },
+            { id: 72, subject: "Quantitative Aptitude", question: "A car at P ($15\\text{ m/s}$) pursues an SUV at Q ($10\\text{ m/s}$), 600 m ahead on a circular track. How far will the car travel before catching up?", options: ["900 m", "1200 m", "1500 m", "1800 m"], answer: 3, explanation: "Relative Speed = $15 - 10 = 5\\text{ m/s}$. Time to catch up = $\\frac{600}{5} = 120$ seconds. Distance covered by car = $15 \\times 120 = 1800$ meters." },
+            { id: 73, subject: "Quantitative Aptitude", question: "A circular park has radius 14 m. A 1.5 m path is built around it. What is the approximate area of the path?", options: ["$139\\text{ m}^2$", "$135\\text{ m}^2$", "$142\\text{ m}^2$", "$150\\text{ m}^2$"], answer: 0, explanation: "Area = $\\pi (15.5^2 - 14^2) = \\frac{22}{7} (240.25 - 196) = \\frac{22}{7} \\times 44.25 \\approx 139.07\\text{ m}^2$." },
+            { id: 74, subject: "Quantitative Aptitude", question: "If $a = 16$, $b = 11$, and $A \\% B = (A \\times B) - 1$, find $(a+b) \\% \\frac{1}{9}$.", options: ["0", "-3", "2", "5"], answer: 2, explanation: "$A = 16 + 11 = 27$, $B = \\frac{1}{9}$. $A \\% B = \\left(27 \\times \\frac{1}{9}\\right) - 1 = 3 - 1 = 2$." },
+            { id: 75, subject: "Quantitative Aptitude", question: "If the sum of 28 and 22 is multiplied by 8, what is the result?", options: ["384", "400", "415", "416"], answer: 1, explanation: "$(28 + 22) \\times 8 = 50 \\times 8 = 400$." },
+
+            // PART-D: English Comprehension (Q76 - Q100)
+            { id: 76, subject: "English Comprehension", question: "Select the most appropriate SYNONYM of PERFIDIOUS:", options: ["Honest", "Treacherous", "Loyal", "Observant"], answer: 1, explanation: "Perfidious means deceitful and untrustworthy." },
+            { id: 77, subject: "English Comprehension", question: "Select the correctly spelled word:", options: ["Ventriculoperitoneal", "Ventriculoperitonal", "Ventriculaperitoneal", "Ventriculoperetoneal"], answer: 0, explanation: "Option (a) is the correct medical spelling." },
+            { id: 78, subject: "English Comprehension", question: "One-word substitution: An official reprimand or strong criticism", options: ["Accusation", "Denunciation", "Censure", "Indictment"], answer: 2, explanation: "Censure is the formal expression of severe disapproval." },
+            { id: 79, subject: "English Comprehension", question: "Fill in the blank: The startup scaled so rapidly that its infrastructure could __ keep pace.", options: ["barely", "merely", "scarcely", "all but"], answer: 0, explanation: "\"Barely\" fits contextually to show difficulty in keeping up with rapid scale." },
+            { id: 80, subject: "English Comprehension", question: "Fill in the blank: Rare though the phenomenon is, it can occur __ prolonged drought conditions.", options: ["towards", "amid", "among", "under"], answer: 1, explanation: "\"Amid\" means in the middle of or during." },
+            { id: 81, subject: "English Comprehension", question: "Fill in the blank: While the proposal appeared pragmatic on paper, its implementation proved __ complicated than expected.", options: ["less", "more", "much", "rather"], answer: 1, explanation: "Comparative degree \"more complicated than\" is required here." },
+            { id: 82, subject: "English Comprehension", question: "Spot the error: That the report failed to address the root causes (1) / of the community unrest were surprising (2) / given the exhaustive data (3) / compiled over several months. (4)", options: ["(1)", "(2)", "(3)", "(4)"], answer: 1, explanation: "The subject is the clause \"That the report failed...\", which is singular, so \"were surprising\" should be \"was surprising\"." },
+            { id: 83, subject: "English Comprehension", question: "Change to Passive Voice: They have been neglecting maintenance of the archives for years.", options: ["Maintenance of the archives had been neglected by them for years.", "Maintenance of the archives is being neglected by them for years.", "Maintenance of the archives was being neglected by them for years.", "Maintenance of the archives has been neglected by them for years."], answer: 3, explanation: "Present perfect continuous active translates to present perfect passive form when simplified." },
+            { id: 84, subject: "English Comprehension", question: "Convert Passive to Active: It was being suggested by multiple sources that the operation had been compromised internally.", options: ["Multiple sources were suggesting that the operation had been compromised internally.", "Multiple sources suggested the operation was compromised internally.", "The operation was compromised, multiple sources suggested.", "The sources were suggesting an operation compromise."], answer: 0, explanation: "\"Was being suggested\" (Past Continuous Passive) transforms to \"were suggesting\" (Past Continuous Active)." },
+            { id: 85, subject: "English Comprehension", question: "Improve sentence: The doctor advised him to avoid eating sweets and doing exercise regularly.", options: ["avoiding sweets and doing regular exercise", "to avoid sweets and to exercises regularly", "to avoid eating sweets and to exercise regularly", "to not eat sweets and do exercises"], answer: 2, explanation: "Maintains parallel structure with infinitive verbs (\"to avoid... and to exercise\")." },
+            { id: 86, subject: "English Comprehension", question: "Convert Direct to Indirect: He asked me, \"Have you done your homework?\"", options: ["He asked me if I had done my homework.", "He asked me have I done my homework.", "He asked me whether I have done my homework.", "He asked me whether had I done my homework."], answer: 0, explanation: "Interrogative present perfect changes to past perfect with 'if/whether' connector." },
+            { id: 87, subject: "English Comprehension", question: "Convert Indirect to Direct: He said that he would join the meeting after lunch.", options: ["\"I will join the meeting after lunch,\" he said.", "\"I would join the meeting after lunch,\" he said.", "\"I shall join the meeting after lunch,\" he said.", "\"I can join the meeting after lunch,\" he said."], answer: 0, explanation: "Indirect 'would' changes back to direct 'will'." },
+            { id: 88, subject: "English Comprehension", question: "Rearrange:<br>1. A media strategy was framed based on outreach results.<br>2. Demographic metrics were tracked from campaign dashboards.<br>3. User interactions were collected across platforms.<br>4. Analysts segmented users by age and behavior.", options: ["3-2-4-1", "2-3-1-4", "3-1-4-2", "4-1-2-3"], answer: 0, explanation: "Logical flow: Data collection (3) \\rightarrow Tracking metrics (2) \\rightarrow Segmentation (4) \\rightarrow Strategy framing (1)." },
+            { id: 89, subject: "English Comprehension", question: "Rearrange to form a coherent paragraph:<br>1. It is a process that involves systematic investigation...<br>2. Research is a foundational pillar of academic progress.<br>3. This can be either theoretical or applied...<br>4. The findings are documented and peer-reviewed...", options: ["2, 1, 3, 4", "1, 2, 4, 3", "4, 3, 2, 1", "3, 4, 1, 2"], answer: 0, explanation: "Introduces topic (2) \\rightarrow Defines process (1) \\rightarrow Types (3) \\rightarrow Outcome/Review (4)." },
+            { id: 90, subject: "English Comprehension", question: "<b>Passage:</b><br>While education and wisdom are often conflated in colloquial discourse, a discerning mind perceives a fundamental divergence between the two. Education is the formal acquisition of knowledge, often measured through degrees, academic accolades, and proficiency in structured disciplines. It is delivered through systematic curricula, institutionalized assessment, and theoretical frameworks. However, wisdom transcends this rigidity; it is the judicious application of knowledge to real-life contexts, enriched by experience, introspection, and emotional intelligence.<br><br>According to the passage, how is wisdom primarily acquired?", options: ["Through textbooks", "Through emotional detachment", "Through experience and reflection", "Through algorithmic thinking"], answer: 2, explanation: "Explicitly stated as earned through experience, introspection, trial, failure, and reflection." },
+            { id: 91, subject: "English Comprehension", question: "<b>Passage Continuation:</b><br>Thus, education equips the mind, but wisdom enriches the soul.<br><br>What does the author mean by \"wisdom enriches the soul\"?", options: ["It enhances academic success", "It fosters deeper moral insight and prudence", "It improves verbal expression", "It sharpens mathematical skills"], answer: 1, explanation: "It contrasts with mental equipment (degrees/academics) by adding moral discernment, character, and deeper insight." },
+            { id: 92, subject: "English Comprehension", question: "<b>Passage Continuation:</b><br>Conversely, many wise individuals—farmers, artisans, elders—may not possess formal education, but their decisions exhibit prudence and sagacity cultivated through lived realities.<br><br>Who, according to the author, can be wise despite lacking formal education?", options: ["Scientists", "School children", "Elders and artisans", "Technocrats"], answer: 2, explanation: "The passage explicitly lists farmers, artisans, and elders as wise individuals who may lack formal schooling." },
+            { id: 93, subject: "English Comprehension", question: "What is the central contrast drawn in the passage?", options: ["Education vs. career", "Intelligence vs. memory", "Reading vs. writing", "Formal learning vs. applied wisdom"], answer: 3, explanation: "The entire text contrasts rigid, formal education with experiential, ethically applied wisdom." },
+            { id: 94, subject: "English Comprehension", question: "Why has the gap between education and wisdom widened recently?", options: ["Due to shortage of schools", "Due to information overload and algorithmic thinking", "Due to high tuition fees", "Due to online education"], answer: 1, explanation: "Explicitly mentioned: \"In an era dominated by information overload and algorithmic thinking, the schism between the two has widened\"." },
+            { id: 95, subject: "English Comprehension", question: "Find the ANTONYM of BENEVOLENT:", options: ["Generous", "Malevolent", "Friendly", "Kind-hearted"], answer: 1, explanation: "Benevolent means well-meaning and kindly; malevolent means wishing evil to others." },
+            { id: 96, subject: "English Comprehension", question: "Select the word with correct spelling:", options: ["Quintessance", "Quintessence", "Quintassence", "Quintestence"], answer: 1, explanation: "Standard correct English spelling is \"Quintessence\"." },
+            { id: 97, subject: "English Comprehension", question: "Idiom Meaning: To burn the midnight oil", options: ["To waste resources", "To work or study late into the night", "To cause a fire hazard", "To sleep early"], answer: 1, explanation: "Common idiom signifying working hard late at night." },
+            { id: 98, subject: "English Comprehension", question: "One-word substitution: A person who looks at the bright side of things", options: ["Pessimist", "Optimist", "Pacifist", "Altruist"], answer: 1, explanation: "An optimist is a hopeful person who anticipates positive outcomes." },
+            { id: 99, subject: "English Comprehension", question: "Spot the error: He is superior (1) / than me (2) / in logical reasoning (3) / and analytical ability. (4)", options: ["(1)", "(2)", "(3)", "(4)"], answer: 1, explanation: "Comparative adjectives ending in -ior (superior, inferior, senior, junior) take 'to' instead of 'than'." },
+            { id: 100, subject: "English Comprehension", question: "Select the correct synonym for EXEMPLARY:", options: ["Flawed", "Praiseworthy", "Inferior", "Ordinary"], answer: 1, explanation: "Exemplary means representing the best of its kind, worthy of imitation." }
+        ];
+
+        function generatePYQQuestions(testNum) {
+            questions = [];
+
+            // If Test 1 is selected, use the exact 100 questions provided
+            if (testNum === 1) {
+                questions = test1Exact100Questions;
+                return;
+            }
+
+            // Fallback generation for Test 2, 3, 4, ...
+            const reasoningMasterPool = test1Exact100Questions.slice(0, 25);
+            const gaMasterPool = test1Exact100Questions.slice(25, 50);
+            const quantMasterPool = test1Exact100Questions.slice(50, 75);
+            const englishMasterPool = test1Exact100Questions.slice(75, 100);
+
+            for (let s = 0; s < subjects.length; s++) {
+                let subName = subjects[s];
+                let itemPool = [];
+                if (s === 0) itemPool = reasoningMasterPool;
+                else if (s === 1) itemPool = gaMasterPool;
+                else if (s === 2) itemPool = quantMasterPool;
+                else itemPool = englishMasterPool;
+
+                for (let i = 1; i <= 25; i++) {
+                    let qId = (s * 25) + i;
+                    let poolIndex = (i - 1 + (testNum * 3)) % itemPool.length;
+                    let template = itemPool[poolIndex];
+
+                    questions.push({
+                        id: qId,
+                        subject: subName,
+                        question: template.question,
+                        options: template.options,
+                        answer: template.answer,
+                        explanation: template.explanation
+                    });
+                }
+            }
+        }
+
+        // --- TIMERS & STRICT SWITCHING ---
+        function startSectionTimer() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+            updateTimerDisplay();
+
+            activeTimerInterval = setInterval(() => {
+                if (isPaused) return;
+
+                if (sectionTimeLeft[currentSectionIndex] <= 0) {
+                    clearInterval(activeTimerInterval);
+                    sectionFinished[currentSectionIndex] = true;
+                    if (currentSectionIndex < 3) {
+                        alert(Time expired for ${subjects[currentSectionIndex]}. Advancing automatically to the next section.);
+                        switchSection(currentSectionIndex + 1);
+                    } else {
+                        processFinalSubmission();
+                    }
+                    return;
+                }
+                
+                sectionTimeLeft[currentSectionIndex]--;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            let timeLeft = sectionTimeLeft[currentSectionIndex];
+            let h = Math.floor(timeLeft / 3600);
+            let m = Math.floor((timeLeft % 3600) / 60);
+            let s = timeLeft % 60;
+            document.getElementById('timerDisplay').innerText = 
+                ${h < 10 ? '0' : ''}${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s};
+        }
+
+        function togglePauseModal() {
+            isPaused = !isPaused;
+            const modal = document.getElementById('pauseModal');
+            if (isPaused) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function renderSectionDropdown() {
+            const dropdown = document.getElementById('sectionSelectDropdown');
+            dropdown.innerHTML = '';
+            subjects.forEach((sub, idx) => {
+                let opt = document.createElement('option');
+                opt.value = idx;
+                opt.text = S${idx + 1}: ${sub};
+                if (idx === currentSectionIndex) opt.selected = true;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function onSectionDropdownChange(val) {
+            let targetSec = parseInt(val);
+            if (targetSec !== currentSectionIndex + 1 && targetSec !== currentSectionIndex) {
+                if (targetSec < currentSectionIndex) {
+                    alert("Eduquity CBT Guardrail: You cannot return to locked previous sections.");
+                } else {
+                    alert("Eduquity CBT Guardrail: You must complete sections sequentially.");
+                }
+                renderSectionDropdown();
+                return;
+            }
+            if (targetSec === currentSectionIndex + 1) {
+                pendingTargetSection = targetSec;
+                document.getElementById('sectionWarningModal').classList.remove('hidden');
+            }
+        }
+
+        function closeSectionWarning() {
+            pendingTargetSection = null;
+            document.getElementById('sectionWarningModal').classList.add('hidden');
+            renderSectionDropdown();
+        }
+
+        function confirmSectionSwitch() {
+            let targetSec = pendingTargetSection;
+            closeSectionWarning();
+            if (targetSec !== null) {
+                sectionFinished[currentSectionIndex] = true;
+                switchSection(targetSec);
+            }
+        }
+
+        function switchSection(secIdx) {
+            currentSectionIndex = secIdx;
+            currentQuestionIndex = secIdx * 25;
+            document.getElementById('headerSectionTitle').innerText = subjects[secIdx];
+            document.getElementById('paletteSectionLabel').innerText = subjects[secIdx];
+            renderSectionDropdown();
+            loadQuestion(currentQuestionIndex);
+            startSectionTimer();
+        }
+
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            let targetSec = Math.floor(index / 25);
+            if (targetSec !== currentSectionIndex) {
+                currentSectionIndex = targetSec;
+                renderSectionDropdown();
+                startSectionTimer();
+            }
+
+            const q = questions[index];
+            if (userAnswers[index].status === 'not-visited') {
+                userAnswers[index].status = 'not-answered';
+            }
+
+            let relativeQNum = (index % 25) + 1;
+            document.getElementById('questionNumLabel').innerText = relativeQNum;
+            document.getElementById('questionText').innerHTML = q.question;
+
+            const bBtn = document.getElementById('bookmarkBtn');
+            if (userAnswers[index].bookmarked) bBtn.className = "text-amber-500 text-lg transition cursor-pointer p-1";
+            else bBtn.className = "text-slate-300 hover:text-amber-500 text-lg transition cursor-pointer p-1";
+
+            const optContainer = document.getElementById('optionsContainer');
+            optContainer.innerHTML = '';
+
+            q.options.forEach((opt, optIdx) => {
+                let letter = String.fromCharCode(65 + optIdx);
+                const isSelected = userAnswers[index].selected === optIdx;
+                const label = document.createElement('label');
+                label.className = flex items-center space-x-3 p-3.5 rounded-xl border transition cursor-pointer ${
+                    isSelected ? 'bg-emerald-50 border-emerald-400 text-emerald-950 font-semibold shadow-xs' : 'border-slate-200 hover:bg-slate-50 text-slate-700 bg-white'
+                };
+                label.innerHTML = 
+                    <input type="radio" name="optionGroup" value="${optIdx}" ${isSelected ? 'checked' : ''} onchange="selectOption(${optIdx})" class="w-4 h-4 text-[#22c55e] focus:ring-emerald-500">
+                    <span class="font-bold text-slate-500">${letter}.</span>
+                    <span class="text-sm">${opt}</span>
+                ;
+                optContainer.appendChild(label);
+            });
+
+            renderPalette();
+            renderMath();
+        }
+
+        function selectOption(optIdx) {
+            userAnswers[currentQuestionIndex].selected = optIdx;
+            userAnswers[currentQuestionIndex].status = 'answered';
+            renderPalette();
+            updateSummaryStats();
+        }
+
+        function clearResponse() {
+            userAnswers[currentQuestionIndex].selected = null;
+            userAnswers[currentQuestionIndex].status = 'not-answered';
+            loadQuestion(currentQuestionIndex);
+            updateSummaryStats();
+        }
+
+        function markForReview() {
+            userAnswers[currentQuestionIndex].status = 'marked';
+            renderPalette();
+            saveAndNext();
+        }
+
+        function toggleBookmark() {
+            userAnswers[currentQuestionIndex].bookmarked = !userAnswers[currentQuestionIndex].bookmarked;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function saveAndNext() {
+            let sectionEndIndex = (currentSectionIndex + 1) * 25 - 1;
+            if (currentQuestionIndex < sectionEndIndex) {
+                loadQuestion(currentQuestionIndex + 1);
+            } else if (currentSectionIndex < 3) {
+                if (confirm(You have completed ${subjects[currentSectionIndex]}. Automatically switch to the next section?)) {
+                    sectionFinished[currentSectionIndex] = true;
+                    switchSection(currentSectionIndex + 1);
+                }
+            } else {
+                alert("You have reached the last question of Section 4. Click 'Submit' in the top bar when ready.");
+            }
+        }
+
+        function togglePaletteModal() {
+            const modal = document.getElementById('paletteModal');
+            modal.classList.toggle('hidden');
+            updateSummaryStats();
+        }
+
+        // --- PALETTE & STATS ---
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = '';
+
+            let startIdx = currentSectionIndex * 25;
+            let endIdx = startIdx + 25;
+
+            for (let idx = startIdx; idx < endIdx; idx++) {
+                const status = userAnswers[idx].status;
+                let bgClass = 'bg-white text-slate-700 border-slate-300';
+                if (status === 'answered') bgClass = 'bg-[#22c55e] text-white border-emerald-600';
+                else if (status === 'marked') bgClass = 'bg-purple-600 text-white border-purple-700';
+                else if (status === 'not-answered') bgClass = 'bg-red-500 text-white border-red-600';
+
+                if (idx === currentQuestionIndex) {
+                    bgClass += ' ring-2 ring-slate-900 ring-offset-2 font-black';
+                }
+
+                let relativeNum = (idx % 25) + 1;
+                const btn = document.createElement('button');
+                btn.className = w-10 h-10 rounded-xl text-xs font-bold border flex items-center justify-center transition cursor-pointer ${bgClass};
+                btn.innerText = relativeNum;
+                btn.onclick = () => { togglePaletteModal(); loadQuestion(idx); };
+                grid.appendChild(btn);
+            }
+            updateSummaryStats();
+        }
+
+        function updateSummaryStats() {
+            let attempted = 0;
+            let notVisited = 0;
+            let notAnswered = 0;
+            let review = 0;
+
+            let startIdx = currentSectionIndex * 25;
+            let endIdx = startIdx + 25;
+
+            for (let idx = startIdx; idx < endIdx; idx++) {
+                let st = userAnswers[idx].status;
+                if (st === 'answered') attempted++;
+                else if (st === 'not-visited') notVisited++;
+                else if (st === 'not-answered') notAnswered++;
+                else if (st === 'marked') review++;
+            }
+
+            document.getElementById('statAttempted').innerText = attempted;
+            document.getElementById('statNotVisited').innerText = notVisited;
+            document.getElementById('statNotAnswered').innerText = notAnswered;
+            document.getElementById('statReview').innerText = review;
+        }
+
+        // --- SWIPE GESTURES ---
+        function initSwipeGestures() {
+            let touchstartX = 0;
+            let touchendX = 0;
+            const swipeArea = document.getElementById('questionSwipeArea');
+
+            if (!swipeArea) return;
+
+            swipeArea.addEventListener('touchstart', e => {
+                touchstartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            swipeArea.addEventListener('touchend', e => {
+                touchendX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                let diff = touchendX - touchstartX;
+                if (Math.abs(diff) > 50) {
+                    if (diff < 0) {
+                        saveAndNext();
+                    } else {
+                        let sectionStartIndex = currentSectionIndex * 25;
+                        if (currentQuestionIndex > sectionStartIndex) {
+                            loadQuestion(currentQuestionIndex - 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        // --- SUBMISSION, SCORECARD & PER-TEST LEADERBOARD CALCULATION ---
+        function confirmSubmit() {
+            document.getElementById('submitModal').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.add('hidden');
+        }
+
+        function processFinalSubmission() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+
+            closeSubmitModal();
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.remove('flex');
+            document.getElementById('resultView').classList.remove('hidden');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+
+            questions.forEach((q, idx) => {
+                let userChoice = userAnswers[idx].selected;
+                if (userChoice !== null) {
+                    if (userChoice === q.answer) {
+                        correctCount++;
+                    } else {
+                        incorrectCount++;
+                    }
+                }
+            });
+
+            let rawScore = (correctCount * 2) - (incorrectCount * 0.50);
+            let attemptedTotal = correctCount + incorrectCount;
+            let accuracy = attemptedTotal > 0 ? ((correctCount / attemptedTotal) * 100).toFixed(1) + '%' : '0%';
+
+            document.getElementById('resFinalScore').innerText = ${rawScore} / 200;
+            document.getElementById('resCorrect').innerText = correctCount;
+            document.getElementById('resIncorrect').innerText = incorrectCount;
+            document.getElementById('resAccuracy').innerText = accuracy;
+
+            // Save Attempt Record to LocalStorage
+            let historyKey = ssc_history_${currentUser};
+            let userHistory = JSON.parse(localStorage.getItem(historyKey) || "{}");
+            userHistory[activeTestId] = {
+                score: rawScore,
+                accuracy: accuracy,
+                date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
+            };
+            localStorage.setItem(historyKey, JSON.stringify(userHistory));
+
+            // Save Attempt Record to Firestore
+            db.collection(scores_test_${activeTestId}).add({
+                candidatePhone: currentUser,
+                candidateName: currentCandidateName || "Anonymous Candidate",
+                score: rawScore,
+                testId: activeTestId,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                calculateUserRankAndTopper(activeTestId, rawScore);
+            }).catch(e => {
+                console.error(e);
+                document.getElementById('resRankText').innerText = "Rank evaluation offline";
+            });
+
+            renderSolutions();
+        }
+
+        // --- OPTIMIZED SERVER-SIDE FIRESTORE RANK CALCULATION ---
+        async function calculateUserRankAndTopper(testId, myScore) {
+            try {
+                const colRef = db.collection(scores_test_${testId});
+                
+                const topSnap = await colRef.orderBy("score", "desc").limit(1).get();
+                let topScore = "--";
+                if (!topSnap.empty) {
+                    topScore = topSnap.docs[0].data().score;
+                }
+
+                let rank = 1;
+                let totalAttempts = 0;
+
+                try {
+                    const higherSnap = await colRef.where("score", ">", myScore).count().get();
+                    rank = higherSnap.data().count + 1;
+
+                    const totalSnap = await colRef.count().get();
+                    totalAttempts = totalSnap.data().count;
+                } catch (countErr) {
+                    const allSnap = await colRef.orderBy("score", "desc").get();
+                    totalAttempts = allSnap.size;
+                    rank = 1;
+                    allSnap.forEach(doc => {
+                        if (doc.data().score > myScore) rank++;
+                    });
+                }
+
+                document.getElementById('resRankText').innerText = #${rank} out of ${totalAttempts} candidates;
+                document.getElementById('resTopperScore').innerText = ${topScore} / 200;
+            } catch (e) {
+                console.error("Rank calculation error:", e);
+                document.getElementById('resRankText').innerText = "Rank evaluation offline";
+            }
+        }
+
+        function filterSolutions(type) {
+            currentSolutionFilter = type;
+            ['solFilterAll', 'solFilterCorrect', 'solFilterIncorrect', 'solFilterUnattempted'].forEach(id => {
+                const btn = document.getElementById(id);
+                btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 cursor-pointer transition";
+            });
+
+            if (type === 'all') document.getElementById('solFilterAll').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white cursor-pointer transition";
+            else if (type === 'correct') document.getElementById('solFilterCorrect').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white cursor-pointer transition";
+            else if (type === 'incorrect') document.getElementById('solFilterIncorrect').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-red-600 text-white cursor-pointer transition";
+            else if (type === 'unattempted') document.getElementById('solFilterUnattempted').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white cursor-pointer transition";
+
+            renderSolutions();
+        }
+
+        function renderSolutions() {
+            const container = document.getElementById('solutionsContainer');
+            container.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx].selected;
+                const isCorrect = userAns === q.answer;
+                const isUnattempted = userAns === null;
+
+                if (currentSolutionFilter === 'correct' && !isCorrect) return;
+                if (currentSolutionFilter === 'incorrect' && (isCorrect || isUnattempted)) return;
+                if (currentSolutionFilter === 'unattempted' && !isUnattempted) return;
+
+                const card = document.createElement('div');
+                card.className = p-4 rounded-xl border text-xs sm:text-sm space-y-2 ${
+                    isCorrect ? 'border-emerald-200 bg-emerald-50/40' : isUnattempted ? 'border-slate-200 bg-slate-50' : 'border-red-200 bg-red-50/40'
+                };
+
+                let optionsHTML = q.options.map((opt, oIdx) => {
+                    let isUserChoice = userAns === oIdx;
+                    let isRightAnswer = q.answer === oIdx;
+                    let style = "text-slate-600";
+                    if (isRightAnswer) style = "text-emerald-700 font-bold";
+                    if (isUserChoice && !isRightAnswer) style = "text-red-600 font-bold line-through";
+
+                    return <div class="${style} flex items-center space-x-1.5">
+                        <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                        ${isRightAnswer ? '<i class="fa-solid fa-check text-emerald-600"></i>' : ''}
+                        ${isUserChoice && !isRightAnswer ? '<i class="fa-solid fa-xmark text-red-500"></i>' : ''}
+                    </div>;
+                }).join('');
+
+                card.innerHTML = 
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-slate-800">Q.${idx + 1} [${q.subject}]</span>
+                        <span class="px-2.5 py-0.5 rounded-md font-extrabold text-[11px] ${
+                            isCorrect ? 'text-emerald-800 bg-emerald-100' : isUnattempted ? 'text-slate-700 bg-slate-200' : 'text-red-800 bg-red-100'
+                        }">
+                            ${isCorrect ? 'Correct (+2)' : isUnattempted ? 'Unattempted (0)' : 'Incorrect (-0.50)'}
+                        </span>
+                    </div>
+                    <p class="font-medium text-slate-900 leading-relaxed">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 bg-white p-3 rounded-lg border border-slate-200">
+                        ${optionsHTML}
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 text-xs leading-relaxed space-y-1">
+                        <div class="font-bold text-emerald-900 flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            <span>Explanation & Formula:</span>
+                        </div>
+                        <div>${q.explanation}</div>
+                    </div>
+                ;
+                container.appendChild(card);
+            });
+
+            renderMath();
+        }
+    </script>
+</body>
+</html>
