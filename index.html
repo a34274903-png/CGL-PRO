@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL Pro - Official Eduquity Pattern PYQ Based Tests</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Razorpay Standard Checkout SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- MathJax for Math & Analytical Formulae Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-[#f4f6f9] text-slate-800 font-sans min-h-screen flex flex-col select-none overflow-x-hidden antialiased">
+
+    <!-- Recaptcha Container for Firebase -->
+    <div id="recaptcha-container"></div>
+
+    <!-- Top Navigation Header for Exam Mode -->
+    <header id="testHeaderBar" class="hidden bg-white text-slate-800 shadow-xs border-b border-slate-200 shrink-0 sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex justify-between items-center w-full">
+            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <button onclick="confirmExitTest()" class="text-slate-600 hover:text-slate-900 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100 transition" title="Exit Test">
+                    <i class="fa-solid fa-arrow-left text-base sm:text-lg"></i>
+                </button>
+                <div class="min-w-0">
+                    <div id="testPaperMetaTag" class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider truncate">SSC PYQ Based Test - 1</div>
+                    <h1 id="headerSectionTitle" class="font-bold text-xs sm:text-sm text-slate-900 leading-tight truncate">General Intelligence & Reasoning</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+                <div class="flex items-center space-x-1 sm:space-x-1.5 text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1.5 rounded-lg border border-slate-200">
+                    <i class="fa-regular fa-clock text-slate-500"></i>
+                    <span id="timerDisplay" class="font-mono font-bold text-slate-900 text-xs sm:text-sm">00:15:00</span>
+                </div>
+                <button onclick="togglePauseModal()" class="text-slate-500 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 cursor-pointer transition" title="Pause Test">
+                    <i class="fa-solid fa-pause text-sm sm:text-base"></i>
+                </button>
+                <button onclick="confirmSubmit()" class="bg-[#22c55e] hover:bg-emerald-600 text-white font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs tracking-wide shadow-xs cursor-pointer transition">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-3 sm:p-4 flex flex-col justify-center">
+
+        <!-- ================= VIEW 1: AUTHENTICATION & PROFILE ================= -->
+        <div id="authView" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 space-y-6 w-full my-auto">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-inner border border-emerald-100">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Candidate Portal</h2>
+                <p class="text-slate-500 text-xs">Access official SSC CGL Pro mock test series</p>
+            </div>
+
+            <!-- STEP 1: Phone Input -->
+            <div id="phoneStep" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Mobile Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-50 text-slate-600 text-sm font-bold">+91</span>
+                        <input type="tel" id="phoneNumberInput" maxlength="10" placeholder="9876543210" class="flex-1 min-w-0 block w-full px-3.5 py-2.5 rounded-none rounded-r-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                    </div>
+                </div>
+                <button onclick="sendOtp()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Get Verification Passcode
+                </button>
+            </div>
+
+            <!-- STEP 2: OTP Input -->
+            <div id="otpStep" class="hidden space-y-4">
+                <div class="text-xs bg-emerald-50 text-emerald-800 p-3 rounded-xl border border-emerald-200 text-center font-medium space-y-1.5">
+                    <div>OTP dispatched to <span id="sentPhoneText" class="font-bold"></span> <button onclick="resetPhoneInput()" class="underline text-emerald-700 font-bold ml-1 cursor-pointer">Edit</button></div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Enter 6-Digit SMS OTP Code</label>
+                    <input type="text" id="otpInput" maxlength="6" placeholder="123456" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-center text-xl font-mono tracking-widest font-bold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                </div>
+                <button onclick="verifyOtp()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Verify Code
+                </button>
+            </div>
+
+            <!-- STEP 3: Name Input -->
+            <div id="nameStep" class="hidden space-y-4">
+                <div class="text-xs bg-emerald-50 text-emerald-800 p-3 rounded-xl border border-emerald-200 text-center font-medium">
+                    <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Phone verified! Enter your full name for leaderboards.
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Candidate Full Name</label>
+                    <input type="text" id="candidateNameInput" placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                </div>
+                <button onclick="saveCandidateName()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Save Profile & Continue
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 2: DASHBOARD ================= -->
+        <div id="dashboardView" class="hidden space-y-6 my-auto py-4">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-2xl p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-800">
+                <div class="space-y-2 text-center sm:text-left">
+                    <div class="flex items-center space-x-2 justify-center sm:justify-start flex-wrap gap-y-1">
+                        <span class="bg-[#22c55e] text-slate-950 text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                            <i class="fa-solid fa-layer-group mr-1"></i> 50+ Tests Series Pass
+                        </span>
+                        <span id="userNameBadge" class="text-xs text-slate-200 font-bold bg-slate-800 px-2.5 py-0.5 rounded-md border border-slate-700"></span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">SSC PYQ Based Tests</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm max-w-xl">Curated full-length practice tests modeled on genuine previous year question standards under the official Eduquity CBT format. Test - 1 is 100% FREE!</p>
+                </div>
+                <div id="unlockBadgeContainer" class="shrink-0 w-full sm:w-auto">
+                    <!-- Dynamic via JS -->
+                </div>
+            </div>
+
+            <!-- Header Title and Logout -->
+            <div class="flex justify-between items-center px-1">
+                <div>
+                    <h3 class="font-black text-slate-900 text-lg sm:text-xl">SSC PYQ Based Tests</h3>
+                    <p class="text-xs text-slate-500">20 active tests ready to attempt • Additional tests releasing continuously</p>
+                </div>
+                <button onclick="logoutUser()" class="text-xs text-red-600 hover:text-red-700 font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition border border-red-200 cursor-pointer flex items-center space-x-1.5">
+                    <i class="fa-solid fa-power-off text-xs"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+
+            <!-- Test Cards Grid -->
+            <div id="testSeriesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated via JS -->
+            </div>
+
+            <!-- Per-Test Live Firebase Leaderboard Section -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-3">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-trophy text-amber-500 text-xl"></i>
+                        <h3 class="font-black text-slate-900 text-base sm:text-lg">Test Leaderboard</h3>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <label class="text-xs font-bold text-slate-600">Select Test:</label>
+                        <select id="leaderboardTestSelect" onchange="fetchLeaderboard(this.value)" class="font-bold text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+                            <!-- Populated via JS -->
+                        </select>
+                        <button onclick="fetchLeaderboard(document.getElementById('leaderboardTestSelect').value)" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 cursor-pointer">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 uppercase font-extrabold text-[10px] border-b border-slate-200">
+                                <th class="p-3">Rank</th>
+                                <th class="p-3">Candidate Name</th>
+                                <th class="p-3">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody" class="divide-y divide-slate-100 font-medium">
+                            <tr><td colspan="3" class="p-4 text-center text-slate-400">Loading test rankings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 3: QUIZ ENGINE INTERFACE ================= -->
+        <div id="quizView" class="hidden flex-grow flex flex-col justify-between max-w-3xl mx-auto w-full pb-20">
+            <div>
+                <!-- Sub-bar: Section Dropdown & Language Indicator -->
+                <div class="bg-white px-4 py-3 rounded-xl border border-slate-200 shadow-xs flex flex-wrap justify-between items-center gap-2 mb-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold text-slate-500">Section:</span>
+                        <select id="sectionSelectDropdown" onchange="onSectionDropdownChange(this.value)" class="font-bold text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none cursor-pointer">
+                            <!-- Populated via JS -->
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+                        <span class="text-emerald-700 font-bold">Eduquity CBT Standard</span>
+                    </div>
+                </div>
+
+                <!-- Question Card Box -->
+                <div id="questionSwipeArea" class="bg-white rounded-2xl shadow-xs border border-slate-200 p-5 sm:p-7 space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-0.5 rounded-md">Q. <span id="questionNumLabel">1</span> / 25</span>
+                            <span class="text-xs text-slate-400 font-medium">+2.0 | -0.50</span>
+                        </div>
+                        <button onclick="toggleBookmark()" id="bookmarkBtn" class="text-slate-300 hover:text-amber-500 text-lg transition cursor-pointer p-1" title="Star / Bookmark Question">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                    </div>
+
+                    <div id="questionText" class="text-sm sm:text-base font-medium text-slate-900 leading-relaxed overflow-x-auto custom-scrollbar">
+                        Loading Question...
+                    </div>
+
+                    <!-- Options List -->
+                    <div id="optionsContainer" class="space-y-3 pt-2">
+                        <!-- Options load here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Action Bar -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg p-3 z-30">
+                <div class="max-w-3xl mx-auto flex justify-between items-center gap-2">
+                    <button onclick="markForReview()" class="flex-1 py-2.5 px-2 sm:px-3 bg-white hover:bg-purple-50 text-purple-700 font-bold text-xs rounded-xl border border-purple-300 transition cursor-pointer text-center truncate">
+                        Mark & Next
+                    </button>
+                    <button onclick="clearResponse()" class="px-3 sm:px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs rounded-xl border border-slate-300 transition cursor-pointer">
+                        Clear
+                    </button>
+                    <button onclick="saveAndNext()" class="flex-1 py-2.5 px-2 sm:px-3 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-xs transition cursor-pointer text-center truncate flex items-center justify-center space-x-1">
+                        <span>Save & Next</span>
+                        <i class="fa-solid fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Floating Question Palette Button -->
+            <button onclick="togglePaletteModal()" class="fixed bottom-20 right-4 sm:right-6 w-12 h-12 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl shadow-xl flex items-center justify-center text-lg z-40 cursor-pointer transition transform active:scale-95" title="Question Summary Palette">
+                <i class="fa-solid fa-table-cells"></i>
+            </button>
+        </div>
+
+        <!-- ================= VIEW 4: RESULT & SOLUTIONS ================= -->
+        <div id="resultView" class="hidden max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 p-5 sm:p-8 space-y-6 my-auto">
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl text-2xl mb-1 shadow-inner border border-emerald-200">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h2 id="resultTitleText" class="text-2xl font-black text-slate-900 tracking-tight">SSC PYQ Based Test Scorecard</h2>
+                <p class="text-slate-500 text-xs sm:text-sm">Official Eduquity pattern scorecard and step-by-step MathJax solution key.</p>
+            </div>
+
+            <!-- Per-Test Leaderboard Banner on Scorecard -->
+            <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-4 text-white flex justify-between items-center shadow-md">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] uppercase tracking-wider font-bold text-amber-100">Test Leaderboard Rank</div>
+                        <div id="resRankText" class="text-lg font-black">Calculating your position...</div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-[11px] uppercase tracking-wider font-bold text-amber-100">Test Topper</div>
+                    <div id="resTopperScore" class="text-lg font-black">--</div>
+                </div>
+            </div>
+
+            <!-- Overall Scorecard Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-center">
+                    <div id="resFinalScore" class="text-2xl font-black text-emerald-800">0 / 200</div>
+                    <div class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mt-1">Total Score</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                    <div id="resCorrect" class="text-2xl font-black text-slate-800">0</div>
+                    <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">Correct (+2)</div>
+                </div>
+                <div class="bg-red-50 border border-red-200 p-4 rounded-xl text-center">
+                    <div id="resIncorrect" class="text-2xl font-black text-red-700">0</div>
+                    <div class="text-[11px] font-bold text-red-500 uppercase tracking-wider mt-1">Incorrect (-0.5)</div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
+                    <div id="resAccuracy" class="text-2xl font-black text-amber-800">0%</div>
+                    <div class="text-[11px] font-bold text-amber-600 uppercase tracking-wider mt-1">Accuracy</div>
+                </div>
+            </div>
+
+            <!-- SECTIONAL SUMMARY UI -->
+            <div class="space-y-3 pt-2">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
+                        <i class="fa-solid fa-chart-pie text-emerald-600"></i>
+                        <span>Sectional Summary</span>
+                    </h3>
+                    <span class="text-xs text-slate-400 font-semibold">4 Sections Breakdown</span>
+                </div>
+                
+                <div id="sectionalSummaryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- AI PERSONALIZED INSIGHTS CARD -->
+            <div id="aiInsightsCard" class="bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white rounded-2xl p-5 space-y-4 shadow-xl border border-purple-500/30">
+                <div class="flex items-center justify-between border-b border-purple-800/50 pb-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-purple-500/20 text-purple-300 rounded-xl flex items-center justify-center text-xl border border-purple-400/30 shadow-inner">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-base text-purple-100 tracking-tight">AI Diagnostic Report & Insights</h3>
+                            <p class="text-[11px] text-purple-300/80">Personalized strength & weakness evaluation</p>
+                        </div>
+                    </div>
+                    <button onclick="openAIChatModal(null)" class="text-xs bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded-lg shadow-md transition cursor-pointer flex items-center space-x-1">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>Ask AI Assistant</span>
+                    </button>
+                </div>
+
+                <div id="aiReportContent" class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Solution Filter Options -->
+            <div class="space-y-4 pt-2">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-200 pb-3 gap-3">
+                    <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
+                        <i class="fa-solid fa-file-signature text-emerald-600"></i>
+                        <span>Detailed Question Solutions</span>
+                    </h3>
+                    <div class="flex items-center space-x-1.5 overflow-x-auto pb-1 sm:pb-0">
+                        <button onclick="filterSolutions('all')" id="solFilterAll" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white cursor-pointer transition">All (100)</button>
+                        <button onclick="filterSolutions('correct')" id="solFilterCorrect" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-emerald-100 hover:text-emerald-800 cursor-pointer transition">Correct</button>
+                        <button onclick="filterSolutions('incorrect')" id="solFilterIncorrect" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-red-100 hover:text-red-800 cursor-pointer transition">Incorrect</button>
+                        <button onclick="filterSolutions('unattempted')" id="solFilterUnattempted" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-amber-100 hover:text-amber-800 cursor-pointer transition">Unattempted</button>
+                    </div>
+                </div>
+
+                <div id="solutionsContainer" class="space-y-4 max-h-[550px] overflow-y-auto pr-1.5 custom-scrollbar">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <div class="text-center pt-2">
+                <button onclick="goHome()" class="bg-[#22c55e] hover:bg-emerald-600 text-white font-bold px-8 py-3 rounded-xl text-sm cursor-pointer shadow-md transition">
+                    Return to Dashboard
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- AI CHAT / QUESTION DISCUSS MODAL -->
+    <div id="aiChatModal" class="hidden fixed inset-0 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 shrink-0">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-9 h-9 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-lg shadow-inner">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3 id="aiModalTitle" class="font-black text-slate-900 text-sm sm:text-base leading-tight">AI Exam Tutor</h3>
+                        <p id="aiModalSubtitle" class="text-[11px] text-slate-500">Ask questions, request shortcuts or explanations</p>
+                    </div>
+                </div>
+                <button onclick="closeAIChatModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer p-1 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Question Context Banner -->
+            <div id="aiQuestionContextBanner" class="hidden bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700 shrink-0 space-y-1 max-h-28 overflow-y-auto custom-scrollbar">
+                <div class="font-bold text-purple-800 uppercase text-[10px] tracking-wider flex items-center space-x-1">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Question Context</span>
+                </div>
+                <div id="aiContextQuestionText" class="font-medium text-slate-900 truncate"></div>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div id="aiQuickChips" class="flex space-x-1.5 overflow-x-auto shrink-0 pb-1 text-[11px]">
+                <button onclick="sendQuickPrompt('Explain this question in very simple words.')" class="px-2.5 py-1 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg border border-purple-200 shrink-0 cursor-pointer">💡 Simple Explanation</button>
+                <button onclick="sendQuickPrompt('Is there a 10-second trick or shortcut for this?')" class="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg border border-emerald-200 shrink-0 cursor-pointer">⚡ 10s Shortcut Trick</button>
+                <button onclick="sendQuickPrompt('Why are the other options wrong?')" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg border border-amber-200 shrink-0 cursor-pointer">❌ Option Elimination</button>
+            </div>
+
+            <!-- Chat Messages Log -->
+            <div id="aiChatMessages" class="flex-grow overflow-y-auto space-y-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs sm:text-sm custom-scrollbar">
+                <!-- Populated via JS -->
+            </div>
+
+            <!-- Input Controls -->
+            <div class="shrink-0 flex items-center space-x-2 pt-1">
+                <input type="text" id="aiChatInput" onkeydown="if(event.key==='Enter') sendAIChatMessage()" placeholder="Ask your AI tutor anything..." class="flex-grow bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm rounded-xl px-3.5 py-2.5 outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                <button onclick="sendAIChatMessage()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-sm cursor-pointer shrink-0">
+                    <i class="fa-solid fa-paper-plane mr-1"></i> Send
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING QUESTION PALETTE MODAL -->
+    <div id="paletteModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4 z-50">
+        <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 shrink-0">
+                <div>
+                    <h3 class="font-black text-slate-900 text-base">Question Palette</h3>
+                    <p class="text-xs text-slate-500">Tap any question number to jump directly</p>
+                </div>
+                <button onclick="togglePaletteModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer p-1 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 text-center shrink-0 py-1">
+                <div class="bg-emerald-50 p-2 rounded-xl border border-emerald-100"><div id="statAttempted" class="font-black text-emerald-700 text-base">0</div><div class="text-[10px] text-emerald-600 font-bold uppercase">Answered</div></div>
+                <div class="bg-slate-50 p-2 rounded-xl border border-slate-200"><div id="statNotVisited" class="font-black text-slate-700 text-base">25</div><div class="text-[10px] text-slate-500 font-bold uppercase">Unvisited</div></div>
+                <div class="bg-red-50 p-2 rounded-xl border border-red-100"><div id="statNotAnswered" class="font-black text-red-700 text-base">0</div><div class="text-[10px] text-red-600 font-bold uppercase">Skipped</div></div>
+                <div class="bg-purple-50 p-2 rounded-xl border border-purple-100"><div id="statReview" class="font-black text-purple-700 text-base">0</div><div class="text-[10px] text-purple-600 font-bold uppercase">Review</div></div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs font-bold text-slate-700 shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                <span id="paletteSectionLabel" class="text-emerald-700">Section 1</span>
+                <span class="text-slate-500 text-[11px]">25 Questions Total</span>
+            </div>
+
+            <div id="paletteGrid" class="grid grid-cols-5 sm:grid-cols-6 gap-2.5 overflow-y-auto p-1 flex-grow custom-scrollbar">
+                <!-- Populated via JS -->
+            </div>
+
+            <div class="pt-2 shrink-0">
+                <button onclick="togglePaletteModal(); confirmSubmit();" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer">
+                    Submit Test Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION SWITCH WARNING MODAL -->
+    <div id="sectionWarningModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-lg mx-auto border border-amber-200">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base text-center">Switch Section?</h3>
+            <p class="text-xs text-slate-600 text-center leading-relaxed">According to Eduquity CBT regulations, once you lock and proceed to the next section, your previous section answers are finalized.</p>
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeSectionWarning()" class="w-1/2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl cursor-pointer transition">Stay Here</button>
+                <button onclick="confirmSectionSwitch()" class="w-1/2 px-4 py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white text-xs font-bold rounded-xl cursor-pointer transition">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT GATEWAY MODAL -->
+    <div id="paymentModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl border border-slate-200">
+            <div class="text-center space-y-1.5">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mx-auto border border-emerald-200">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h3 class="text-xl font-black text-slate-900">Unlock All 50+ PYQ Tests</h3>
+                <p class="text-xs text-slate-500">Gain lifetime access to all 50+ Eduquity pattern SSC CGL previous year mock tests.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+                <div class="flex justify-between font-bold"><span class="text-slate-600">Test Pass</span><span class="text-slate-900">₹10 Only</span></div>
+                <div class="flex justify-between font-bold text-emerald-600"><span>Access Period</span><span>Lifetime Unlimited</span></div>
+                <div class="flex justify-between font-semibold text-slate-500"><span>Explanations</span><span>Includes MathJax & AI Tutor</span></div>
+            </div>
+            <div class="space-y-2">
+                <button onclick="openRazorpayCheckout()" class="w-full bg-[#22c55e] hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-xs text-sm cursor-pointer flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Pay ₹10 via Razorpay (UPI / GPay / Cards)</span>
+                </button>
+                <button onclick="closePaymentModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl transition text-xs cursor-pointer">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMIT CONFIRMATION MODAL -->
+    <div id="submitModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mx-auto border border-emerald-200">
+                <i class="fa-solid fa-check-double"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base text-center">Confirm Test Submission</h3>
+            <p class="text-xs text-slate-600 text-center leading-relaxed">Are you sure you want to finish your test? Your scorecard and detailed solutions will be rendered immediately.</p>
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeSubmitModal()" class="w-1/2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl cursor-pointer">Resume Test</button>
+                <button onclick="processFinalSubmission()" class="w-1/2 px-4 py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl cursor-pointer">Yes, Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAUSE MODAL -->
+    <div id="pauseModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200 text-center">
+            <div class="w-12 h-12 bg-slate-100 text-slate-700 rounded-2xl flex items-center justify-center text-lg mx-auto border border-slate-200"><i class="fa-solid fa-pause"></i></div>
+            <h3 class="font-bold text-slate-900 text-base">Test Timer Paused</h3>
+            <p class="text-xs text-slate-600">Your exam timer is currently paused. Resume when ready.</p>
+            <button onclick="togglePauseModal()" class="w-full py-2.5 bg-[#22c55e] hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer transition">Resume Test</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT ENGINE & DYNAMIC TEST JSON LOADER -->
+    <script>
+        // --- FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyCM5QOqGkc2RYCaw7ePexYp__YEXWb9Z3A",
+            authDomain: "cgl-pro-c1c13.firebaseapp.com",
+            projectId: "cgl-pro-c1c13",
+            storageBucket: "cgl-pro-c1c13.firebasestorage.app",
+            messagingSenderId: "116948395123",
+            appId: "1:116948395123:web:addd0dec14567cdd847606",
+            measurementId: "G-PGCQP7QDNJ"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let confirmationResult = null;
+        let currentUser = localStorage.getItem('ssc_user_phone') || null;
+        let currentCandidateName = localStorage.getItem('ssc_candidate_name') || null;
+        let isUnlocked = localStorage.getItem('ssc_unlocked') === 'true';
+        let activeTestId = 1;
+        
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let currentSectionIndex = 0;
+        let currentSolutionFilter = 'all';
+        
+        let sectionTimeLeft = [15 * 60, 15 * 60, 15 * 60, 15 * 60];
+        let sectionFinished = [false, false, false, false];
+        let activeTimerInterval = null;
+        let pendingTargetSection = null;
+        let isPaused = false;
+
+        let activeAIQuestionIdx = null;
+
+        const subjects = [
+            "General Intelligence & Reasoning",
+            "General Awareness",
+            "Quantitative Aptitude",
+            "English Comprehension"
+        ];
+
+        // 20 ACTIVE playable tests + 1 Coming Soon test
+        const testsInfo = Array.from({ length: 21 }, (_, index) => {
+            const num = index + 1;
+            const isComingSoon = (num === 21);
+            return {
+                id: num,
+                name: `SSC PYQ Based Test - ${num}`,
+                subtitle: isComingSoon ? "Releasing Soon in 50+ Test Series" : "Eduquity CBT Pattern Practice Paper",
+                isComingSoon: isComingSoon
+            };
+        });
+
+        // --- FIRESTORE USER SYNC & UNLOCK CHECK ---
+        function syncUserAndCheckUnlock(phone, callback) {
+            if (!phone) {
+                isUnlocked = false;
+                localStorage.setItem('ssc_unlocked', 'false');
+                if (callback) callback();
+                return;
+            }
+
+            db.collection('users').doc(phone).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        isUnlocked = (data.isUnlocked === true);
+                        localStorage.setItem('ssc_unlocked', isUnlocked ? 'true' : 'false');
+
+                        if (data.candidateName) {
+                            currentCandidateName = data.candidateName;
+                            localStorage.setItem('ssc_candidate_name', currentCandidateName);
+                        }
+                    } else {
+                        isUnlocked = false;
+                        localStorage.setItem('ssc_unlocked', 'false');
+                    }
+                    if (callback) callback();
+                })
+                .catch((err) => {
+                    console.warn("User sync error:", err);
+                    if (callback) callback();
+                });
+        }
+
+        window.onload = function() {
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                'size': 'invisible'
+            });
+
+            if (currentUser) {
+                syncUserAndCheckUnlock(currentUser, () => {
+                    if (currentCandidateName) {
+                        showDashboard();
+                    } else {
+                        showAuth();
+                        document.getElementById('phoneStep').classList.add('hidden');
+                        document.getElementById('otpStep').classList.add('hidden');
+                        document.getElementById('nameStep').classList.remove('hidden');
+                    }
+                });
+            } else {
+                showAuth();
+            }
+            initSwipeGestures();
+        };
+
+        // --- MATHJAX TRIGGER ---
+        function renderMath() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().catch((err) => console.error(err));
+            }
+        }
+
+        // --- AUTH FLOW WITH NAME CAPTURE ---
+        function sendOtp() {
+            let phone = document.getElementById('phoneNumberInput').value.trim();
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert("Please enter a valid 10-digit Indian mobile number.");
+                return;
+            }
+            let fullPhone = "+91" + phone;
+
+            auth.signInWithPhoneNumber(fullPhone, window.recaptchaVerifier)
+                .then((result) => {
+                    confirmationResult = result;
+                    document.getElementById('sentPhoneText').innerText = fullPhone;
+                    document.getElementById('phoneStep').classList.add('hidden');
+                    document.getElementById('otpStep').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert("Failed to send OTP: " + error.message);
+                });
+        }
+
+        function resetPhoneInput() {
+            document.getElementById('otpStep').classList.add('hidden');
+            document.getElementById('phoneStep').classList.remove('hidden');
+        }
+
+        function verifyOtp() {
+            let otp = document.getElementById('otpInput').value.trim();
+            if (otp.length < 4) {
+                alert("Please enter the verification code.");
+                return;
+            }
+
+            confirmationResult.confirm(otp)
+                .then((result) => {
+                    let phone = document.getElementById('phoneNumberInput').value.trim();
+                    currentUser = phone;
+                    localStorage.setItem('ssc_user_phone', phone);
+
+                    syncUserAndCheckUnlock(phone, () => {
+                        if (currentCandidateName) {
+                            showDashboard();
+                        } else {
+                            document.getElementById('otpStep').classList.add('hidden');
+                            document.getElementById('nameStep').classList.remove('hidden');
+                        }
+                    });
+                })
+                .catch((error) => {
+                    alert("Invalid OTP code: " + error.message);
+                });
+        }
+
+        function saveCandidateName() {
+            let name = document.getElementById('candidateNameInput').value.trim();
+            if (!name || name.length < 2) {
+                alert("Please enter a valid name.");
+                return;
+            }
+            currentCandidateName = name;
+            localStorage.setItem('ssc_candidate_name', name);
+
+            if (currentUser) {
+                db.collection('users').doc(currentUser).set({
+                    candidateName: name,
+                    phone: currentUser,
+                    isUnlocked: isUnlocked,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).then(() => {
+                    showDashboard();
+                }).catch(err => {
+                    console.error(err);
+                    showDashboard();
+                });
+            } else {
+                showDashboard();
+            }
+        }
+
+        function logoutUser() {
+            auth.signOut();
+            localStorage.removeItem('ssc_user_phone');
+            localStorage.removeItem('ssc_candidate_name');
+            localStorage.removeItem('ssc_unlocked');
+            currentUser = null;
+            currentCandidateName = null;
+            isUnlocked = false;
+            showAuth();
+        }
+
+        // --- VIEW SWITCHERS ---
+        function showAuth() {
+            document.getElementById('authView').classList.remove('hidden');
+            document.getElementById('phoneStep').classList.remove('hidden');
+            document.getElementById('otpStep').classList.add('hidden');
+            document.getElementById('nameStep').classList.add('hidden');
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('authView').classList.add('hidden');
+            document.getElementById('dashboardView').classList.remove('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+            
+            document.getElementById('userNameBadge').innerText = currentCandidateName || `+91 ${currentUser}`;
+
+            if (isUnlocked) {
+                document.getElementById('unlockBadgeContainer').innerHTML = `<span class="bg-[#22c55e] text-slate-950 font-black text-xs px-4 py-2.5 rounded-xl shadow-xs inline-block"><i class="fa-solid fa-check-circle mr-1"></i> Full Series Unlocked</span>`;
+            } else {
+                document.getElementById('unlockBadgeContainer').innerHTML = `
+                    <button onclick="openUnlockModal()" class="w-full sm:w-auto bg-[#22c55e] hover:bg-emerald-600 text-slate-950 font-black px-6 py-3.5 rounded-xl transition shadow-lg text-sm flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-lock-open text-base"></i>
+                        <span>Unlock All 50+ Tests (₹10)</span>
+                    </button>`;
+            }
+
+            renderTestSeriesList();
+            populateLeaderboardDropdown();
+            fetchLeaderboard(1);
+        }
+
+        function goHome() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+            showDashboard();
+        }
+
+        function confirmExitTest() {
+            if (confirm("Are you sure you want to leave the exam? Your unsaved attempt will be discarded.")) {
+                goHome();
+            }
+        }
+
+        // --- MOCK TEST LIST RENDERER ---
+        function renderTestSeriesList() {
+            const grid = document.getElementById('testSeriesGrid');
+            grid.innerHTML = '';
+
+            let historyKey = `ssc_history_${currentUser}`;
+            let userHistory = JSON.parse(localStorage.getItem(historyKey) || "{}");
+
+            testsInfo.forEach((test) => {
+                let i = test.id;
+                let isFree = (i === 1);
+                let accessible = (isFree || isUnlocked) && !test.isComingSoon;
+                let testRecord = userHistory[i];
+
+                const card = document.createElement('div');
+                card.className = `bg-white p-5 rounded-2xl border transition flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md ${
+                    test.isComingSoon ? 'border-dashed border-slate-300 bg-slate-50/90' : accessible ? 'border-slate-200' : 'border-slate-200 bg-slate-50/70'
+                }`;
+                
+                let actionButtonHTML = '';
+                if (test.isComingSoon) {
+                    actionButtonHTML = `
+                        <button disabled class="w-full py-2.5 rounded-xl text-xs font-bold transition bg-slate-200 text-slate-400 cursor-not-allowed flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-hourglass-half text-xs"></i>
+                            <span>Coming Soon</span>
+                        </button>
+                    `;
+                } else if (testRecord) {
+                    actionButtonHTML = `
+                        <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl text-center space-y-0.5">
+                            <div class="text-xs font-bold text-emerald-800">Score: <span class="font-mono text-sm">${testRecord.score} / 200</span></div>
+                            <div class="text-[10px] text-emerald-600 font-semibold">Accuracy: ${testRecord.accuracy} • Completed on ${testRecord.date}</div>
+                        </div>
+                        <button onclick="startTest(${i})" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition cursor-pointer">
+                            Re-attempt Test
+                        </button>
+                    `;
+                } else {
+                    actionButtonHTML = `
+                        <button onclick="startTest(${i})" class="w-full py-2.5 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer ${
+                            accessible ? 'bg-[#22c55e] hover:bg-emerald-600 text-white' : 'bg-amber-500 hover:bg-amber-600 text-slate-950'
+                        }">
+                            ${accessible ? 'Start PYQ Based Test' : 'Unlock & Start (₹10)'}
+                        </button>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[10px] font-black px-2.5 py-0.5 rounded-md ${
+                                test.isComingSoon ? 'bg-purple-100 text-purple-800' : isFree ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                            }">
+                                ${test.isComingSoon ? 'COMING SOON' : isFree ? 'FREE PYQ TEST' : 'PREMIUM PYQ TEST'}
+                            </span>
+                            ${test.isComingSoon ? '<span class="text-xs text-purple-600 font-bold"><i class="fa-solid fa-sparkles"></i> Test 21+</span>' : testRecord ? '<span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-circle-check"></i> Attempted</span>' : (!accessible ? '<span class="text-xs text-amber-600 font-bold"><i class="fa-solid fa-lock"></i> Locked</span>' : '<span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-check"></i> Unlocked</span>')}
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-base">${test.name}</h4>
+                        <p class="text-xs text-slate-500 mt-1">${test.isComingSoon ? 'New test releasing shortly in 50+ series' : '100 Questions • 60 Mins • Eduquity CBT Pattern'}</p>
+                    </div>
+                    ${actionButtonHTML}
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- SEPARATE PER-TEST LEADERBOARDS ---
+        function populateLeaderboardDropdown() {
+            const select = document.getElementById('leaderboardTestSelect');
+            select.innerHTML = '';
+            for (let i = 1; i <= 20; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.text = `Test - ${i}`;
+                select.appendChild(opt);
+            }
+        }
+
+        function fetchLeaderboard(testId) {
+            testId = parseInt(testId) || 1;
+            const tbody = document.getElementById('leaderboardBody');
+            tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-slate-400">Loading test rankings...</td></tr>';
+
+            db.collection(`scores_test_${testId}`).orderBy("score", "desc").limit(10).get()
+                .then((querySnapshot) => {
+                    tbody.innerHTML = '';
+                    if (querySnapshot.empty) {
+                        tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-slate-400">No entries yet for Test - ${testId}. Be the first to attempt!</td></tr>`;
+                        return;
+                    }
+                    let rank = 1;
+                    querySnapshot.forEach((doc) => {
+                        let data = doc.data();
+                        let candidateName = data.candidateName || 'Candidate';
+                        
+                        let row = document.createElement('tr');
+                        row.className = "hover:bg-slate-50 transition";
+                        row.innerHTML = `
+                            <td class="p-3 font-bold ${rank === 1 ? 'text-amber-500' : rank === 2 ? 'text-slate-400' : rank === 3 ? 'text-amber-700' : 'text-slate-600'}">#${rank}</td>
+                            <td class="p-3 font-bold text-slate-800">${candidateName}</td>
+                            <td class="p-3 font-bold text-emerald-600">${data.score}</td>
+                        `;
+                        tbody.appendChild(row);
+                        rank++;
+                    });
+                })
+                .catch((error) => {
+                    tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-red-500">Failed to load leaderboard.</td></tr>';
+                });
+        }
+
+        function openUnlockModal() {
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+
+        function openRazorpayCheckout() {
+            closePaymentModal();
+
+            const options = {
+                "key": "rzp_test_TNJW6vhxjiHZcA",
+                "amount": "1000",
+                "currency": "INR",
+                "name": "SSC CGL Pro",
+                "description": "Unlock All 50+ PYQ Mock Tests (Lifetime Pass)",
+                "image": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+                "prefill": {
+                    "name": currentCandidateName || "Candidate",
+                    "contact": currentUser ? currentUser : ""
+                },
+                "theme": {
+                    "color": "#22c55e"
+                },
+                "handler": function (response) {
+                    isUnlocked = true;
+                    localStorage.setItem('ssc_unlocked', 'true');
+                    
+                    if (currentUser) {
+                        db.collection('users').doc(currentUser).set({
+                            isUnlocked: true,
+                            razorpayPaymentId: response.razorpay_payment_id,
+                            unlockedAt: firebase.firestore.FieldValue.serverTimestamp()
+                        }, { merge: true }).catch(err => console.error("Firestore update error:", err));
+                    }
+
+                    alert("Payment Successful! Payment ID: " + response.razorpay_payment_id + "\n\nAll 50+ SSC CGL PYQ Mock Tests are now unlocked!");
+                    showDashboard();
+                },
+                "modal": {
+                    "ondismiss": function() {
+                        console.log('Razorpay modal closed');
+                    }
+                }
+            };
+
+            try {
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) {
+                    alert("Payment Failed: " + (response.error.description || "Transaction cancelled"));
+                });
+                rzp.open();
+            } catch (e) {
+                console.error("Razorpay Error:", e);
+                alert("Unable to open Razorpay Checkout. Please check network connection.");
+            }
+        }
+
+        function simulateSuccessfulPayment() {
+            openRazorpayCheckout();
+        }
+
+        // --- START TEST ENGINE (DYNAMIC URL CONTEXT RESOLUTION) ---
+        async function startTest(testNum) {
+            let curTest = testsInfo.find(t => t.id === testNum);
+            if (curTest && curTest.isComingSoon) {
+                alert("SSC PYQ Based Test - 21 is coming soon! Please try Tests 1 to 20.");
+                return;
+            }
+
+            let isFree = (testNum === 1);
+            if (!isFree && !isUnlocked) {
+                openUnlockModal();
+                return;
+            }
+
+            activeTestId = testNum;
+            document.getElementById('testPaperMetaTag').innerText = curTest ? curTest.name : `SSC PYQ Based Test - ${testNum}`;
+
+            // URL CONTEXT RESOLUTION FOR GITHUB PAGES / CUSTOM DOMAINS
+            try {
+                const jsonUrl = new URL(`test${testNum}.json`, window.location.href).href;
+                const response = await fetch(jsonUrl);
+                if (!response.ok) {
+                    throw new Error(`test${testNum}.json not found at ${jsonUrl}`);
+                }
+                questions = await response.json();
+            } catch (err) {
+                console.error("Error loading test JSON:", err);
+                alert(`Questions for Test - ${testNum} (test${testNum}.json) could not be loaded. Please ensure test${testNum}.json is uploaded in your GitHub repository.`);
+                return;
+            }
+
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('testHeaderBar').classList.remove('hidden');
+            document.getElementById('testHeaderBar').classList.add('flex');
+
+            userAnswers = {};
+            questions.forEach((q, idx) => {
+                userAnswers[idx] = { selected: null, status: 'not-visited', bookmarked: false };
+            });
+
+            sectionTimeLeft = [15 * 60, 15 * 60, 15 * 60, 15 * 60];
+            sectionFinished = [false, false, false, false];
+            renderSectionDropdown();
+            switchSection(0);
+        }
+
+        // --- TIMERS & STRICT SWITCHING ---
+        function startSectionTimer() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+            updateTimerDisplay();
+
+            activeTimerInterval = setInterval(() => {
+                if (isPaused) return;
+
+                if (sectionTimeLeft[currentSectionIndex] <= 0) {
+                    clearInterval(activeTimerInterval);
+                    sectionFinished[currentSectionIndex] = true;
+                    if (currentSectionIndex < 3) {
+                        alert(`Time expired for ${subjects[currentSectionIndex]}. Advancing automatically to the next section.`);
+                        switchSection(currentSectionIndex + 1);
+                    } else {
+                        processFinalSubmission();
+                    }
+                    return;
+                }
+                
+                sectionTimeLeft[currentSectionIndex]--;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            let timeLeft = sectionTimeLeft[currentSectionIndex];
+            let h = Math.floor(timeLeft / 3600);
+            let m = Math.floor((timeLeft % 3600) / 60);
+            let s = timeLeft % 60;
+            document.getElementById('timerDisplay').innerText = 
+                `${h < 10 ? '0' : ''}${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function togglePauseModal() {
+            isPaused = !isPaused;
+            const modal = document.getElementById('pauseModal');
+            if (isPaused) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function renderSectionDropdown() {
+            const dropdown = document.getElementById('sectionSelectDropdown');
+            dropdown.innerHTML = '';
+            subjects.forEach((sub, idx) => {
+                let opt = document.createElement('option');
+                opt.value = idx;
+                opt.text = `S${idx + 1}: ${sub}`;
+                if (idx === currentSectionIndex) opt.selected = true;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function onSectionDropdownChange(val) {
+            let targetSec = parseInt(val);
+            if (targetSec !== currentSectionIndex + 1 && targetSec !== currentSectionIndex) {
+                if (targetSec < currentSectionIndex) {
+                    alert("Eduquity CBT Guardrail: You cannot return to locked previous sections.");
+                } else {
+                    alert("Eduquity CBT Guardrail: You must complete sections sequentially.");
+                }
+                renderSectionDropdown();
+                return;
+            }
+            if (targetSec === currentSectionIndex + 1) {
+                pendingTargetSection = targetSec;
+                document.getElementById('sectionWarningModal').classList.remove('hidden');
+            }
+        }
+
+        function closeSectionWarning() {
+            pendingTargetSection = null;
+            document.getElementById('sectionWarningModal').classList.add('hidden');
+            renderSectionDropdown();
+        }
+
+        function confirmSectionSwitch() {
+            let targetSec = pendingTargetSection;
+            closeSectionWarning();
+            if (targetSec !== null) {
+                sectionFinished[currentSectionIndex] = true;
+                switchSection(targetSec);
+            }
+        }
+
+        function switchSection(secIdx) {
+            currentSectionIndex = secIdx;
+            currentQuestionIndex = secIdx * 25;
+            document.getElementById('headerSectionTitle').innerText = subjects[secIdx];
+            document.getElementById('paletteSectionLabel').innerText = subjects[secIdx];
+            renderSectionDropdown();
+            loadQuestion(currentQuestionIndex);
+            startSectionTimer();
+        }
+
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            let targetSec = Math.floor(index / 25);
+            if (targetSec !== currentSectionIndex) {
+                currentSectionIndex = targetSec;
+                renderSectionDropdown();
+                startSectionTimer();
+            }
+
+            const q = questions[index];
+            if (userAnswers[index].status === 'not-visited') {
+                userAnswers[index].status = 'not-answered';
+            }
+
+            let relativeQNum = (index % 25) + 1;
+            document.getElementById('questionNumLabel').innerText = relativeQNum;
+            document.getElementById('questionText').innerHTML = q.question;
+
+            const bBtn = document.getElementById('bookmarkBtn');
+            if (userAnswers[index].bookmarked) bBtn.className = "text-amber-500 text-lg transition cursor-pointer p-1";
+            else bBtn.className = "text-slate-300 hover:text-amber-500 text-lg transition cursor-pointer p-1";
+
+            const optContainer = document.getElementById('optionsContainer');
+            optContainer.innerHTML = '';
+
+            q.options.forEach((opt, optIdx) => {
+                let letter = String.fromCharCode(65 + optIdx);
+                const isSelected = userAnswers[index].selected === optIdx;
+                const label = document.createElement('label');
+                label.className = `flex items-center space-x-3 p-3.5 rounded-xl border transition cursor-pointer ${
+                    isSelected ? 'bg-emerald-50 border-emerald-400 text-emerald-950 font-semibold shadow-xs' : 'border-slate-200 hover:bg-slate-50 text-slate-700 bg-white'
+                }`;
+                label.innerHTML = `
+                    <input type="radio" name="optionGroup" value="${optIdx}" ${isSelected ? 'checked' : ''} onchange="selectOption(${optIdx})" class="w-4 h-4 text-[#22c55e] focus:ring-emerald-500">
+                    <span class="font-bold text-slate-500">${letter}.</span>
+                    <span class="text-sm">${opt}</span>
+                `;
+                optContainer.appendChild(label);
+            });
+
+            renderPalette();
+            renderMath();
+        }
+
+        function selectOption(optIdx) {
+            userAnswers[currentQuestionIndex].selected = optIdx;
+            userAnswers[currentQuestionIndex].status = 'answered';
+            renderPalette();
+            updateSummaryStats();
+        }
+
+        function clearResponse() {
+            userAnswers[currentQuestionIndex].selected = null;
+            userAnswers[currentQuestionIndex].status = 'not-answered';
+            loadQuestion(currentQuestionIndex);
+            updateSummaryStats();
+        }
+
+        function markForReview() {
+            userAnswers[currentQuestionIndex].status = 'marked';
+            renderPalette();
+            saveAndNext();
+        }
+
+        function toggleBookmark() {
+            userAnswers[currentQuestionIndex].bookmarked = !userAnswers[currentQuestionIndex].bookmarked;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function saveAndNext() {
+            let sectionEndIndex = (currentSectionIndex + 1) * 25 - 1;
+            if (currentQuestionIndex < sectionEndIndex) {
+                loadQuestion(currentQuestionIndex + 1);
+            } else if (currentSectionIndex < 3) {
+                if (confirm(`You have completed ${subjects[currentSectionIndex]}. Automatically switch to the next section?`)) {
+                    sectionFinished[currentSectionIndex] = true;
+                    switchSection(currentSectionIndex + 1);
+                }
+            } else {
+                alert("You have reached the last question of Section 4. Click 'Submit' in the top bar when ready.");
+            }
+        }
+
+        function togglePaletteModal() {
+            const modal = document.getElementById('paletteModal');
+            modal.classList.toggle('hidden');
+            updateSummaryStats();
+        }
+
+        // --- PALETTE & STATS ---
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
+            grid.innerHTML = '';
+
+            let startIdx = currentSectionIndex * 25;
+            let endIdx = startIdx + 25;
+
+            for (let idx = startIdx; idx < endIdx; idx++) {
+                const status = userAnswers[idx].status;
+                let bgClass = 'bg-white text-slate-700 border-slate-300';
+                if (status === 'answered') bgClass = 'bg-[#22c55e] text-white border-emerald-600';
+                else if (status === 'marked') bgClass = 'bg-purple-600 text-white border-purple-700';
+                else if (status === 'not-answered') bgClass = 'bg-red-500 text-white border-red-600';
+
+                if (idx === currentQuestionIndex) {
+                    bgClass += ' ring-2 ring-slate-900 ring-offset-2 font-black';
+                }
+
+                let relativeNum = (idx % 25) + 1;
+                const btn = document.createElement('button');
+                btn.className = `w-10 h-10 rounded-xl text-xs font-bold border flex items-center justify-center transition cursor-pointer ${bgClass}`;
+                btn.innerText = relativeNum;
+                btn.onclick = () => { togglePaletteModal(); loadQuestion(idx); };
+                grid.appendChild(btn);
+            }
+            updateSummaryStats();
+        }
+
+        function updateSummaryStats() {
+            let attempted = 0;
+            let notVisited = 0;
+            let notAnswered = 0;
+            let review = 0;
+
+            let startIdx = currentSectionIndex * 25;
+            let endIdx = startIdx + 25;
+
+            for (let idx = startIdx; idx < endIdx; idx++) {
+                let st = userAnswers[idx].status;
+                if (st === 'answered') attempted++;
+                else if (st === 'not-visited') notVisited++;
+                else if (st === 'not-answered') notAnswered++;
+                else if (st === 'marked') review++;
+            }
+
+            document.getElementById('statAttempted').innerText = attempted;
+            document.getElementById('statNotVisited').innerText = notVisited;
+            document.getElementById('statNotAnswered').innerText = notAnswered;
+            document.getElementById('statReview').innerText = review;
+        }
+
+        // --- SWIPE GESTURES ---
+        function initSwipeGestures() {
+            let touchstartX = 0;
+            let touchendX = 0;
+            const swipeArea = document.getElementById('questionSwipeArea');
+
+            if (!swipeArea) return;
+
+            swipeArea.addEventListener('touchstart', e => {
+                touchstartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            swipeArea.addEventListener('touchend', e => {
+                touchendX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                let diff = touchendX - touchstartX;
+                if (Math.abs(diff) > 50) {
+                    if (diff < 0) {
+                        saveAndNext();
+                    } else {
+                        let sectionStartIndex = currentSectionIndex * 25;
+                        if (currentQuestionIndex > sectionStartIndex) {
+                            loadQuestion(currentQuestionIndex - 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        // --- SUBMISSION, SCORECARD, SECTIONAL SUMMARY & AI DIAGNOSTICS ---
+        function confirmSubmit() {
+            document.getElementById('submitModal').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.add('hidden');
+        }
+
+        function processFinalSubmission() {
+            if (activeTimerInterval) clearInterval(activeTimerInterval);
+
+            closeSubmitModal();
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.add('hidden');
+            document.getElementById('testHeaderBar').classList.remove('flex');
+            document.getElementById('resultView').classList.remove('hidden');
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+
+            // Calculate Sectional Breakdown Data
+            let sectionalStats = subjects.map((sub, sIdx) => {
+                let sCorrect = 0;
+                let sIncorrect = 0;
+                let sAttempted = 0;
+                let timeSpentSeconds = (15 * 60) - (sectionTimeLeft[sIdx] || 0);
+
+                for (let qI = sIdx * 25; qI < (sIdx + 1) * 25; qI++) {
+                    let userChoice = userAnswers[qI] ? userAnswers[qI].selected : null;
+                    if (userChoice !== null && userChoice !== undefined) {
+                        sAttempted++;
+                        if (userChoice === questions[qI].answer) {
+                            sCorrect++;
+                        } else {
+                            sIncorrect++;
+                        }
+                    }
+                }
+
+                let sScore = (sCorrect * 2) - (sIncorrect * 0.50);
+
+                return {
+                    subject: sub,
+                    correct: sCorrect,
+                    incorrect: sIncorrect,
+                    attempted: sAttempted,
+                    score: sScore,
+                    timeSpent: timeSpentSeconds
+                };
+            });
+
+            questions.forEach((q, idx) => {
+                let userChoice = userAnswers[idx] ? userAnswers[idx].selected : null;
+                if (userChoice !== null && userChoice !== undefined) {
+                    if (userChoice === q.answer) {
+                        correctCount++;
+                    } else {
+                        incorrectCount++;
+                    }
+                }
+            });
+
+            let rawScore = (correctCount * 2) - (incorrectCount * 0.50);
+            let attemptedTotal = correctCount + incorrectCount;
+            let accuracy = attemptedTotal > 0 ? ((correctCount / attemptedTotal) * 100).toFixed(1) + '%' : '0%';
+
+            document.getElementById('resFinalScore').innerText = `${rawScore} / 200`;
+            document.getElementById('resCorrect').innerText = correctCount;
+            document.getElementById('resIncorrect').innerText = incorrectCount;
+            document.getElementById('resAccuracy').innerText = accuracy;
+
+            // Render Sectional Cards Grid
+            renderSectionalSummaryGrid(sectionalStats);
+
+            // Generate AI Diagnostic Report
+            renderAIDiagnosticReport(rawScore, accuracy, sectionalStats);
+
+            // Save Attempt Record to LocalStorage
+            let historyKey = `ssc_history_${currentUser}`;
+            let userHistory = JSON.parse(localStorage.getItem(historyKey) || "{}");
+            userHistory[activeTestId] = {
+                score: rawScore,
+                accuracy: accuracy,
+                date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
+            };
+            localStorage.setItem(historyKey, JSON.stringify(userHistory));
+
+            // Save Attempt Record to Per-Test Specific Firestore Collection
+            db.collection(`scores_test_${activeTestId}`).add({
+                candidatePhone: currentUser,
+                candidateName: currentCandidateName || "Anonymous Candidate",
+                score: rawScore,
+                testId: activeTestId,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                calculateUserRankAndTopper(activeTestId, rawScore);
+            }).catch(e => {
+                console.error(e);
+                document.getElementById('resRankText').innerText = "Rank evaluation offline";
+            });
+
+            renderSolutions();
+        }
+
+        // --- RENDER SECTIONAL SUMMARY UI ---
+        function renderSectionalSummaryGrid(sectionalStats) {
+            const grid = document.getElementById('sectionalSummaryGrid');
+            grid.innerHTML = '';
+
+            const sectionColors = [
+                { bg: 'from-cyan-500 to-sky-600', ring: 'border-sky-500', text: 'text-sky-700' },
+                { bg: 'from-emerald-500 to-teal-600', ring: 'border-teal-500', text: 'text-teal-700' },
+                { bg: 'from-purple-500 to-indigo-600', ring: 'border-purple-500', text: 'text-purple-700' },
+                { bg: 'from-rose-500 to-pink-600', ring: 'border-rose-500', text: 'text-rose-700' }
+            ];
+
+            sectionalStats.forEach((sec, idx) => {
+                let color = sectionColors[idx % 4];
+                let minutes = Math.floor(sec.timeSpent / 60);
+                let seconds = sec.timeSpent % 60;
+                let formattedTime = `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="bg-gradient-to-r ${color.bg} px-4 py-2.5 text-white font-black text-xs truncate">
+                        ${sec.subject}
+                    </div>
+                    <div class="p-4 space-y-4">
+                        <div class="flex justify-center my-1">
+                            <div class="w-24 h-24 rounded-full border-4 ${color.ring} flex flex-col items-center justify-center bg-slate-50 shadow-inner">
+                                <span class="text-[10px] uppercase font-extrabold text-slate-400">Correct</span>
+                                <span class="text-base font-black text-slate-900">${sec.correct}.0<span class="text-xs text-slate-400">/25</span></span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 text-center border-t border-slate-100 pt-3 text-xs">
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase">Attempted</div>
+                                <div class="font-extrabold text-slate-800">${sec.attempted}/25</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase">C / W</div>
+                                <div class="font-extrabold text-slate-800"><span class="text-emerald-600">${sec.correct}</span>/<span class="text-red-500">${sec.incorrect}</span></div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase">Score</div>
+                                <div class="font-extrabold ${color.text}">${sec.score}</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-2 rounded-xl border border-slate-100 flex justify-between items-center text-xs">
+                            <span class="text-slate-500 font-bold text-[11px]"><i class="fa-regular fa-clock mr-1"></i> Time Spent:</span>
+                            <span class="font-mono font-bold text-slate-900">${formattedTime}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- AI DIAGNOSTIC REPORT GENERATOR ---
+        function renderAIDiagnosticReport(totalScore, overallAccuracy, sectionalStats) {
+            const container = document.getElementById('aiReportContent');
+            
+            let sortedByAccuracy = [...sectionalStats].sort((a, b) => {
+                let accA = a.attempted > 0 ? (a.correct / a.attempted) : 0;
+                let accB = b.attempted > 0 ? (b.correct / b.attempted) : 0;
+                return accB - accA;
+            });
+
+            let strongest = sortedByAccuracy[0];
+            let weakest = sortedByAccuracy[sortedByAccuracy.length - 1];
+
+            let strengthsList = [];
+            let weaknessesList = [];
+            let advice = "";
+
+            if (strongest.correct >= 18) {
+                strengthsList.push(`High accuracy in <b>${strongest.subject}</b> (${strongest.correct}/25 correct).`);
+            } else {
+                strengthsList.push(`Steady attempts maintained across sections.`);
+            }
+
+            if (weakest.incorrect > 4) {
+                weaknessesList.push(`Excessive negative penalty in <b>${weakest.subject}</b> (${weakest.incorrect} wrong choices).`);
+            }
+            if (weakest.attempted < 15) {
+                weaknessesList.push(`Low attempt volume in <b>${weakest.subject}</b> (${weakest.attempted}/25 attempted).`);
+            }
+
+            if (parseFloat(overallAccuracy) >= 80) {
+                advice = "Your overall accuracy is solid! Focus on improving speed in Quantitative Aptitude to maximize total attempts.";
+            } else if (parseFloat(overallAccuracy) >= 60) {
+                advice = "Control wild guesses in General Awareness and Reasoning to protect your overall score from negative marks (-0.50 per error).";
+            } else {
+                advice = "Focus on concept clarity and accuracy first. Attempt high-confidence questions first before attempting difficult ones.";
+            }
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-purple-900/40 border border-purple-500/20 p-3 rounded-xl space-y-1">
+                        <div class="font-bold text-emerald-400 flex items-center space-x-1.5 text-xs">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Key Strengths</span>
+                        </div>
+                        <ul class="list-disc list-inside text-slate-300 space-y-0.5 text-[11px]">
+                            ${strengthsList.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-900/40 border border-purple-500/20 p-3 rounded-xl space-y-1">
+                        <div class="font-bold text-rose-400 flex items-center space-x-1.5 text-xs">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Weakness & Risks</span>
+                        </div>
+                        <ul class="list-disc list-inside text-slate-300 space-y-0.5 text-[11px]">
+                            ${weaknessesList.length > 0 ? weaknessesList.map(w => `<li>${w}</li>`).join('') : '<li>No critical weaknesses detected.</li>'}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-900/50 border border-indigo-400/30 p-3 rounded-xl space-y-1 text-slate-200">
+                    <div class="font-bold text-amber-300 flex items-center space-x-1.5 text-xs">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <span>AI Action Strategy</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300">${advice}</p>
+                </div>
+            `;
+        }
+
+        // --- INTERACTIVE AI TUTOR & QUESTION DISCUSS MODAL ---
+        function openAIChatModal(qIndex = null) {
+            activeAIQuestionIdx = qIndex;
+            const modal = document.getElementById('aiChatModal');
+            const contextBanner = document.getElementById('aiQuestionContextBanner');
+            const chatMessages = document.getElementById('aiChatMessages');
+            
+            chatMessages.innerHTML = '';
+
+            if (qIndex !== null && questions[qIndex]) {
+                const q = questions[qIndex];
+                document.getElementById('aiModalTitle').innerText = `AI Tutor - Discussion Q.${qIndex + 1}`;
+                document.getElementById('aiModalSubtitle').innerText = `Context: ${q.subject}`;
+                document.getElementById('aiContextQuestionText').innerText = q.question.replace(/<[^>]*>?/gm, '');
+                contextBanner.classList.remove('hidden');
+
+                addAIMessage(`Hello <b>${currentCandidateName || 'Candidate'}</b>! I am your AI Tutor. What would you like to discuss or clarify regarding Question #${qIndex + 1}?`);
+            } else {
+                document.getElementById('aiModalTitle').innerText = "AI Exam Preparation Assistant";
+                document.getElementById('aiModalSubtitle').innerText = "Ask anything about SSC CGL syllabus, shortcuts & strategies";
+                contextBanner.classList.add('hidden');
+
+                addAIMessage(`Hello <b>${currentCandidateName || 'Candidate'}</b>! How can I assist you in your SSC CGL preparation today? You can ask for math formulas, grammar rules, or exam strategies.`);
+            }
+
+            modal.classList.remove('hidden');
+            renderMath();
+        }
+
+        function closeAIChatModal() {
+            document.getElementById('aiChatModal').classList.add('hidden');
+        }
+
+        function addAIMessage(msgHTML) {
+            const chat = document.getElementById('aiChatMessages');
+            const div = document.createElement('div');
+            div.className = "flex space-x-2.5 my-2 items-start";
+            div.innerHTML = `
+                <div class="w-7 h-7 bg-purple-600 text-white rounded-lg flex items-center justify-center text-xs shrink-0 shadow-xs">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bg-white border border-slate-200 text-slate-800 p-3 rounded-2xl rounded-tl-none shadow-2xs max-w-[85%] leading-relaxed text-xs">
+                    ${msgHTML}
+                </div>
+            `;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+            renderMath();
+        }
+
+        function addUserMessage(msgText) {
+            const chat = document.getElementById('aiChatMessages');
+            const div = document.createElement('div');
+            div.className = "flex justify-end my-2 items-start";
+            div.innerHTML = `
+                <div class="bg-purple-600 text-white p-3 rounded-2xl rounded-tr-none shadow-2xs max-w-[85%] font-medium leading-relaxed text-xs">
+                    ${msgText}
+                </div>
+            `;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function sendQuickPrompt(promptText) {
+            document.getElementById('aiChatInput').value = promptText;
+            sendAIChatMessage();
+        }
+
+        function sendAIChatMessage() {
+            const input = document.getElementById('aiChatInput');
+            const userMsg = input.value.trim();
+            if (!userMsg) return;
+
+            addUserMessage(userMsg);
+            input.value = '';
+
+            setTimeout(() => {
+                let aiResponse = generateAIResponse(userMsg, activeAIQuestionIdx);
+                addAIMessage(aiResponse);
+            }, 600);
+        }
+
+        function generateAIResponse(userMsg, qIndex) {
+            let lowerMsg = userMsg.toLowerCase();
+
+            if (qIndex !== null && questions[qIndex]) {
+                const q = questions[qIndex];
+                let correctLetter = String.fromCharCode(65 + q.answer);
+                let correctOptText = q.options[q.answer];
+
+                if (lowerMsg.includes('simple') || lowerMsg.includes('explain')) {
+                    return `<b>Simple Explanation:</b><br>${q.explanation}<br><br>The correct option is <b>(${correctLetter}) ${correctOptText}</b>.`;
+                } else if (lowerMsg.includes('trick') || lowerMsg.includes('shortcut')) {
+                    return `<b>⚡ AI Shortcut Tip for Q.${qIndex + 1}:</b><br>In ${q.subject}, focus on eliminating wrong choices first. ${q.explanation.slice(0, 150)}...`;
+                } else if (lowerMsg.includes('wrong') || lowerMsg.includes('other')) {
+                    return `<b>Option Elimination Breakdown:</b><br>The correct answer is <b>(${correctLetter}) ${correctOptText}</b> because it directly satisfies the given problem condition. The other options fail this condition as detailed in the official solution key.`;
+                } else {
+                    return `<b>Question #${qIndex + 1} Analysis:</b><br>Question: <i>"${q.question.replace(/<[^>]*>?/gm, '')}"</i><br><br><b>Correct Answer:</b> (${correctLetter}) ${correctOptText}<br><b>Official Concept:</b> ${q.explanation}`;
+                }
+            } else {
+                if (lowerMsg.includes('math') || lowerMsg.includes('formula') || lowerMsg.includes('quant')) {
+                    return "<b>Key Quantitative Aptitude Formulas:</b><br>1. Profit % = $\\frac{\\text{Profit}}{\\text{CP}} \\times 100$<br>2. Speed = $\\frac{\\text{Distance}}{\\text{Time}}$<br>3. $(a+b)^3 = a^3 + b^3 + 3ab(a+b)$";
+                } else if (lowerMsg.includes('english') || lowerMsg.includes('grammar')) {
+                    return "<b>SSC CGL English Tip:</b> Focus on Subject-Verb Agreement, Prepositions after adjectives (e.g. <i>senior to</i>, <i>addicted to</i>), and active/passive voice conversions.";
+                } else {
+                    return `I am your SSC CGL AI Assistant! I can help you analyze your scorecard, practice math shortcuts, or explain solutions for any question in Test ${activeTestId}.`;
+                }
+            }
+        }
+
+        function calculateUserRankAndTopper(testId, myScore) {
+            db.collection(`scores_test_${testId}`).orderBy("score", "desc").get()
+                .then((querySnapshot) => {
+                    let totalAttempts = querySnapshot.size;
+                    let rank = 1;
+                    let topScore = "--";
+
+                    if (!querySnapshot.empty) {
+                        topScore = querySnapshot.docs[0].data().score;
+                    }
+
+                    querySnapshot.forEach((doc) => {
+                        let data = doc.data();
+                        if (data.score > myScore) {
+                            rank++;
+                        }
+                    });
+
+                    document.getElementById('resRankText').innerText = `#${rank} out of ${totalAttempts} candidates`;
+                    document.getElementById('resTopperScore').innerText = `${topScore} / 200`;
+                })
+                .catch(() => {
+                    document.getElementById('resRankText').innerText = "Rank calculation unavailable";
+                });
+        }
+
+        function filterSolutions(type) {
+            currentSolutionFilter = type;
+            ['solFilterAll', 'solFilterCorrect', 'solFilterIncorrect', 'solFilterUnattempted'].forEach(id => {
+                const btn = document.getElementById(id);
+                btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 cursor-pointer transition";
+            });
+
+            if (type === 'all') document.getElementById('solFilterAll').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white cursor-pointer transition";
+            else if (type === 'correct') document.getElementById('solFilterCorrect').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white cursor-pointer transition";
+            else if (type === 'incorrect') document.getElementById('solFilterIncorrect').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-red-600 text-white cursor-pointer transition";
+            else if (type === 'unattempted') document.getElementById('solFilterUnattempted').className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white cursor-pointer transition";
+
+            renderSolutions();
+        }
+
+        function renderSolutions() {
+            const container = document.getElementById('solutionsContainer');
+            container.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx] ? userAnswers[idx].selected : null;
+                const isCorrect = userAns === q.answer;
+                const isUnattempted = userAns === null || userAns === undefined;
+
+                if (currentSolutionFilter === 'correct' && !isCorrect) return;
+                if (currentSolutionFilter === 'incorrect' && (isCorrect || isUnattempted)) return;
+                if (currentSolutionFilter === 'unattempted' && !isUnattempted) return;
+
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl border text-xs sm:text-sm space-y-2 ${
+                    isCorrect ? 'border-emerald-200 bg-emerald-50/40' : isUnattempted ? 'border-slate-200 bg-slate-50' : 'border-red-200 bg-red-50/40'
+                }`;
+
+                let optionsHTML = q.options.map((opt, oIdx) => {
+                    let isUserChoice = userAns === oIdx;
+                    let isRightAnswer = q.answer === oIdx;
+                    let style = "text-slate-600";
+                    if (isRightAnswer) style = "text-emerald-700 font-bold";
+                    if (isUserChoice && !isRightAnswer) style = "text-red-600 font-bold line-through";
+
+                    return `<div class="${style} flex items-center space-x-1.5">
+                        <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                        ${isRightAnswer ? '<i class="fa-solid fa-check text-emerald-600"></i>' : ''}
+                        ${isUserChoice && !isRightAnswer ? '<i class="fa-solid fa-xmark text-red-500"></i>' : ''}
+                    </div>`;
+                }).join('');
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-slate-800">Q.${idx + 1} [${q.subject}]</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2.5 py-0.5 rounded-md font-extrabold text-[11px] ${
+                                isCorrect ? 'text-emerald-800 bg-emerald-100' : isUnattempted ? 'text-slate-700 bg-slate-200' : 'text-red-800 bg-red-100'
+                            }">
+                                ${isCorrect ? 'Correct (+2)' : isUnattempted ? 'Unattempted (0)' : 'Incorrect (-0.50)'}
+                            </span>
+                            <button onclick="openAIChatModal(${idx})" class="text-xs bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded-lg border border-purple-200 transition cursor-pointer flex items-center space-x-1 shadow-2xs">
+                                <i class="fa-solid fa-wand-magic-sparkles text-purple-600"></i>
+                                <span>Ask AI Tutor</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="font-medium text-slate-900 leading-relaxed">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 bg-white p-3 rounded-lg border border-slate-200">
+                        ${optionsHTML}
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 text-xs leading-relaxed space-y-1">
+                        <div class="font-bold text-emerald-900 flex items-center space-x-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            <span>Explanation & Formula:</span>
+                        </div>
+                        <div>${q.explanation}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            renderMath();
+        }
+    </script>
+</body>
+</html>
