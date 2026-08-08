@@ -1,0 +1,801 @@
+[
+  {
+    "id": 1,
+    "subject": "General Intelligence & Reasoning",
+    "question": "In the following question, select the related word from the given alternatives: Jurisprudence : Law :: Epistemology : ?",
+    "options": ["Reality", "Logic", "Knowledge", "Ethics"],
+    "answer": 2,
+    "explanation": "Jurisprudence is the theoretical study and philosophy of law; similarly, Epistemology is the branch of philosophy that studies the nature, origin, and limits of knowledge."
+  },
+  {
+    "id": 2,
+    "subject": "General Intelligence & Reasoning",
+    "question": "How many letters in \"SIGNATURE\" are between the first vowel and the last consonant?",
+    "options": ["3", "4", "5", "6"],
+    "answer": 2,
+    "explanation": "In \"SIGNATURE\", the first vowel is I (index 2) and the last consonant is R (index 8). The letters lying between 'I' and 'R' are G, N, A, T and U (5 letters)."
+  },
+  {
+    "id": 3,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that can replace the question mark (?) in the following series: MNK, NOJ, OPI, PQH, ?",
+    "options": ["GFD", "HJG", "QRG", "LDH"],
+    "answer": 2,
+    "explanation": "1st letters: M \\rightarrow N \\rightarrow O \\rightarrow P \\rightarrow Q (+1); 2nd letters: N \\rightarrow O \\rightarrow P \\rightarrow Q \\rightarrow R (+1); 3rd letters: K \\rightarrow J \\rightarrow I \\rightarrow H \\rightarrow G (-1)."
+  },
+  {
+    "id": 4,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that can replace the question mark (?) in the series: QAZ, SDF, UGL, ?",
+    "options": ["VIJ", "TFG", "WJR", "WAR"],
+    "answer": 2,
+    "explanation": "1st letters: Q(+2) \\rightarrow S(+2) \\rightarrow U(+2) \\rightarrow W; 2nd letters: A(+3) \\rightarrow D(+3) \\rightarrow G(+3) \\rightarrow J; 3rd letters: Z(+6) \\rightarrow F(+6) \\rightarrow L(+6) \\rightarrow R."
+  },
+  {
+    "id": 5,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which of the following alternatives will replace the question mark? Chaos, Conflict, Negotiation, Resolution, ?",
+    "options": ["Justice", "Harmony", "Stability", "Law"],
+    "answer": 1,
+    "explanation": "The series follows a sequential progression of conflict resolution: Chaos leads to Conflict, which leads to Negotiation, resulting in Resolution, ultimately bringing Harmony."
+  },
+  {
+    "id": 6,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which word does NOT belong to the category?",
+    "options": ["Hibiscus", "Tulip", "Apple", "Daisy"],
+    "answer": 2,
+    "explanation": "Hibiscus, Tulip, and Daisy are flowers, whereas Apple is a fruit."
+  },
+  {
+    "id": 7,
+    "subject": "General Intelligence & Reasoning",
+    "question": "What comes next in the series: 0, 6, 24, 60, 120, ?",
+    "options": ["196", "156", "210", "200"],
+    "answer": 2,
+    "explanation": "The pattern follows $n^3 - n$: Next term $6^3 - 6 = 216 - 6 = 210$."
+  },
+  {
+    "id": 8,
+    "subject": "General Intelligence & Reasoning",
+    "question": "What should come in place of the question mark? 3, 4, 13, 14, 45, 46, ?",
+    "options": ["143", "136", "140", "141"],
+    "answer": 3,
+    "explanation": "The operations alternate: +1, $\\times 3 + 1$, +1, $\\times 3 + 1$... $46 \\times 3 + 1 = 139$ (or alternate pattern $(46 \\times 3) + 3 = 141$)."
+  },
+  {
+    "id": 9,
+    "subject": "General Intelligence & Reasoning",
+    "question": "<b>Statement:</b> No student of Class X failed the science exam this year.<br><br><b>Conclusions:</b><br>I. The science exam was very easy.<br>II. All students of Class X passed science.",
+    "options": ["Only Conclusion I follows", "Only Conclusion II follows", "Both I and II follow", "Neither I nor II follows"],
+    "answer": 1,
+    "explanation": "If no student failed, it logically implies that all students passed (Conclusion II). Conclusion I is an assumption regarding difficulty that cannot be logically inferred from the statement."
+  },
+  {
+    "id": 10,
+    "subject": "General Intelligence & Reasoning",
+    "question": "<b>Statement:</b> Although recent advancements in quantum computing have significantly improved processing speeds, the stability of quantum states remains a critical barrier to developing large-scale quantum computers for practical applications.<br><br><b>Assumptions:</b><br>I. Quantum computing holds the potential for faster data processing than classical computing.<br>II. Quantum states are inherently unstable, making large-scale quantum computing unfeasible.<br>III. Recent advancements in quantum computing have resolved the issue of quantum state stability.",
+    "options": ["Only I and II are implicit", "Only II and III are implicit", "Only I is implicit", "All I, II, and III are implicit"],
+    "answer": 2,
+    "explanation": "Statement I is implicit because the text mentions improved processing speeds. II is invalid because instability is a barrier, not an absolute unfeasibility. III contradicts the statement directly."
+  },
+  {
+    "id": 11,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Each letter in \"GARDEN\" is arranged alphabetically. How many letters are in the English alphabet between the 5th letter from the left and the 3rd letter from the right in the new cluster?",
+    "options": ["Two", "Four", "Six", "One"],
+    "answer": 2,
+    "explanation": "Alphabetical order of GARDEN \\rightarrow A, D, E, G, N, R. 5th letter from left = N; 3rd letter from right = G. Letters between G and N in English alphabet (H, I, J, K, L, M) = 6 letters."
+  },
+  {
+    "id": 12,
+    "subject": "General Intelligence & Reasoning",
+    "question": "How many meaningful four-letter English words can be formed using the 1st, 2nd, 4th, and 5th letters of \"ELEVATE\" (each letter once)?",
+    "options": ["1", "2", "3", "4"],
+    "answer": 1,
+    "explanation": "The 1st, 2nd, 4th, and 5th letters are E, L, V, A. Meaningful 4-letter words formed: VEAL and LAVE."
+  },
+  {
+    "id": 13,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the option that is identical to: \"Rajesh Verma 158, Sapphire Towers, Jaipur, 302018\"",
+    "options": ["1 Only: Rajesh Verma 158, Sapphire Towers, Jaipur, 302018", "2 Only", "3 Only", "4 Only"],
+    "answer": 0,
+    "explanation": "Option 1 matches every character, spelling, and digit of the reference address exactly."
+  },
+  {
+    "id": 14,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Find the option that completes the analogy: EK : MS :: FP : ?",
+    "options": ["ND", "NX", "NL", "NT"],
+    "answer": 1,
+    "explanation": "E(5) + 8 = M(13), K(11) + 8 = S(19). Apply +8 to FP: F(6) + 8 = N(14), P(16) + 8 = X(24) \\rightarrow NX."
+  },
+  {
+    "id": 15,
+    "subject": "General Intelligence & Reasoning",
+    "question": "NUMBER : UNBMRE :: GHOSTS : ?",
+    "options": ["HGOSTS", "HOGSTS", "HGSOST", "HGSOTS"],
+    "answer": 3,
+    "explanation": "Letters are swapped in adjacent pairs: (1,2) \\rightarrow (2,1), (3,4) \\rightarrow (4,3), (5,6) \\rightarrow (6,5). Applying to G-H-O-S-T-S \\rightarrow H-G-S-O-T-S."
+  },
+  {
+    "id": 16,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Introducing a boy, a girl said, \"He is the son of my mother's only son.\" Who is the boy to the girl?",
+    "options": ["Brother", "Son", "Nephew", "Cousin"],
+    "answer": 2,
+    "explanation": "\"My mother's only son\" is the girl's brother. The brother's son is the girl's nephew."
+  },
+  {
+    "id": 17,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which number does NOT match this factorial series? 2, 6, 24, 120, 720, 1000",
+    "options": ["6", "24", "1000", "120"],
+    "answer": 2,
+    "explanation": "The terms represent factorials: 2! = 2, 3! = 6, 4! = 24, 5! = 120, 6! = 720. The next expected term is 7! = 5040, so 1000 is incorrect."
+  },
+  {
+    "id": 18,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which number set is different from the rest?",
+    "options": ["(11, 22, 44)", "(13, 26, 52)", "(15, 30, 60)", "(14, 28, 43)"],
+    "answer": 3,
+    "explanation": "Pattern: (x, 2x, 4x). Option (d) fails this because $14 \\times 2 = 28$, but $28 \\times 2 = 56 \\neq 43$."
+  },
+  {
+    "id": 19,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If WRITE is coded as YTKVG, how is READ coded?",
+    "options": ["TGCF", "ZTCF", "YTDF", "TCFC / TGCF"],
+    "answer": 0,
+    "explanation": "Each letter is shifted by +2 in alphabetical order (W+2=Y, R+2=T, I+2=K, T+2=V, E+2=G). Thus, R(+2)E(+2)A(+2)D(+2) = TGCF."
+  },
+  {
+    "id": 20,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If 5 # 3 = 19 and 7 # 2 = 17, what is 9 # 1?",
+    "options": ["12", "10", "8", "19"],
+    "answer": 3,
+    "explanation": "Pattern: $(A \\times 2) + (B \\times 3) = 5(2) + 3(3) = 19$; $7(2) + 2(3) = 17$; $9(2) + 1(1) = 19$."
+  },
+  {
+    "id": 21,
+    "subject": "General Intelligence & Reasoning",
+    "question": "A 60 L mixture has a milk-water ratio of 7:3. How much water must be added to make the ratio 1:1?",
+    "options": ["18 L", "20 L", "22 L", "24 L"],
+    "answer": 3,
+    "explanation": "Milk = $\\frac{7}{10} \\times 60 = 42\\text{ L}$, Water = $\\frac{3}{10} \\times 60 = 18\\text{ L}$. To make the ratio 1:1, Water must equal Milk (42 L). Water to add = $42 - 18 = 24\\text{ L}$."
+  },
+  {
+    "id": 22,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Pointing to a girl, Aryan said, \"She is the daughter of the only child of my grandmother.\" How is the girl related to Aryan?",
+    "options": ["Niece", "Cousin", "Sister", "Aunt"],
+    "answer": 2,
+    "explanation": "\"Only child of my grandmother\" is Aryan's parent. The daughter of Aryan's parent is Aryan's sister."
+  },
+  {
+    "id": 23,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Ramesh says, \"The boy playing football is the younger of the two sons of my father's wife.\" How is the boy related to Ramesh?",
+    "options": ["Brother", "Stepbrother", "Cousin", "Nephew"],
+    "answer": 0,
+    "explanation": "\"Father's wife\" is Ramesh's mother. Her sons are Ramesh and his brother."
+  },
+  {
+    "id": 24,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the related word pair: Architect : Design :: Chef : ?",
+    "options": ["Cook", "Serve", "Recipe", "Food"],
+    "answer": 2,
+    "explanation": "An Architect creates a Design; a Chef creates a Recipe."
+  },
+  {
+    "id": 25,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If '+' means '-', '-' means '+', and 'x' means '÷', then evaluate $50 + 10 - 5 \\times 5$:",
+    "options": ["41", "60", "65", "41"],
+    "answer": 0,
+    "explanation": "Substituting signs: $50 - 10 + (5 \\div 5) = 50 - 10 + 1 = 41$."
+  },
+  {
+    "id": 26,
+    "subject": "General Awareness",
+    "question": "Consider the following statements about Gwalior Fort:<br>1. It is spread over a hilltop more than 2 km in length.<br>2. Its southern path features intricately carved rock-cut temples of Jain tirthankars.<br>3. The Caturbhuj Mandir within the fort is an example of a Vaishnavite shrine.<br><br>Which of the above statements are correct?",
+    "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"],
+    "answer": 3,
+    "explanation": "All three statements regarding the geographic extent, Jain Tirthankara rock carvings along the Gopachal hill, and the Chaturbhuj Vaishnavite shrine in Gwalior Fort are accurate."
+  },
+  {
+    "id": 27,
+    "subject": "General Awareness",
+    "question": "In Bhakti traditions, which two broad types of worship are mentioned?",
+    "options": ["Vedic and Non-Vedic", "Saguna and Nirguna", "Orthodox and Reformist", "Shaiva and Vaishnava"],
+    "answer": 1,
+    "explanation": "Bhakti tradition categorizes worship into Saguna (worship of God with attributes/form) and Nirguna (worship of the abstract, formless God)."
+  },
+  {
+    "id": 28,
+    "subject": "General Awareness",
+    "question": "Why can hockey players use only the flat, left-hand side of the stick?",
+    "options": ["Better control and reduced injury risk", "Prevents unfair left-handed advantage", "Prevents uneven bounce, ensures uniform rebound", "Mandated right-hand play for training ease"],
+    "answer": 2,
+    "explanation": "Standardized flat-side play ensures uniform rebound mechanics and safety across all players on the field."
+  },
+  {
+    "id": 29,
+    "subject": "General Awareness",
+    "question": "What change did the Regulating Act of 1773 bring to the post of the Governor of Bengal?",
+    "options": ["He reported directly to the British Crown.", "He was reduced to a ceremonial position.", "His role was elevated to Governor-General with an executive council of four members.", "He was transferred to Madras Presidency."],
+    "answer": 2,
+    "explanation": "The Regulating Act elevated the Governor of Bengal to Governor-General of Bengal, assisted by an Executive Council of 4 members."
+  },
+  {
+    "id": 30,
+    "subject": "General Awareness",
+    "question": "At the 1960 Rome Olympics, Milkha Singh set a national record in the 400m finals with a time of:",
+    "options": ["43.2 seconds", "46.2 seconds", "44.8 seconds", "45.6 seconds"],
+    "answer": 3,
+    "explanation": "Milkha Singh finished 4th with a timing of 45.6 seconds, setting a national record that stood for nearly 24 years."
+  },
+  {
+    "id": 31,
+    "subject": "General Awareness",
+    "question": "\"Landscapes of Loss: The Story of an Indian Drought\" by Kavitha Iyer focuses on:",
+    "options": ["A study on drought's human and ecological impacts in India.", "A fictional story about a family in a drought-hit area.", "A history of monsoon patterns and ancient agriculture.", "A colonial-era policy analysis of water management."],
+    "answer": 0,
+    "explanation": "The book documents the socio-economic and human crisis caused by repetitive droughts in Marathwada."
+  },
+  {
+    "id": 32,
+    "subject": "General Awareness",
+    "question": "In which type of geological formation are gorges most commonly developed?",
+    "options": ["Soft sediment", "Hard rocks", "Glacial till", "Volcanic ash"],
+    "answer": 1,
+    "explanation": "Deep, narrow gorges with vertical walls develop predominantly in resistant hard rock formations where vertical river erosion dominates over lateral weathering."
+  },
+  {
+    "id": 33,
+    "subject": "General Awareness",
+    "question": "Which Indian state recorded negative population growth during the 2001-2011 Census decade?",
+    "options": ["Kerala", "Goa", "Nagaland", "Manipur"],
+    "answer": 2,
+    "explanation": "Nagaland was the only Indian state to record a negative population growth rate (-0.58%) in the 2011 Census."
+  },
+  {
+    "id": 34,
+    "subject": "General Awareness",
+    "question": "Which of the following best describes the rate of natural increase of population?",
+    "options": ["Crude birth rate multiplied by crude death rate", "Ratio of working population to total population", "The difference between the birth rate and the death rate", "Average annual growth due to migration alone"],
+    "answer": 2,
+    "explanation": "Natural population increase rate is calculated simply as CBR - CDR (Crude Birth Rate minus Crude Death Rate)."
+  },
+  {
+    "id": 35,
+    "subject": "General Awareness",
+    "question": "What is the primary function of the telomerase enzyme?",
+    "options": ["DNA replication", "Telomere lengthening", "DNA repair", "RNA transcription"],
+    "answer": 1,
+    "explanation": "Telomerase adds repetitive nucleotide sequences to the ends of chromosomes (telomeres), preventing progressive chromosomal shortening during cell division."
+  },
+  {
+    "id": 36,
+    "subject": "General Awareness",
+    "question": "Which commission recommended establishing a Permanent Secretariat for the Inter-State Council?",
+    "options": ["Rajamannar Committee", "Punchhi Commission", "Sarkaria Commission", "Venkatachelliah Commission"],
+    "answer": 2,
+    "explanation": "The Sarkaria Commission (1983) recommended setting up a permanent secretariat to support the Inter-State Council under Article 263."
+  },
+  {
+    "id": 37,
+    "subject": "General Awareness",
+    "question": "Why are cooking utensils often manufactured with copper bottoms?",
+    "options": ["Copper is a good insulator.", "Copper has a low melting point.", "Copper is an excellent conductor of heat, ensuring even thermal distribution.", "Copper reacts with food to improve flavor."],
+    "answer": 2,
+    "explanation": "High thermal conductivity of copper ensures fast, efficient, and even heat distribution across the base of cooking vessels."
+  },
+  {
+    "id": 38,
+    "subject": "General Awareness",
+    "question": "What is the primary objective of a Uniform Civil Code (UCC) under Article 44 in India?",
+    "options": ["To establish common criminal laws.", "To unify direct and indirect tax laws.", "To provide a uniform set of personal laws governing all citizens regardless of religion.", "To standardize administrative state procedures."],
+    "answer": 2,
+    "explanation": "UCC aims to replace diverse faith-based personal laws with a single unified set of rules regarding marriage, divorce, inheritance, and adoption for all citizens."
+  },
+  {
+    "id": 39,
+    "subject": "General Awareness",
+    "question": "What primary support does the Agriculture Infrastructure Fund (AIF) provide?",
+    "options": ["Free fertilizers", "Agri-logistics, post-harvest management, and cold chain infrastructure", "Direct Cash transfers", "MGNREGA wages"],
+    "answer": 1,
+    "explanation": "AIF is a medium-to-long term debt financing facility focusing on viable post-harvest management projects and community farming assets."
+  },
+  {
+    "id": 40,
+    "subject": "General Awareness",
+    "question": "<b>Evaluate the following statements regarding atmospheric layers:</b><br>1. Most weather phenomena occur in the Stratosphere.<br>2. The ozone layer is primarily found in the Troposphere.<br><br>Which of the above is/are correct?",
+    "options": ["Statement 1 only", "Statement 2 only", "Both 1 and 2", "Neither 1 nor 2"],
+    "answer": 3,
+    "explanation": "Weather phenomena occur in the Troposphere (not stratosphere), and the protective Ozone layer is located mainly in the Stratosphere (not troposphere)."
+  },
+  {
+    "id": 41,
+    "subject": "General Awareness",
+    "question": "Which Article of the Indian Constitution empowers the President to establish an Inter-State Council?",
+    "options": ["Article 263", "Article 264", "Article 312", "Article 262"],
+    "answer": 0,
+    "explanation": "Article 263 gives the President power to establish an Inter-State Council to investigate and discuss subjects of common interest between states and the Union."
+  },
+  {
+    "id": 42,
+    "subject": "General Awareness",
+    "question": "What is the term for a structured musical composition in Hindustani classical music?",
+    "options": ["Kriti", "Bandish", "Gamaka", "Rasa"],
+    "answer": 1,
+    "explanation": "Bandish is a fixed, structured vocal or instrumental composition bound within a specific Raga and Tala in Hindustani classical music."
+  },
+  {
+    "id": 43,
+    "subject": "General Awareness",
+    "question": "Which satellite launched aboard GSLV-F15 boosts India's regional satellite navigation capabilities?",
+    "options": ["EOS-07", "NVS-02", "INSAT-3DS", "NISAR"],
+    "answer": 1,
+    "explanation": "NVS-02 is part of India's NavIC second-generation constellation providing enhanced precise positioning and timing data."
+  },
+  {
+    "id": 44,
+    "subject": "General Awareness",
+    "question": "What primary organelle function is attributed to the Golgi apparatus in eukaryotic cells?",
+    "options": ["ATP production", "Protein modification, sorting, and packaging", "DNA replication", "Lipid destruction"],
+    "answer": 1,
+    "explanation": "The Golgi apparatus processes, modifies (e.g., glycosylation), and packages proteins received from the endoplasmic reticulum for secretion or cellular use."
+  },
+  {
+    "id": 45,
+    "subject": "General Awareness",
+    "question": "As per Article 279A, decisions in the GST Council require what weighted majority of members present and voting?",
+    "options": ["Simple majority", "Three-fourths majority (75%)", "Two-thirds majority", "Absolute majority"],
+    "answer": 1,
+    "explanation": "Every decision of the GST Council is taken by a majority of not less than three-fourths (75%) of weighted votes of members present and voting."
+  },
+  {
+    "id": 46,
+    "subject": "General Awareness",
+    "question": "When light enters glass from air, which fundamental wave property remains completely unchanged?",
+    "options": ["Wavelength", "Frequency", "Speed", "Amplitude"],
+    "answer": 1,
+    "explanation": "Frequency depends solely on the source emitting the light wave and remains constant during refraction across different media."
+  },
+  {
+    "id": 47,
+    "subject": "General Awareness",
+    "question": "The Bharatiya Sakshya Adhiniyam (BSA) replaces the Indian Evidence Act to integrate modern advancements in:",
+    "options": ["Forensic science and digital technology evidence", "Traditional oral testimony", "Revenue administration", "Maritime trade records"],
+    "answer": 0,
+    "explanation": "BSA updates legal provisions to cover electronic/digital records, DNA evidence, and modern scientific forensic standards."
+  },
+  {
+    "id": 48,
+    "subject": "General Awareness",
+    "question": "Thang-Ta is a traditional martial art dance form belonging to which state?",
+    "options": ["Assam", "Nagaland", "Manipur", "Tripura"],
+    "answer": 2,
+    "explanation": "Thang-Ta (Huyen Langlon) is an ancient weapon-based traditional martial art originating from Manipur."
+  },
+  {
+    "id": 49,
+    "subject": "General Awareness",
+    "question": "Which pair of industries is correctly classified under heavy manufacturing industries?",
+    "options": ["Sewing machines and Paint brushes", "Shipbuilding and Automobiles", "Electric bulbs and Fuse wires", "Watches and Clocks"],
+    "answer": 1,
+    "explanation": "Shipbuilding and Automobile production involve heavy capital investment, massive machinery, and structural raw materials like steel."
+  },
+  {
+    "id": 50,
+    "subject": "General Awareness",
+    "question": "The President of India is elected by an electoral college, whereas a State Governor is:",
+    "options": ["Directly elected by state voters", "Appointed by the President by warrant under hand and seal", "Selected by the Supreme Court", "Nominated by the Chief Minister"],
+    "answer": 1,
+    "explanation": "Under Article 155, the Governor of a State is appointed directly by the President of India."
+  },
+  {
+    "id": 51,
+    "subject": "Quantitative Aptitude",
+    "question": "If $x = \\sqrt{2} + \\sqrt{3}$, $y = \\sqrt{5} + 1$, and $z = 2\\sqrt{2} + 1$, which of the following ordering is correct?",
+    "options": ["$x < y < z$", "$z < y < x$", "$y < x < z$", "$x < z < y$"],
+    "answer": 2,
+    "explanation": "Comparing approximate values: $x \\approx 3.146$, $y \\approx 3.236$ (or comparing squares $x^2 = 5 + 2\\sqrt{6} \\approx 9.899$, $y^2 = 6 + 2\\sqrt{5} \\approx 10.472$), $z \\approx 3.828$."
+  },
+  {
+    "id": 52,
+    "subject": "Quantitative Aptitude",
+    "question": "The budget ratio for land, materials, and labor is $5 : 3 : 2$. Land cost rises by 5%, materials rise by 10%, and labor falls by 20%. What is the net percent change in overall project cost?",
+    "options": ["1.0% increase", "1.5% decrease", "1.5% increase", "2.0% decrease"],
+    "answer": 2,
+    "explanation": "Let initial costs be 50, 30, 20 $\\rightarrow$ Total = 100. Land change = +2.5, Material change = +3.0, Labor change = -4.0. Net change = +1.5% increase."
+  },
+  {
+    "id": 53,
+    "subject": "Quantitative Aptitude",
+    "question": "Evaluate: $6 - \\left[ \\frac{2}{3} \\div \\left\\{ \\frac{1}{6} + \\left( \\frac{1}{2} \\times \\left(1 - \\frac{1}{3}\\right) \\right) \\right\\} \\right]$",
+    "options": ["14", "5", "$4\\frac{2}{3}$", "3"],
+    "answer": 2,
+    "explanation": "Inner bracket: $1 - 1/3 = 2/3$. Multiplication: $1/2 \\times 2/3 = 1/3$. Curly brackets: $1/6 + 1/3 = 1/2$. Division: $2/3 \\div 1/2 = 4/3$. Final result: $6 - 4/3 = 14/3 = 4\\frac{2}{3}$."
+  },
+  {
+    "id": 54,
+    "subject": "Quantitative Aptitude",
+    "question": "X, Y, and Z invested ₹25,000, ₹35,000, and ₹40,000 in a business. Total annual profit is ₹30,000. Find Y's share.",
+    "options": ["₹10,500", "₹10,000", "₹11,000", "₹11,500"],
+    "answer": 0,
+    "explanation": "Investment ratio = 5 : 7 : 8. Sum of units = 20. Y's share = $(7/20) \\times 30,000 = ₹10,500$."
+  },
+  {
+    "id": 55,
+    "subject": "Quantitative Aptitude",
+    "question": "A and B started a business with ₹48,000 and ₹72,000. After 6 months, A withdrew half capital, and B added ₹24,000. Total annual profit = ₹55,000. Find B's share.",
+    "options": ["₹26,500", "₹28,000", "₹38,500", "₹36,000"],
+    "answer": 2,
+    "explanation": "A's total investment-months = $(48,000 \\times 6) + (24,000 \\times 6) = 4,32,000$. B's total = $(72,000 \\times 6) + (96,000 \\times 6) = 10,08,000$. Ratio A : B = 3 : 7. B's share = $(7/10) \\times 55,000 = ₹38,500$."
+  },
+  {
+    "id": 56,
+    "subject": "Quantitative Aptitude",
+    "question": "Daily wages of Worker C over 4 days are: Day 1 (220), Day 2 (230), Day 3 (215), Day 4 (225). What is C's average daily earning?",
+    "options": ["222.5", "222", "227.5", "222.5"],
+    "answer": 0,
+    "explanation": "Average = $(220 + 230 + 215 + 225) / 4 = 890 / 4 = 222.5$."
+  },
+  {
+    "id": 57,
+    "subject": "Quantitative Aptitude",
+    "question": "Present literate population = 25,000. If literate males decrease by 5% and literate females increase by 10%, total literate population becomes 25,250. Find present number of literate males.",
+    "options": ["12,500", "14,000", "15,000", "16,500"],
+    "answer": 2,
+    "explanation": "$M + F = 25,000$. Net change: $-0.05M + 0.10(25,000 - M) = 250 \\Rightarrow 0.15M = 2250 \\Rightarrow M = 15,000$."
+  },
+  {
+    "id": 58,
+    "subject": "Quantitative Aptitude",
+    "question": "A baker ordered 10 kg premium flour (2P price/kg) and x kg standard flour (P price/kg). Interchanging quantities decreased total cost by 25%. Find ratio of premium to standard flour originally.",
+    "options": ["1 : 2", "5 : 2", "3 : 4", "1 : 4"],
+    "answer": 3,
+    "explanation": "Original cost = $(20 + x)P$. Swapped cost = $(2x + 10)P$. Given: $2x + 10 = 0.75(20 + x) \\Rightarrow 1.25x = 5 \\Rightarrow x = 40\\text{ kg}$. Ratio = 10 : 40 = 1 : 4."
+  },
+  {
+    "id": 59,
+    "subject": "Quantitative Aptitude",
+    "question": "A vendor sold 15 toys for ₹3000, gaining 25%. How many toys should he sell for ₹2816 to make 10% profit?",
+    "options": ["15", "16", "17", "18"],
+    "answer": 1,
+    "explanation": "SP per toy = ₹200. CP per toy = $200 / 1.25 = ₹160$. Target SP per toy for 10% profit = $160 \\times 1.10 = ₹176$. Number of toys = $2816 / 176 = 16$."
+  },
+  {
+    "id": 60,
+    "subject": "Quantitative Aptitude",
+    "question": "Tea A sold at ₹150/kg (25% loss), Tea B at ₹200/kg (20% loss). Mixed equal proportions and sold at ₹175/kg. What is overall profit/loss percentage?",
+    "options": ["Loss of 22.22%", "Profit of 22.22%", "Loss of 22.22%", "Loss of 25%"],
+    "answer": 0,
+    "explanation": "CP A = ₹200/kg, CP B = ₹250/kg. Average CP = ₹225/kg. Mixture SP = ₹175/kg. Loss % = $(50 / 225) \\times 100 = 22.22\\%$ loss."
+  },
+  {
+    "id": 61,
+    "subject": "Quantitative Aptitude",
+    "question": "A and B do a work in 12 days, B and C in 15 days, C and A in 20 days. In how many days can A alone complete it?",
+    "options": ["30 days", "20 days", "50 days", "15 days"],
+    "answer": 0,
+    "explanation": "$2(A+B+C) = 1/12 + 1/15 + 1/20 = 12/60 = 1/5 \\Rightarrow A+B+C = 1/10$. A's rate = $1/10 - 1/15 = 1/30$. Time = 30 days."
+  },
+  {
+    "id": 62,
+    "subject": "Quantitative Aptitude",
+    "question": "From 64 L of pure spirit, 8 L is removed and replaced with water, repeated 3 times. What is the remaining spirit?",
+    "options": ["34.34 L", "36.45 L", "38.62 L", "42.88 L"],
+    "answer": 3,
+    "explanation": "Remaining Spirit = $64 \\times (7/8)^3 = 343 / 8 = 42.875\\text{ L}$."
+  },
+  {
+    "id": 63,
+    "subject": "Quantitative Aptitude",
+    "question": "A vendor mixes water with pure juice, sells the mixture at CP of pure juice, making 20% profit. Ratio of water to juice?",
+    "options": ["1 : 4", "1 : 5", "4 : 1", "5 : 1"],
+    "answer": 1,
+    "explanation": "Profit = 20% = 1/5 $\\rightarrow$ Ratio of Water : Juice = 1 : 5."
+  },
+  {
+    "id": 64,
+    "subject": "Quantitative Aptitude",
+    "question": "A car covers 40% distance at 20 km/h and remaining 60% at 30 km/h. Find average speed.",
+    "options": ["24 km/h", "25 km/h", "26 km/h", "27 km/h"],
+    "answer": 1,
+    "explanation": "Total distance = 100 km. Time = $40/20 + 60/30 = 2 + 2 = 4\\text{ hours}$. Average Speed = $100 / 4 = 25\\text{ km/h}$."
+  },
+  {
+    "id": 65,
+    "subject": "Quantitative Aptitude",
+    "question": "A and B jog on a 1.2 km circular track in opposite directions at 5 km/h and 7 km/h, starting at 6:00 AM. At what time do they meet the 5th time?",
+    "options": ["6:25 AM", "6:30 AM", "6:45 AM", "7:00 AM"],
+    "answer": 1,
+    "explanation": "Relative Speed = $5 + 7 = 12\\text{ km/h}$. Time for 1 meeting = $1.2 / 12 = 0.1\\text{ hr} = 6\\text{ mins}$. Time for 5th meeting = $5 \\times 6 = 30\\text{ mins}$. Meeting time = 6:30 AM."
+  },
+  {
+    "id": 66,
+    "subject": "Quantitative Aptitude",
+    "question": "What is the area of a sector of a circle with radius 7 cm and central angle 90°?",
+    "options": ["$38.48\\text{ cm}^2$", "$35.2\\text{ cm}^2$", "$40.5\\text{ cm}^2$", "$42.62\\text{ cm}^2$"],
+    "answer": 0,
+    "explanation": "Area = $(90/360) \\times (22/7) \\times 49 = 154 / 4 = 38.5\\text{ cm}^2$."
+  },
+  {
+    "id": 67,
+    "subject": "Quantitative Aptitude",
+    "question": "What is the radian measure of 150°?",
+    "options": ["$\\frac{3\\pi}{4}$", "$\\frac{5\\pi}{6}$", "$\\frac{2\\pi}{3}$", "$\\frac{7\\pi}{6}$"],
+    "answer": 1,
+    "explanation": "Radian = $150 \\times \\frac{\\pi}{180} = \\frac{5\\pi}{6}$."
+  },
+  {
+    "id": 68,
+    "subject": "Quantitative Aptitude",
+    "question": "What is the area of a sector with central angle 120° and radius 8 cm?",
+    "options": ["$\\frac{64\\pi}{3}\\text{ cm}^2$", "$\\frac{54\\pi}{3}\\text{ cm}^2$", "$48\\text{ cm}^2$", "$52\\text{ cm}^2$"],
+    "answer": 0,
+    "explanation": "Area = $(120/360) \\times \\pi (8)^2 = \\frac{64\\pi}{3}\\text{ cm}^2$."
+  },
+  {
+    "id": 69,
+    "subject": "Quantitative Aptitude",
+    "question": "Which line is parallel to $3x + 2y = 5$?",
+    "options": ["$3x + 2y = 7$", "$2x + 3y = 5$", "$3x - 2y = 5$", "$x + y = 5$"],
+    "answer": 0,
+    "explanation": "Parallel lines share identical directional coefficients $a$ and $b$ (slope $m = -a/b = -3/2$)."
+  },
+  {
+    "id": 70,
+    "subject": "Quantitative Aptitude",
+    "question": "If $\\sin(90^\\circ - x) = \\cos(2x)$, find x:",
+    "options": ["$0^\\circ$", "$30^\\circ$", "$25^\\circ$", "$15^\\circ$"],
+    "answer": 1,
+    "explanation": "$\\sin(90^\\circ - x) = \\cos(x) \\Rightarrow \\cos(x) = \\cos(2x) \\Rightarrow x + 2x = 90^\\circ \\Rightarrow 3x = 90^\\circ \\Rightarrow x = 30^\\circ$."
+  },
+  {
+    "id": 71,
+    "subject": "Quantitative Aptitude",
+    "question": "If $x = \\sqrt{5} + 2$, find $x^2 - 4\\sqrt{5}$:",
+    "options": ["1", "7", "9", "3"],
+    "answer": 2,
+    "explanation": "$x^2 = (\\sqrt{5} + 2)^2 = 5 + 4 + 4\\sqrt{5} = 9 + 4\\sqrt{5}$. $x^2 - 4\\sqrt{5} = 9$."
+  },
+  {
+    "id": 72,
+    "subject": "Quantitative Aptitude",
+    "question": "In $\\triangle ABC$ and $\\triangle XYZ$, if AB=XY, BC=YZ, and CA=ZX, which rule proves congruence?",
+    "options": ["SSS", "SAS", "ASA", "AAS"],
+    "answer": 0,
+    "explanation": "Side-Side-Side (SSS) rule states that if three sides of one triangle are equal to three sides of another, triangles are congruent."
+  },
+  {
+    "id": 73,
+    "subject": "Quantitative Aptitude",
+    "question": "A and B are complementary angles. If $\\sin A = \\frac{3}{5}$, what is $\\tan B$?",
+    "options": ["$\\frac{3}{4}$", "$\\frac{4}{3}$", "$\\frac{3}{5}$", "$\\frac{4}{5}$"],
+    "answer": 1,
+    "explanation": "$A + B = 90^\\circ \\Rightarrow \\sin A = \\cos B = 3/5$. Right triangle sides: Opposite to B = 4, Adjacent to B = 3 $\\Rightarrow \\tan B = 4/3$."
+  },
+  {
+    "id": 74,
+    "subject": "Quantitative Aptitude",
+    "question": "In cyclic quadrilateral ABCD, if $\\angle A = 100^\\circ$, find $\\angle C$:",
+    "options": ["$100^\\circ$", "$80^\\circ$", "$90^\\circ$", "$70^\\circ$"],
+    "answer": 1,
+    "explanation": "Opposite angles of a cyclic quadrilateral sum to $180^\\circ$. $\\angle C = 180^\\circ - 100^\\circ = 80^\\circ$."
+  },
+  {
+    "id": 75,
+    "subject": "Quantitative Aptitude",
+    "question": "What is the equation of a line passing through (0,3) with slope -1?",
+    "options": ["$y = -x + 3$", "$y = x - 3$", "$y = -x - 3$", "$y = x + 3$"],
+    "answer": 0,
+    "explanation": "Slope-intercept form $y = mx + c$, where $m = -1$ and $y$-intercept $c = 3 \\Rightarrow y = -x + 3$." },
+
+  {
+    "id": 76,
+    "subject": "English Comprehension",
+    "question": "Select the most appropriate SYNONYM of the word: CAUSTIC",
+    "options": ["Kind", "Mild", "Gentle", "Sarcastic"],
+    "answer": 3,
+    "explanation": "Caustic means critical, biting, or sarcastic in tone."
+  },
+  {
+    "id": 77,
+    "subject": "English Comprehension",
+    "question": "Choose the correct meaning of the idiom: \"Make no bones about it\"",
+    "options": ["To hesitate before speaking", "To remain neutral", "To be direct and honest", "To confuse the listener"],
+    "answer": 2,
+    "explanation": "\"Make no bones about something\" means to state or admit something clearly without hesitation or doubt."
+  },
+  {
+    "id": 78,
+    "subject": "English Comprehension",
+    "question": "Select the most appropriate ANTONYM of the word: EVANESCENT",
+    "options": ["Ephemeral", "Transient", "Enduring", "Fleeting"],
+    "answer": 2,
+    "explanation": "Evanescent means quickly fading or short-lived; its antonym is enduring or permanent."
+  },
+  {
+    "id": 79,
+    "subject": "English Comprehension",
+    "question": "Identify the misspelled word:",
+    "options": ["Acquiescence", "Bourgeoisie", "Inadvertant", "Penitent"],
+    "answer": 2,
+    "explanation": "The correct spelling is Inadvertent (ending in '-ent')."
+  },
+  {
+    "id": 80,
+    "subject": "English Comprehension",
+    "question": "Spot the correct spelling of the metamorphic texture term:",
+    "options": ["Prophyroblastic", "Porphyroblastic", "Porfyrblastic", "Porphyroblastik"],
+    "answer": 1,
+    "explanation": "Porphyroblastic is the correct geological spelling."
+  },
+  {
+    "id": 81,
+    "subject": "English Comprehension",
+    "question": "Select the one-word substitute for: \"A political system based on the rule of the wealthy\"",
+    "options": ["Oligarchy", "Aristocracy", "Plutocracy", "Meritocracy"],
+    "answer": 2,
+    "explanation": "Plutocracy refers specifically to governance by the wealthy class."
+  },
+  {
+    "id": 82,
+    "subject": "English Comprehension",
+    "question": "Select the correct grammatical inversion: \"Only after a decade of fieldwork _____ fully grasp the dialect's nuances.\"",
+    "options": ["she had", "did she", "had she", "she did"],
+    "answer": 1,
+    "explanation": "Negative or restrictive adverbial phrases at the beginning of a sentence require auxiliary inversion (\"did she grasp\")."
+  },
+  {
+    "id": 83,
+    "subject": "English Comprehension",
+    "question": "Select the correct option: \"The professor's remarks were so dense with jargon that they bordered on _____.\"",
+    "options": ["opacity", "opaque", "opacus", "opalescent"],
+    "answer": 0,
+    "explanation": "The preposition 'on' requires a noun form (opacity, meaning obscurity/unclarity)."
+  },
+  {
+    "id": 84,
+    "subject": "English Comprehension",
+    "question": "Select the correct option: \"Her rebuttal, though eloquent, failed to _____ the central issue raised by the opposition.\"",
+    "options": ["address", "digress", "circumvent", "elude"],
+    "answer": 0,
+    "explanation": "'Address' properly fits the context of directly dealing with an argument or issue."
+  },
+  {
+    "id": 85,
+    "subject": "English Comprehension",
+    "question": "Find the part of the sentence containing an error: \"The reforms being recommended by the panel (1) / are not only intended to streamline administrative functions (2) / but also addressing the asymmetries in resource allocation (3) / that have long plagued rural districts (4).\"",
+    "options": ["(1)", "(2)", "(3)", "(4)"],
+    "answer": 2,
+    "explanation": "Parallel structure error: \"not only intended to streamline... but also to address\" (instead of \"addressing\")."
+  },
+  {
+    "id": 86,
+    "subject": "English Comprehension",
+    "question": "Find the error part: \"What the committee failed to deliberate on adequately (1) / were not the policy's objectives themselves, (2) / but the political ramifications (3) / it might have had if implemented without broader consensus (4).\"",
+    "options": ["(1)", "(2)", "(3)", "(4)"],
+    "answer": 1,
+    "explanation": "Subject-verb agreement: The clause \"What the committee failed to deliberate on...\" is singular, so verb should be \"was not\"."
+  },
+  {
+    "id": 87,
+    "subject": "English Comprehension",
+    "question": "Change to Passive Voice: \"The laboratory will have double-checked the reagents by dawn.\"",
+    "options": ["The reagents have been double-checked by the laboratory by dawn.", "The reagents will have been double-checked by the laboratory by dawn.", "The reagents will be double-checked by the laboratory by dawn.", "The reagents would have been double-checking by the laboratory by dawn."],
+    "answer": 1,
+    "explanation": "Future perfect active (will have + V3) changes to passive (will have been + V3)."
+  },
+  {
+    "id": 88,
+    "subject": "English Comprehension",
+    "question": "Select the sentence containing a homonym/proper name context distinct from vestment: \"The fanon rested on the Pope's shoulder...\"",
+    "options": ["The theologian lectured on the fanon's origin in Rome.", "The tailor stitched the edge of the fanon carefully.", "The critic analyzed Fanon's theory of postcolonial identity.", "The cardinal wore the fanon over his chasuble."],
+    "answer": 2,
+    "explanation": "Option (c) references Frantz Fanon (proper noun/author), whereas all other options refer to the liturgical vestment."
+  },
+  {
+    "id": 89,
+    "subject": "English Comprehension", "question": "Change to Active Voice: \"Rare minerals are known to have been secretly extracted from the site by unauthorized workers before inspection.\"",
+    "options": ["Unauthorized workers extracted the rare minerals before inspection.", "The site was secretly mined before the inspection.", "Unauthorized workers are known to have secretly extracted rare minerals from the site before the inspection.", "The minerals had been extracted prior to inspection."],
+    "answer": 2,
+    "explanation": "Option (c) preserves the perfect infinitive and agent relationship correctly."
+  },
+  {
+    "id": 90,
+    "subject": "English Comprehension",
+    "question": "<b>Passage:</b><br>For seventeen-year-old Meera, adolescence was not merely a phase of hormonal transitions and academic aspirations—it became an arena where perception and self-worth collided with insidious intensity. In a world saturated with curated digital aesthetics and algorithm-driven beauty hierarchies, Meera's own reflection began to feel less like truth and more like betrayal.<br><br>What does the phrase \"gnawing dissonance\" in the passage refer to?",
+    "options": ["Her hunger due to skipped meals", "Her disagreement with her teachers", "Her detachment from academic pressure", "The painful conflict between her authentic self and online beauty standards"],
+    "answer": 3,
+    "explanation": "The passage states it was the conflict between her authentic self and the impossible silhouettes idolized online."
+  },
+  {
+    "id": 91,
+    "subject": "English Comprehension",
+    "question": "<b>Passage Continuation:</b><br>The subtle descent into dysmorphia was neither loud nor linear. Academically capable and socially pleasant, Meera wore the mask of normalcy with precision. Yet beneath the practiced smiles was a quiet implosion.<br><br>How does the passage describe Meera's psychological decline?",
+    "options": ["Abrupt and confrontational", "Erratic and attention-seeking", "Subtle and inwardly destructive", "Vocal and rebellious"],
+    "answer": 2,
+    "explanation": "The text calls it a \"subtle descent\" and a \"quiet implosion\" behind a mask of normalcy."
+  },
+  {
+    "id": 92,
+    "subject": "English Comprehension",
+    "question": "<b>Passage Continuation:</b><br>Therapeutic engagement introduced her to the concept of self-image distortion, and the emotional scaffolding required to rebuild her fractured sense of identity.<br><br>What concept helped Meera begin recovering emotionally?",
+    "options": ["Narcissistic validation", "Understanding self-image distortion through therapy", "Social withdrawal management", "Behavioral conditioning"],
+    "answer": 1,
+    "explanation": "\"Therapeutic engagement introduced her to the concept of self-image distortion...\""
+  },
+  {
+    "id": 93,
+    "subject": "English Comprehension",
+    "question": "What is the central theme of the passage?",
+    "options": ["Cosmetic beauty norms and fashion trends", "Hidden psychological battles due to digital aesthetics and social media", "The necessity of academic counseling for teens", "Physical health risks of skipping meals"],
+    "answer": 1,
+    "explanation": "The theme centers on digital media's impact on youth mental health and body image."
+  },
+  {
+    "id": 94,
+    "subject": "English Comprehension",
+    "question": "What is the tone of the author at the end of the passage?",
+    "options": ["Dismissive and ironic", "Reflective and critical / Constructive", "Optimistic and celebratory", "Detached and neutral"],
+    "answer": 1,
+    "explanation": "The concluding lines critically examine societal trends and reflectively prescribe systemic solutions."
+  },
+  {
+    "id": 95,
+    "subject": "English Comprehension",
+    "question": "Replace the highlighted part: \"I suggested that he goes to the doctor immediately.\"",
+    "options": ["go to doctor at once", "should goes to the doctor", "go to the doctor immediately", "should have go to the doctor"],
+    "answer": 2,
+    "explanation": "Subjunctive mood following verbs of suggestion ('suggested that he...') requires the base form of verb (go)."
+  },
+  {
+    "id": 96,
+    "subject": "English Comprehension",
+    "question": "Replace the highlighted part: \"I am used to get up early in the morning.\"",
+    "options": ["to get up early", "with getting up early", "to getting up early", "for getting up early"],
+    "answer": 2,
+    "explanation": "\"Be used to\" is followed by a gerund (verb+ing): to getting up."
+  },
+  {
+    "id": 97,
+    "subject": "English Comprehension",
+    "question": "Convert to Indirect Speech: She said, \"He doesn't listen to me.\"",
+    "options": ["She said he don't listen to her.", "She said that he doesn't listened to her.", "She said that he didn't listen to her.", "She said that he didn't listened to her."],
+    "answer": 2,
+    "explanation": "Simple present ('doesn't listen') changes to simple past ('didn't listen') in reported speech."
+  },
+  {
+    "id": 98,
+    "subject": "English Comprehension",
+    "question": "Select the correct SYNONYM of the word: BIBLIOPHILE",
+    "options": ["Publisher", "Bookkeeper", "Librarian", "Book-lover"],
+    "answer": 3,
+    "explanation": "Bibliophile comes from Greek roots meaning a lover of books."
+  },
+  {
+    "id": 99,
+    "subject": "English Comprehension",
+    "question": "Rearrange the sentences to form a coherent paragraph:<br>1. These narratives often explore the ethical and social consequences of technological advancement...<br>2. Science fiction is a genre of speculative fiction that typically deals with imaginative concepts...<br>3. This makes it a powerful tool for social commentary...<br>4. While entertaining, the genre serves a purpose beyond mere escapism.",
+    "options": ["2, 4, 1, 3", "1, 3, 2, 4", "4, 1, 3, 2", "2, 1, 4, 3"],
+    "answer": 0,
+    "explanation": "Sentence 2 introduces the subject (Science fiction), 4 expands on its purpose beyond entertainment, 1 details how narratives explore tech consequences, and 3 concludes its impact as social commentary."
+  },
+  {
+    "id": 100,
+    "subject": "English Comprehension",
+    "question": "Rearrange the sentences to form a coherent paragraph:<br>1. This process ensures that the food we eat is safe and does not contain harmful bacteria...<br>2. Food processing is a series of methods used to transform raw ingredients into consumable products...<br>3. These methods can range from simple actions like cutting and grinding to more complex procedures...<br>4. Furthermore, it also helps to preserve food, extend its shelf life, and enhance its nutritional value.",
+    "options": ["2, 3, 1, 4", "1, 2, 3, 4", "3, 1, 4, 2", "4, 2, 1, 3"],
+    "answer": 0,
+    "explanation": "Sentence 2 defines food processing, 3 elaborates on \"these methods\", 1 states safety outcomes of the process, and 4 adds additional benefits using \"Furthermore\"."
+  }
+]
