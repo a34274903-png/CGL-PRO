@@ -1,0 +1,801 @@
+[
+  {
+    "id": 1,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the related word from the given alternatives: Clock : Time :: Thermometer : ?",
+    "options": ["Heat", "Temperature", "Energy", "Radiation"],
+    "answer": 1,
+    "explanation": "A clock is an instrument used to measure time. Similarly, a thermometer is an instrument used to measure temperature."
+  },
+  {
+    "id": 2,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that can replace the question mark (?) in the following series: CDE, FGH, IJK, ?",
+    "options": ["OJB", "TYC", "LJN", "LMN"],
+    "answer": 3,
+    "explanation": "Each letter in the cluster moves forward by 3 steps in alphabetical order: $C (+3) \\rightarrow F (+3) \\rightarrow I (+3) \\rightarrow L$, $D (+3) \\rightarrow G (+3) \\rightarrow J (+3) \\rightarrow M$, $E (+3) \\rightarrow H (+3) \\rightarrow K (+3) \\rightarrow N$."
+  },
+  {
+    "id": 3,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that can replace the question mark (?) in the following series: JKL, MNO, PQR, ?",
+    "options": ["SFD", "STU", "BHF", "DTG"],
+    "answer": 1,
+    "explanation": "Letters are in consecutive alphabetical triplets moving forward by 3: $J \\rightarrow M \\rightarrow P \\rightarrow S$, $K \\rightarrow N \\rightarrow Q \\rightarrow T$, $L \\rightarrow O \\rightarrow R \\rightarrow U$."
+  },
+  {
+    "id": 4,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that can replace the question mark (?) in the series: LWB $\\rightarrow$ OZE $\\rightarrow$ RCH $\\rightarrow$ UFK $\\rightarrow$ ?",
+    "options": ["XIN", "XIM", "WJN", "YIN"],
+    "answer": 0,
+    "explanation": "First letter: $L(+3) \\rightarrow O(+3) \\rightarrow R(+3) \\rightarrow U(+3) \\rightarrow X$. Second letter: $W(+3) \\rightarrow Z(+3) \\rightarrow C(+3) \\rightarrow F(+3) \\rightarrow I$. Third letter: $B(+3) \\rightarrow E(+3) \\rightarrow H(+3) \\rightarrow K(+3) \\rightarrow N$."
+  },
+  {
+    "id": 5,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which of the following addresses are exactly identical to each other?<br>1. Amitabh S 112/44 Block-B, Indira Nagar, Lucknow, 226016<br>2. Amitabh S. 112/44 Block-B, Indira Nagar, Lucknow, 226016<br>3. Amitabh S. 112/44 Block-B, Indira Nagar, Lucknow, 226016<br>4. Amitabh S. 112/44 Block B, Indira Nagar, Lucknow, 226016",
+    "options": ["1 and 2", "2 and 3", "2 and 4", "3 and 4"],
+    "answer": 1,
+    "explanation": "Addresses 2 and 3 match character-for-character including periods and hyphens."
+  },
+  {
+    "id": 6,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Which of the following addresses are identical to each other?<br>1. Dr Ruchi Jain 4/88, Skyline Residency, Jaipur, 302001<br>2. Dr. Ruchi Jain 4/88 Skyline Residency, Jaipur, 302001<br>3. Dr. Ruchi Jain 4/88 Skyline Residency, Jaipur, 302001<br>4. Dr Ruchi Jain 4/88, Skyline Residency, Jaipur, 302001",
+    "options": ["1 and 2", "2 and 3", "1 and 4", "3 and 4"],
+    "answer": 1,
+    "explanation": "Statements 2 and 3 are exact string matches."
+  },
+  {
+    "id": 7,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Find the group of letters that best completes the analogy using reverse letter positions: DINS : WRMH :: EKPT : ?",
+    "options": ["VJOG", "VJNF", "VPKG", "VJOF"],
+    "answer": 2,
+    "explanation": "Each letter is paired with its opposite reverse alphabetical counterpart ($A \\leftrightarrow Z$, $D \\leftrightarrow W$, $I \\leftrightarrow R$, $N \\leftrightarrow M$, $S \\leftrightarrow H$). Therefore: $E \\leftrightarrow V$, $K \\leftrightarrow P$, $P \\leftrightarrow K$, $T \\leftrightarrow G$."
+  },
+  {
+    "id": 8,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Identify the correct product of alphabetical positions for the second pair (A=1, B=2, ..., Z=26): AXE : 1 $\\times$ 5 :: DxK : ?",
+    "options": ["3 $\\times$ 9", "4 $\\times$ 11", "5 $\\times$ 10", "4 $\\times$ 12"],
+    "answer": 1,
+    "explanation": "The letter 'D' is the 4th letter of the alphabet and 'K' is the 11th letter. The product format is $4 \\times 11$."
+  },
+  {
+    "id": 9,
+    "subject": "General Intelligence & Reasoning",
+    "question": "There are 40 students in a line. Rahul is 13th from the left and Kunal is 17th from the right. How many students are there between them?",
+    "options": ["7", "9", "10", "12"],
+    "answer": 2,
+    "explanation": "Total students = 40. Sum of positions from extreme ends = $13 + 17 = 30$. Since $30 < 40$, there is no overlap. Students between them = $40 - 30 = 10$."
+  },
+  {
+    "id": 10,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If $+ \\rightarrow \\times$, $- \\rightarrow +$, and $\\times \\rightarrow \\div$, evaluate $6 \\times 3 - 2 + 1$:",
+    "options": ["20", "21", "19", "24"],
+    "answer": 0,
+    "explanation": "Replacing symbols according to rules: $6 \\div 3 + 2 \\times 1 = 2 + 2 = 4$ or standard operation evaluation gives 20."
+  },
+  {
+    "id": 11,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that replaces the question mark (?) in the series: GHZ, HIY, IJX, JKW, ?",
+    "options": ["JHG", "KLV", "KMN", "HGK"],
+    "answer": 1,
+    "explanation": "1st letter: $G \\rightarrow H \\rightarrow I \\rightarrow J \\rightarrow K$. 2nd letter: $H \\rightarrow I \\rightarrow J \\rightarrow K \\rightarrow L$. 3rd letter moves backward: $Z \\rightarrow Y \\rightarrow X \\rightarrow W \\rightarrow V$."
+  },
+  {
+    "id": 12,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Select the letter-cluster that completes the series: RXD, RUJ, RRP, ROV, ?",
+    "options": ["RLC", "RDA", "RLB", "RDF"],
+    "answer": 2,
+    "explanation": "1st letter remains constant (R). 2nd letter decreases by 3: $X(24) \\rightarrow U(21) \\rightarrow R(18) \\rightarrow O(15) \\rightarrow L(12)$. 3rd letter increases by 6: $D(4) \\rightarrow J(10) \\rightarrow P(16) \\rightarrow V(22) \\rightarrow B(28\\text{ or }2)$."
+  },
+  {
+    "id": 13,
+    "subject": "General Intelligence & Reasoning",
+    "question": "<b>Statements:</b><br>Rapid progress in automation and AI may cause significant job displacement, but it also presents opportunities for creating new jobs in emerging industries.<br><br><b>Assumptions:</b><br>I. Automation and AI can cause job losses in certain sectors.<br>II. New industries will emerge as a result of automation and AI.<br>III. Displacement caused by automation is temporary and will be reversed by new industries.",
+    "options": ["Only I and II are implicit", "Only II and III are implicit", "All are implicit", "Only I is implicit"],
+    "answer": 0,
+    "explanation": "Both statements I and II are direct premises stated in the text. Assumption III claims it is 'temporary and will be reversed', which goes beyond what is strictly assumed in the statement."
+  },
+  {
+    "id": 14,
+    "subject": "General Intelligence & Reasoning",
+    "question": "How many letters in the word FRIEND will remain in the same position when arranged alphabetically?",
+    "options": ["One", "Three", "Four", "None"],
+    "answer": 0,
+    "explanation": "Original: F - R - I - E - N - D. Alphabetical order: D - E - F - I - N - R. Position comparison: Only 'N' remains in the same 5th position."
+  },
+  {
+    "id": 15,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Complete the number series: 11, 13, 17, 19, ?",
+    "options": ["21", "23", "25", "27"],
+    "answer": 1,
+    "explanation": "This is a sequence of prime numbers starting from 11. The next prime number after 19 is 23."
+  },
+  {
+    "id": 16,
+    "subject": "General Intelligence & Reasoning",
+    "question": "A box contains 5 red, 3 blue, and 2 green balls. What is the probability of drawing a non-green ball?",
+    "options": ["0.5", "0.8", "0.6", "0.7"],
+    "answer": 1,
+    "explanation": "Total balls = $5 + 3 + 2 = 10$. Non-green balls = $5(\\text{red}) + 3(\\text{blue}) = 8$. Probability = $\\frac{8}{10} = 0.8$."
+  },
+  {
+    "id": 17,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If $9 \\text{ @ } 3 = 36$ and $6 \\text{ @ } 2 = 16$, then $8 \\text{ @ } 2 = ?$",
+    "options": ["20", "24", "36", "28"],
+    "answer": 1,
+    "explanation": "Pattern: $a \\text{ @ } b = (a \\times b) + a$: $(8 \\times 2) + 8 = 24$."
+  },
+  {
+    "id": 18,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If ABCDE is coded as EDCBA and FGHIJ is coded as JIHGF, how is PQRST coded?",
+    "options": ["TSRQP", "TSRQQ", "TSSQP", "TSRRP"],
+    "answer": 0,
+    "explanation": "The letters in the block are completely reversed in order."
+  },
+  {
+    "id": 19,
+    "subject": "General Intelligence & Reasoning",
+    "question": "If 9 $ 3 = 18 and 8 $ 2 = 12, what is 6 $ 4?",
+    "options": ["8", "10", "12", "14"],
+    "answer": 0,
+    "explanation": "Pattern: $a \\$ b = (a - b) \\times 4$: $(6 - 4) \\times 4 = 8$."
+  },
+  {
+    "id": 20,
+    "subject": "General Intelligence & Reasoning",
+    "question": "A 25-liter solution has Sugar : Water = 3 : 2. How much water must be added to make Sugar : Water = 1 : 1?",
+    "options": ["2.5 L", "5 L", "7.5 L", "10 L"],
+    "answer": 1,
+    "explanation": "Initial amounts: Sugar = $\\frac{3}{5} \\times 25 = 15\\text{ L}$, Water = $10\\text{ L}$. For 1:1 ratio, Water must equal Sugar (15 L). Water to add = $15 - 10 = 5\\text{ L}$."
+  },
+  {
+    "id": 21,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Ravi is married to Rekha. Rekha's brother is Ramesh. Ramesh's wife is Rina. Rina's son is Raj. How is Raj related to Ravi?",
+    "options": ["Nephew", "Son", "Cousin", "Brother-in-law"],
+    "answer": 0,
+    "explanation": "Raj is the son of Ravi's wife's brother (Ramesh). Therefore, Raj is Ravi's nephew."
+  },
+  {
+    "id": 22,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Pointing to a man, Seema said, \"His mother is the only daughter of my mother's father.\" How is the man related to Seema?",
+    "options": ["Cousin", "Nephew", "Brother", "Son"],
+    "answer": 2,
+    "explanation": "\"My mother's father\" = Seema's maternal grandfather. \"Only daughter of my maternal grandfather\" = Seema's mother. \"His mother is Seema's mother\" $\\rightarrow$ The man is Seema's brother."
+  },
+  {
+    "id": 23,
+    "subject": "General Intelligence & Reasoning",
+    "question": "After interchanging symbols + and $\\times$, and numbers 15 and 30, which equation holds true?",
+    "options": ["(15 + 2) $\\times$ 30 = 60", "(30 + 3) $\\times$ 15 = 40", "(15 + 4) $\\times$ 30 = 135", "(30 + 1) $\\times$ 15 = 45"],
+    "answer": 3,
+    "explanation": "Substitute: $30 \\rightarrow 15$, $15 \\rightarrow 30$, $+ \\rightarrow \\times$, $\\times \\rightarrow +$. Option (d) becomes: $(15 \\times 1) + 30 = 15 + 30 = 45$."
+  },
+  {
+    "id": 24,
+    "subject": "General Intelligence & Reasoning",
+    "question": "In a code language, MASTER is coded as OCUVGT. How is LABOUR coded?",
+    "options": ["NCDQWT", "NDERWT", "NBCRWT", "NEDRWT"],
+    "answer": 0,
+    "explanation": "Each letter moves +2 steps forward in alphabetical order: $M(+2)\\rightarrow O, A(+2)\\rightarrow C, S(+2)\\rightarrow U, T(+2)\\rightarrow V, E(+2)\\rightarrow G, R(+2)\\rightarrow T$. Applying +2 to LABOUR gives NCDQWT."
+  },
+  {
+    "id": 25,
+    "subject": "General Intelligence & Reasoning",
+    "question": "Find the odd group of symbols/letters that does NOT follow the same pattern:",
+    "options": ["A1:C3#:E5$", "B2%:D4A:F6&", "C3*:E5(:G7)", "D4_:F6@:I9&"],
+    "answer": 3,
+    "explanation": "In options (a), (b), and (c), the letter positions step forward by +2, +2 (e.g., A-C-E, B-D-F, C-E-G). In option (d), the step jumps from F(6) to I(9) which is +3, breaking the uniform +2 pattern."
+  },
+  {
+    "id": 26,
+    "subject": "General Awareness",
+    "question": "Which of the following statements about the Hola Mohalla festival of Punjab is correct?",
+    "options": ["It is celebrated mainly by women through crafts and songs in Patiala.", "It showcases martial arts, langars, and Nihang mock battles at Anandpur Sahib.", "It is a harvest festival observed in Punjab just before Diwali.", "Hola Mohalla is celebrated on the same day as Holi."],
+    "answer": 1,
+    "explanation": "Hola Mohalla is a three-day Sikh festival celebrated at Anandpur Sahib immediately following Holi, established by Guru Gobind Singh Ji to showcase martial prowess and military drills."
+  },
+  {
+    "id": 27,
+    "subject": "General Awareness",
+    "question": "Mārgi Sangīta in ancient Indian music tradition was rooted in:",
+    "options": ["Folk music", "Vedic traditions", "Courtly entertainment", "Western influence"],
+    "answer": 1,
+    "explanation": "Classical Indian texts categorize music into Mārgi (sacred music derived from Vedic chants and designed for spiritual liberation) and Desi (regional folk music)."
+  },
+  {
+    "id": 28,
+    "subject": "General Awareness",
+    "question": "In freestyle wrestling, which of the following actions results in a technical point for the wrestler?",
+    "options": ["Running out of the mat deliberately", "Holding the opponent's singlet", "Performing a successful takedown", "Using an illegal headlock"],
+    "answer": 2,
+    "explanation": "A successful takedown from a standing position that brings the opponent to the mat under control awards technical points to the wrestler."
+  },
+  {
+    "id": 29,
+    "subject": "General Awareness",
+    "question": "Vijender Singh defeated which boxer in the quarter-finals to secure India's first Olympic boxing medal at Beijing 2008?",
+    "options": ["Emilio Correa", "Carlos Góngora", "Misha Aloyan", "Vasyl Lomachenko"],
+    "answer": 1,
+    "explanation": "Vijender Singh defeated Ecuador's Carlos Góngora in the middleweight (75 kg) quarter-finals to assure India its bronze medal."
+  },
+  {
+    "id": 30,
+    "subject": "General Awareness",
+    "question": "Which mechanism did India operationalize in 2024 to strengthen regional financial resilience within SAARC?",
+    "options": ["SAARC Development Fund Line", "Currency Swap Framework", "South Asian Bond Market", "Regional Guarantee Facility"],
+    "answer": 1,
+    "explanation": "India operationalized the revised Currency Swap Framework for SAARC countries to provide short-term foreign exchange liquidity support."
+  },
+  {
+    "id": 31,
+    "subject": "General Awareness",
+    "question": "Consider the statements about \"The Vine of Desire\" by Chitra Banerjee Divakaruni:<br>1. Explores cultural conflicts in an Indian immigrant family across generations.<br>2. A historical account of India's freedom struggle and politics.<br>3. A science fiction tale about identity and technology in future India.",
+    "options": ["Only statement 1 is correct", "Only statement 2 is correct", "Statements 2 and 3 both are correct", "1, 2 and 3 all are correct"],
+    "answer": 0,
+    "explanation": "The Vine of Desire is a novel detailing the lives, diaspora experience, and cultural struggles of two immigrant cousins in America."
+  },
+  {
+    "id": 32,
+    "subject": "General Awareness",
+    "question": "Which statement accurately describes water bodies in the Indian Desert (Thar Desert)?<br>1. Streams are perennial and flow year-round.<br>2. Most streams disappear into the sand without reaching the sea.",
+    "options": ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+    "answer": 1,
+    "explanation": "Streams in the Thar region are ephemeral (seasonal) and join inland drainage systems that disappear into desert sands due to low precipitation and extreme evaporation."
+  },
+  {
+    "id": 33,
+    "subject": "General Awareness",
+    "question": "Koli dance is a traditional folk dance performed by which community?",
+    "options": ["Fisherfolk", "Farmers", "Shepherds", "Weavers"],
+    "answer": 0,
+    "explanation": "Koli dance is the traditional dance of the Koli fishing community of coastal Maharashtra and Goa."
+  },
+  {
+    "id": 34,
+    "subject": "General Awareness",
+    "question": "The Global Energy Transition Index is published by which international organization?",
+    "options": ["IRENA", "World Economic Forum (WEF)", "International Energy Agency (IEA)", "UNDP"],
+    "answer": 1,
+    "explanation": "The Energy Transition Index (ETI) is released annually by the World Economic Forum in collaboration with Accenture."
+  },
+  {
+    "id": 35,
+    "subject": "General Awareness",
+    "question": "Which player won the Bronze medal in the Mixed Team Compound Open Archery event at the Paris 2024 Paralympics?",
+    "options": ["Harvinder Singh and Jyoti Baliyan", "Sheetal Devi and Rakesh Kumar", "Sheetal Devi and Harvinder Singh", "Rakesh Kumar and Vivek Chikara"],
+    "answer": 1,
+    "explanation": "Sheetal Devi and Rakesh Kumar won the bronze medal in the Mixed Team Compound archery event at the Paris 2024 Paralympic Games."
+  },
+  {
+    "id": 36,
+    "subject": "General Awareness",
+    "question": "Where was the Americas Regional Office of the New Development Bank (NDB) announced during the BRICS meeting?",
+    "options": ["Mexico City", "Buenos Aires", "São Paulo", "Lima"],
+    "answer": 2,
+    "explanation": "The NDB established its Americas Regional Office (ARO) in São Paulo, Brazil."
+  },
+  {
+    "id": 37,
+    "subject": "General Awareness",
+    "question": "Which statement captures the core focus of the book Because Words Matter?",
+    "options": ["Language's role in social justice", "Ancient Sanskrit grammar", "Novel on colonial India", "Linguist's critique of post-colonial English"],
+    "answer": 0,
+    "explanation": "The book emphasizes how linguistic choices, discourse, and narrative equity directly impact social justice."
+  },
+  {
+    "id": 38,
+    "subject": "General Awareness",
+    "question": "Which statement regarding a rockslide is correct?",
+    "options": ["It affects only the outermost layer of the rock face", "It is slower than rock fall", "It involves backward rotation of debris", "It affects material to considerable depth"],
+    "answer": 3,
+    "explanation": "Rockslides involve deep-seated bedrock failure where significant masses slide rapidly along structural bedding or fault planes."
+  },
+  {
+    "id": 39,
+    "subject": "General Awareness",
+    "question": "Zonal Councils in India were created by which legislation?",
+    "options": ["States Reorganisation Act, 1956", "Finance Commission Act", "Panchayati Raj Act", "Representation of People Act"],
+    "answer": 0,
+    "explanation": "Zonal Councils are statutory (not constitutional) bodies created under Section 15–22 of the States Reorganisation Act, 1956."
+  },
+  {
+    "id": 40,
+    "subject": "General Awareness",
+    "question": "Which of the following statements regarding Union-State legislative power distribution is correct?",
+    "options": ["State legislatures can legislate on matters in the Union List", "Union legislature can legislate on Concurrent List only with State approval", "Union Government can issue directions to States under Article 256", "Union and States have equal powers on matters in the Union List"],
+    "answer": 2,
+    "explanation": "Article 256 obligates States to ensure compliance with Parliamentary laws and empowers the Union Executive to give directions to States to that effect."
+  },
+  {
+    "id": 41,
+    "subject": "General Awareness",
+    "question": "<b>Assertion (A):</b> The PSLV-C59 mission achieved a notable milestone for international space cooperation.<br><b>Reason (R):</b> This mission successfully deployed the Proba-3 satellites for ESA's formation-flying experiment.",
+    "options": ["Both A and R are true, and R is the correct explanation of A", "Both A and R are true, but R is not the correct explanation of A", "A is true, but R is false", "A is false, but R is true"],
+    "answer": 0,
+    "explanation": "PSLV-C59 launched European Space Agency's Proba-3, demonstrating high-precision formation-flying technology via ISRO."
+  },
+  {
+    "id": 42,
+    "subject": "General Awareness",
+    "question": "Bharatiya Nagarik Suraksha Sanhita (BNSS) ensures digital FIR access through which portal?",
+    "options": ["National Crime Portal", "CCTNS", "BHAVISHYA", "DIGI-FIR"],
+    "answer": 1,
+    "explanation": "Crime and Criminal Tracking Network & Systems (CCTNS) enables nationwide digital recording and access to FIRs under BNSS provisions."
+  },
+  {
+    "id": 43,
+    "subject": "General Awareness",
+    "question": "Which pair of Scheme and Nodal Ministry is correctly matched?<br>1. PM-AASHA — Ministry of Agriculture & Farmers Welfare<br>2. e-NAM — Ministry of Agriculture & Farmers Welfare<br>3. PMKSY — Ministry of Jal Shakti",
+    "options": ["1 and 2 only", "2 only", "2 and 3 only", "1, 2 and 3"],
+    "answer": 1,
+    "explanation": "e-NAM (National Agriculture Market) is directly administered by the Ministry of Agriculture & Farmers Welfare."
+  },
+  {
+    "id": 44,
+    "subject": "General Awareness",
+    "question": "What is the main objective of India's Eco-Tourism policy in protected areas?",
+    "options": ["Ban human activity", "Maximize profit w/o community involvement", "Balance conservation and local livelihoods", "Turn areas into luxury resorts"],
+    "answer": 2,
+    "explanation": "The eco-tourism framework ensures ecological preservation while generating sustainable revenue and employment for local communities."
+  },
+  {
+    "id": 45,
+    "subject": "General Awareness",
+    "question": "Which of the following statements about the sugar industry in India are correct?<br>1. Sugarcane's sucrose content decreases during transportation.<br>2. Sugar industry is seasonal in nature.<br>3. Major sugar-producing states include Maharashtra and Tamil Nadu.",
+    "options": ["Only 1 and 2", "Only 1, 2 and 3", "Only 2 and 3", "Only 1 and 3"],
+    "answer": 1,
+    "explanation": "Sugarcane loses sucrose weight rapidly after harvesting (hence mill proximity is vital), runs seasonally, and is concentrated heavily in Maharashtra, UP, and Tamil Nadu."
+  },
+  {
+    "id": 46,
+    "subject": "General Awareness",
+    "question": "Which statement correctly describes the MISHTI initiative launched by Government of India?<br>1. Designed to increase mangrove cover and coastal livelihood opportunities.<br>2. Financed by a mix of CAMPA funds and MGNREGS.",
+    "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+    "answer": 2,
+    "explanation": "MISHTI (Mangrove Initiative for Shoreline Habitats & Tangible Incomes) aims at mangrove afforestation convergence using CAMPA and MGNREGS funding."
+  },
+  {
+    "id": 47,
+    "subject": "General Awareness",
+    "question": "Regarding the Kalbelia folk art form of Rajasthan, which statement is true?",
+    "options": ["Kalbelia performers rarely document their art due to its oral nomadic heritage.", "Costumes avoid stitched elements.", "Included in UNESCO ICH list without formal nomination.", "Performed only by male dancers."],
+    "answer": 0,
+    "explanation": "Kalbelia songs and dance forms are passed down orally through generational traditions within the nomadic snake-charmer community."
+  },
+  {
+    "id": 48,
+    "subject": "General Awareness",
+    "question": "Consider the following statements:<br>1. Every Money Bill is a Financial Bill.<br>2. Every Financial Bill is a Money Bill.",
+    "options": ["Only 1 is correct", "Only 2 is correct", "Both 1 and 2 are correct", "Neither 1 nor 2 is correct"],
+    "answer": 0,
+    "explanation": "All Money Bills (Article 110) are a specific subset of Financial Bills, but not all Financial Bills meet the strict criteria of Article 110."
+  },
+  {
+    "id": 49,
+    "subject": "General Awareness",
+    "question": "Neeraj Chopra secured victory at the Diamond League meeting at Stade de France with a throw of:",
+    "options": ["88.16 m", "89.94 m", "87.58 m", "90.12 m"],
+    "answer": 0,
+    "explanation": "Neeraj Chopra registered a winning throw of 88.16 meters in the competition."
+  },
+  {
+    "id": 50,
+    "subject": "General Awareness",
+    "question": "Minerals like Manganese, Bauxite, and Limestone belong to which classification?",
+    "options": ["Non-ferrous minerals", "Metallic and Non-metallic mineral resources", "Energy minerals", "Precious metals"],
+    "answer": 1,
+    "explanation": "Bauxite and Manganese are metallic minerals, whereas Limestone is a standard non-metallic mineral resource."
+  },
+  {
+    "id": 51,
+    "subject": "Quantitative Aptitude",
+    "question": "Find the product of $1.2 \\times 1.8$:",
+    "options": ["2.16", "2.40", "1.80", "2.25"],
+    "answer": 0,
+    "explanation": "$1.2 \\times 1.8 = 2.16$."
+  },
+  {
+    "id": 52,
+    "subject": "Quantitative Aptitude",
+    "question": "If M : N = 4 : 5, N : O = 6 : 7, and O : P = 9 : 11, find N : P.",
+    "options": ["54 : 77", "45 : 77", "42 : 55", "36 : 63"],
+    "answer": 0,
+    "explanation": "$N/P = (N/O) \\times (O/P) = (6/7) \\times (9/11) = 54 / 77 \\rightarrow 54 : 77$."
+  },
+  {
+    "id": 53,
+    "subject": "Quantitative Aptitude",
+    "question": "Evaluate: $(2.5 + 3.9) - 1.9$:",
+    "options": ["4.25", "4.50", "4.75", "5.25"],
+    "answer": 1,
+    "explanation": "$(2.5 + 3.9) - 1.9 = 6.4 - 1.9 = 4.50$."
+  },
+  {
+    "id": 54,
+    "subject": "Quantitative Aptitude",
+    "question": "Three numbers are such that when the average of any two is added to the third, the results obtained are 180, 168, and 150. What is the average of the original three numbers?",
+    "options": ["83", "84", "85", "86"],
+    "answer": 1,
+    "explanation": "Summing equations: $4(a + b + c) = 360 + 336 + 300 = 996 \\Rightarrow a + b + c = 249$. Average = $249 / 3 = 83$."
+  },
+  {
+    "id": 55,
+    "subject": "Quantitative Aptitude",
+    "question": "What number should be subtracted from 10, 12, 13, and 16 so that the remaining numbers are in proportion?",
+    "options": ["3", "4", "2", "1"],
+    "answer": 0,
+    "explanation": "Subtracting 4: $10-4=6, 12-4=8, 13-4=9, 16-4=12$. Since $6/8 = 9/12 = 3/4$, remaining numbers are in proportion."
+  },
+  {
+    "id": 56,
+    "subject": "Quantitative Aptitude",
+    "question": "A school organized a trip for 100 students and 10 chaperones. Each student received snacks equal to 15% of total students. Each chaperone received snacks equal to 25% of total students. How many snack items were distributed?",
+    "options": ["1750", "2000", "2250", "2500"],
+    "answer": 0,
+    "explanation": "Snacks per student = $15\\% \\text{ of } 100 = 15$. Total = $100 \\times 15 = 1500$. Snacks per chaperone = $25\\% \\text{ of } 100 = 25$. Total = $10 \\times 25 = 250$. Grand Total = $1500 + 250 = 1750$."
+  },
+  {
+    "id": 57,
+    "subject": "Quantitative Aptitude",
+    "question": "Find compound interest on ₹10,000 at 10% per annum for 2 years 6 months, compounded annually.",
+    "options": ["₹2,000", "₹2,705", "₹2,700", "₹2,500"],
+    "answer": 1,
+    "explanation": "Amount after 2 years = $10000 \\times 1.10 \\times 1.10 = ₹12,100$. Interest for remaining 6 months (at 5%) = $12100 \\times 0.05 = ₹605$. Total Amount = ₹12,705. CI = $12705 - 10000 = ₹2,705$."
+  },
+  {
+    "id": 58,
+    "subject": "Quantitative Aptitude",
+    "question": "An amount invested at 12% per annum compound interest amounts to ₹3,136 in 2 years. What is 140% of the principal?",
+    "options": ["₹3,600", "₹3,800", "₹3,500", "₹3,200"],
+    "answer": 2,
+    "explanation": "$P \\times (1.12)^2 = 3136 \\Rightarrow P \\times 1.2544 = 3136 \\Rightarrow P = ₹2,500$. $140\\% \\text{ of } 2500 = 1.4 \\times 2500 = ₹3,500$."
+  },
+  {
+    "id": 59,
+    "subject": "Quantitative Aptitude",
+    "question": "A wholesaler marks up an item by 60% and gives a 15% discount. A retailer marks it up by 25% and offers a 10% discount. If final price paid by customer is ₹14,490, find original CP to wholesaler:",
+    "options": ["₹9,471", "₹9,500", "₹10,000", "₹10,500"],
+    "answer": 2,
+    "explanation": "Let original CP = $x$. Wholesaler SP = $x \\times 1.60 \\times 0.85 = 1.36x$. Retailer SP = $1.36x \\times 1.25 \\times 0.90 = 1.53x$. $1.53x = 14490 \\Rightarrow x = ₹10,000$."
+  },
+  {
+    "id": 60,
+    "subject": "Quantitative Aptitude",
+    "question": "In a 60-liter solution of alcohol and water, water is 20%. How many liters of alcohol must be added to make water content 15%?",
+    "options": ["10 liters", "20 liters", "30 liters", "40 liters"],
+    "answer": 1,
+    "explanation": "Water volume = $20\\% \\text{ of } 60 = 12\\text{ liters}$. Let added alcohol = $x$. $12 / (60 + x) = 0.15 \\Rightarrow 60 + x = 80 \\Rightarrow x = 20\\text{ liters}$."
+  },
+  {
+    "id": 61,
+    "subject": "Quantitative Aptitude",
+    "question": "A can do a work in 8 days and B in 12 days. They work together for 3 days. What fraction of work is left?",
+    "options": ["$\\frac{1}{4}$", "$\\frac{5}{8}$", "$\\frac{3}{8}$", "$\\frac{7}{24}$"],
+    "answer": 2,
+    "explanation": "Combined 1 day work = $1/8 + 1/12 = 5/24$. Work done in 3 days = $3 \\times (5/24) = 5/8$. Work remaining = $1 - 5/8 = 3/8$."
+  },
+  {
+    "id": 62,
+    "subject": "Quantitative Aptitude",
+    "question": "A grocer mixes 40 kg lentils at ₹65/kg with lentils at ₹80/kg. He sells mixture at ₹75/kg making 10% profit. What quantity of second type was added?",
+    "options": ["25.98 kg", "10.77 kg", "35 kg", "40 kg"],
+    "answer": 1,
+    "explanation": "CP of mixture = $75 / 1.10 = ₹68.18/\\text{kg}$. By alligation: Ratio = $(80 - 68.18) : (68.18 - 65) = 11.82 : 3.18$. Quantity = $40 \\times (3.18 / 11.82) \\approx 10.77\\text{ kg}$."
+  },
+  {
+    "id": 63,
+    "subject": "Quantitative Aptitude",
+    "question": "Average monthly salary of 8 employees plus 1 supervisor is ₹15,000. If supervisor earns ₹25,000, average salary of 8 employees is:",
+    "options": ["₹14,750", "₹13,000", "₹13,750", "₹13,500"],
+    "answer": 2,
+    "explanation": "Total salary = $9 \\times 15000 = ₹1,35,000$. Total salary of 8 employees = $135000 - 25000 = ₹1,10,000$. Average = $110000 / 8 = ₹13,750$."
+  },
+  {
+    "id": 64,
+    "subject": "Quantitative Aptitude",
+    "question": "A company has 80 employees (35% women). Women's average salary is ₹72,000, men's average is ₹68,000. Overall average salary is:",
+    "options": ["₹70.8k", "₹69.4k", "₹69.9k", "₹71.2k"],
+    "answer": 1,
+    "explanation": "Overall Average = $(0.35 \\times 72000) + (0.65 \\times 68000) = 25200 + 44200 = ₹69,400$."
+  },
+  {
+    "id": 65,
+    "subject": "Quantitative Aptitude",
+    "question": "A cyclist travels at 20 km/h taking 4 hours. To complete the journey in 2.5 hours, speed must be increased by:",
+    "options": ["12 km/h", "10 km/h", "8 km/h", "15 km/h"],
+    "answer": 0,
+    "explanation": "Distance = $20 \\times 4 = 80\\text{ km}$. Required Speed = $80 / 2.5 = 32\\text{ km/h}$. Increase required = $32 - 20 = 12\\text{ km/h}$."
+  },
+  {
+    "id": 66,
+    "subject": "Quantitative Aptitude",
+    "question": "A sector of circle with radius 14 cm has area $154\\text{ cm}^2$. Find the angle of the sector.",
+    "options": ["$90^\\circ$", "$120^\\circ$", "$150^\\circ$", "$180^\\circ$"],
+    "answer": 0,
+    "explanation": "Area = $(\\theta / 360) \\times (22/7) \\times 14^2 = 154 \\Rightarrow (\\theta / 360) \\times 616 = 154 \\Rightarrow \\theta = 90^\\circ$."
+  },
+  {
+    "id": 67,
+    "subject": "Quantitative Aptitude",
+    "question": "A circular signboard has radius 2 m. If painting costs ₹60 per $\\text{m}^2$ and 10% is unpainted, total cost is:",
+    "options": ["₹658.2", "₹678.6", "₹630.4", "₹681.9"],
+    "answer": 1,
+    "explanation": "Total Area = $\\pi r^2 = 3.1416 \\times 4 = 12.566\\text{ m}^2$. Painted Area = $90\\% \\text{ of } 12.566 = 11.31\\text{ m}^2$. Cost = $11.31 \\times 60 \\approx ₹678.6$."
+  },
+  {
+    "id": 68,
+    "subject": "Quantitative Aptitude",
+    "question": "Find the y-intercept of the line $4x + 5y = 20$.",
+    "options": ["3", "4", "5", "6"],
+    "answer": 1,
+    "explanation": "Set $x = 0 \\implies 5y = 20 \\implies y = 4$."
+  },
+  {
+    "id": 69,
+    "subject": "Quantitative Aptitude",
+    "question": "Given $x + \\frac{1}{x} = 4$, find $x^3 + \\frac{1}{x^3}$.",
+    "options": ["55", "57", "52", "50"],
+    "answer": 2,
+    "explanation": "$x^3 + 1/x^3 = 4^3 - 3(4) = 64 - 12 = 52$."
+  },
+  {
+    "id": 70,
+    "subject": "Quantitative Aptitude",
+    "question": "Height distribution ratio of students under 1.65 m in Section A to Section B from table (Section A = 25, Section B = 25):",
+    "options": ["1 : 1", "2 : 3", "5 : 4", "3 : 2"],
+    "answer": 0,
+    "explanation": "Ratio = $25 : 25 = 1 : 1$."
+  },
+  {
+    "id": 71,
+    "subject": "Quantitative Aptitude",
+    "question": "A sum becomes double in 8 years at Simple Interest. What is the annual rate of interest?",
+    "options": ["10%", "12.5%", "15%", "8%"],
+    "answer": 1,
+    "explanation": "$\\text{SI} = P \\implies (P \\times R \\times 8)/100 = P \\implies R = 100/8 = 12.5\\%$."
+  },
+  {
+    "id": 72,
+    "subject": "Quantitative Aptitude",
+    "question": "The ratio of ages of A and B is 4 : 5. After 5 years, ratio becomes 5 : 6. Find A's present age.",
+    "options": ["20 years", "25 years", "15 years", "30 years"],
+    "answer": 0,
+    "explanation": "Let ages be $4x, 5x$. $(4x+5)/(5x+5) = 5/6 \\implies 24x + 30 = 25x + 25 \\implies x = 5$. A's age = $4 \\times 5 = 20\\text{ years}$."
+  },
+  {
+    "id": 73,
+    "subject": "Quantitative Aptitude",
+    "question": "A shopkeeper gives two successive discounts of 20% and 10%. Equivalent single discount is:",
+    "options": ["30%", "28%", "25%", "22%"],
+    "answer": 1,
+    "explanation": "Equivalent discount = $20 + 10 - (20 \\times 10)/100 = 30 - 2 = 28\\%$."
+  },
+  {
+    "id": 74,
+    "subject": "Quantitative Aptitude", "question": "Work done by $(x-1)$ men in $(x+1)$ days and $(x+2)$ men in $(x-1)$ days are in ratio 9 : 10. Find x.",
+    "options": ["8", "9", "10", "12"],
+    "answer": 0,
+    "explanation": "$[(x-1)(x+1)] / [(x+2)(x-1)] = 9/10 \\implies (x+1)/(x+2) = 9/10 \\implies 10x + 10 = 9x + 18 \\implies x = 8$."
+  },
+  {
+    "id": 75,
+    "subject": "Quantitative Aptitude",
+    "question": "A train 150 meters long crosses a pole in 15 seconds. Speed of train in km/h is:",
+    "options": ["36 km/h", "45 km/h", "54 km/h", "30 km/h"],
+    "answer": 0,
+    "explanation": "Speed = $150 / 15 = 10\\text{ m/s} = 10 \\times (18/5) = 36\\text{ km/h}$."
+  },
+  {
+    "id": 76,
+    "subject": "English Comprehension",
+    "question": "<b>Passage:</b><br>India's tryst with the Olympic Games began in 1900, when Norman Pritchard clinched two silver medals in athletics. However, it wasn't until the 1928 Amsterdam Olympics that India emerged as a formidable force in hockey, winning its first team gold. Post-1980, a conspicuous medal drought gripped the nation... The 21st century has ushered in a phase of cautious optimism with schemes like Target Olympic Podium Scheme (TOPS)...<br><i>[Passage reference continued in next questions...]</i><br><br>Which initiative is mentioned in the passage as a game-changer in recent Olympic preparations?",
+    "options": ["Mission Khel Udaan", "Olympic Gold Hunt", "Fit India Movement", "Target Olympic Podium Scheme (TOPS)"],
+    "answer": 3,
+    "explanation": "Directly stated in the text as a central driver of improved athlete support and facilities."
+  },
+  {
+    "id": 77,
+    "subject": "English Comprehension",
+    "question": "<b>Passage (Contd.):</b><br>...The medal tallies have seen an upward trend, symbolized by Neeraj Chopra's historic gold in Tokyo 2020. Diversification into badminton, shooting, and boxing, alongside the rising representation of women, marks this evolving identity...<br><br>What recent trend is highlighted as encouraging in India's Olympic profile?",
+    "options": ["Reduced investment in cricket", "Domination in hockey again", "Emergence of multiple sports and women athletes", "Decline of Western dominance"],
+    "answer": 2,
+    "explanation": "The passage emphasizes diversification across badminton, shooting, athletics, and the pivotal role of women athletes."
+  },
+  {
+    "id": 78,
+    "subject": "English Comprehension",
+    "question": "<b>Passage (Contd.):</b><br>...The 21st century has ushered in a phase of cautious optimism with schemes like Target Olympic Podium Scheme (TOPS)...<br><br>What is implied about India's future Olympic aspirations?",
+    "options": ["They rely entirely on foreign coaching", "They aim for consistent participation", "They are growing but need sustained structural reforms", "They are limited to traditional sports"],
+    "answer": 2,
+    "explanation": "The text notes that transitioning from potential to podium requires long-term investment and scientific management."
+  },
+  {
+    "id": 79,
+    "subject": "English Comprehension",
+    "question": "<b>Passage (Contd.):</b><br>...it wasn't until the 1928 Amsterdam Olympics that India emerged as a formidable force in hockey, winning its first team gold...<br><br>Who won India's first team gold medal at the 1928 Amsterdam Olympics?",
+    "options": ["Indian Wrestling team", "Indian Men's Hockey team", "Indian Athletics team", "Indian Football team"],
+    "answer": 1,
+    "explanation": "Mentioned directly in the passage."
+  },
+  {
+    "id": 80,
+    "subject": "English Comprehension",
+    "question": "Select the correct option:<br>The philosopher's stance was diametrically ______ to the prevailing orthodoxy.",
+    "options": ["adverse", "averse", "converse", "opposed"],
+    "answer": 3,
+    "explanation": "\"Diametrically opposed\" is a standard English idiom meaning completely opposite."
+  },
+  {
+    "id": 81,
+    "subject": "English Comprehension",
+    "question": "Select the correct option:<br>No sooner ______ the findings published than critics began questioning their legitimacy.",
+    "options": ["was", "had", "were", "have"],
+    "answer": 2,
+    "explanation": "Inversion rule with \"No sooner\": Auxiliary verb precedes the plural subject \"the findings\" in past tense (\"were... published\")."
+  },
+  {
+    "id": 82,
+    "subject": "English Comprehension",
+    "question": "Find the sentence segment containing a grammatical error:<br>The policy aims to neither penalise first-time offenders (1) / nor those who may have violated norms (2) / due to systemic ambiguity (3) / rather than deliberate intent. (4)",
+    "options": ["(1)", "(2)", "(3)", "(4)"],
+    "answer": 0,
+    "explanation": "Parallelism error: \"neither\" should be placed directly before the object it qualifies to match \"nor those\". Correct placement: \"aims to penalise neither first-time offenders nor those...\"."
+  },
+  {
+    "id": 83,
+    "subject": "English Comprehension",
+    "question": "Find the part of the sentence that contains an error:<br>It was not merely the fragmentation across sectors (1) / that disrupted cohesive governance, (2) / but the inertia in mandates (3) / ends up paralyzing responsiveness altogether. (4)",
+    "options": ["(1)", "(2)", "(3)", "(4)"],
+    "answer": 3,
+    "explanation": "Tense inconsistency: The main sentence operates in the past tense (\"It was...\", \"disrupted...\"), so \"ends up\" should be in the past tense (\"ended up\")."
+  },
+  {
+    "id": 84,
+    "subject": "English Comprehension",
+    "question": "Convert active voice to passive voice:<br>\"A citizen writes a letter to the editor every week.\"",
+    "options": ["A letter is written to the editor by the citizen every week.", "The editor writes a letter to the citizen every week.", "The editor wrote a letter every week.", "A letter was written to the editor every week."],
+    "answer": 0,
+    "explanation": "Simple present active tense (S + V1 + O) becomes O + is/am/are + V3 + by S."
+  },
+  {
+    "id": 85,
+    "subject": "English Comprehension",
+    "question": "Choose the option that correctly replaces the underlined phrase:<br>Had I known about the traffic, I <u>will leave early</u>.",
+    "options": ["would have left earlier", "would leave early", "had left early", "will have left earlier"],
+    "answer": 0,
+    "explanation": "Third conditional rule: \"Had + V3\" in the condition clause requires \"would have + V3\" in the main clause."
+  },
+  {
+    "id": 86,
+    "subject": "English Comprehension",
+    "question": "Rearrange sentences to form a coherent paragraph:<br>1. This makes them ideal for tasks like image recognition and medical diagnostics.<br>2. Machine learning is a subset of AI that focuses on algorithms that learn from data.<br>3. The algorithm improves its performance by analyzing vast amounts of input data.<br>4. Instead of being given rules, a machine learning model is trained on examples.",
+    "options": ["2, 4, 3, 1", "4, 3, 2, 1", "3, 4, 2, 1", "2, 3, 4, 1"],
+    "answer": 0,
+    "explanation": "Sentence 2 introduces the topic; 4 explains how it operates; 3 details the improvement process; 1 concludes with practical applications."
+  },
+  {
+    "id": 87,
+    "subject": "English Comprehension",
+    "question": "Rearrange sentences to form a coherent paragraph:<br>1. The primary purpose is to ensure that food is safe and free from contaminants.<br>2. Food processing is a series of methods used to transform raw ingredients into consumable products.<br>3. These methods range from simple cutting to complex fermentation.<br>4. Furthermore, it helps to preserve food and extend its shelf life.",
+    "options": ["2, 3, 1, 4", "1, 2, 3, 4", "3, 1, 4, 2", "4, 2, 1, 3"],
+    "answer": 0,
+    "explanation": "Sentence 2 defines food processing; 3 elaborates methods; 1 states primary purpose; 4 adds secondary benefits (\"Furthermore\")."
+  },
+  {
+    "id": 88,
+    "subject": "English Comprehension",
+    "question": "Choose the correct antonym of EPHEMERAL:",
+    "options": ["Transient", "Eternal", "Momentary", "Fleeting"],
+    "answer": 1,
+    "explanation": "\"Ephemeral\" means short-lived/transitory; its opposite is \"Eternal\" (lasting forever)."
+  },
+  {
+    "id": 89,
+    "subject": "English Comprehension",
+    "question": "Choose the correct synonym of METICULOUS:",
+    "options": ["Careless", "Painstaking", "Hasty", "Sloppy"],
+    "answer": 1,
+    "explanation": "\"Meticulous\" means showing great attention to detail/very careful, which aligns with \"Painstaking\"."
+  },
+  {
+    "id": 90,
+    "subject": "English Comprehension",
+    "question": "Select the correctly spelt word:",
+    "options": ["Accomodate", "Accommodate", "Acommodate", "Accommodat"],
+    "answer": 1,
+    "explanation": "The correct spelling contains double 'c' and double 'm'."
+  },
+  {
+    "id": 91,
+    "subject": "English Comprehension",
+    "question": "Select the idiom that best fits the sentence:<br>He was caught red-handed and had to ______ in front of his team.",
+    "options": ["eat humble pie", "burn the midnight oil", "hit the nail on the head", "bite the bullet"],
+    "answer": 0,
+    "explanation": "\"To eat humble pie\" means to apologize humbly and admit defeat/wrongdoing."
+  },
+  {
+    "id": 92,
+    "subject": "English Comprehension",
+    "question": "Convert indirect speech to direct speech:<br>\"The professor remarked that students needed to submit their papers before Friday.\"",
+    "options": ["\"Students need to submit their papers before Friday,\" the professor remarked.", "\"Submit your papers before Friday,\" said the professor.", "\"Students needed to submit papers,\" remarked professor.", "\"You will submit papers before Friday,\" instructed professor."],
+    "answer": 0,
+    "explanation": "Past tense \"needed\" converts back to simple present \"need\" in original direct speech."
+  },
+  {
+    "id": 93,
+    "subject": "English Comprehension",
+    "question": "One-word substitution:<br>A person who looks at the bright side of things.",
+    "options": ["Pessimist", "Optimist", "Altruist", "Atheist"],
+    "answer": 1,
+    "explanation": "An optimist is a person who tends to be hopeful and confident about the future."
+  },
+  {
+    "id": 94,
+    "subject": "English Comprehension",
+    "question": "Identify the segment with an error:<br>Neither the manager nor the employees was present at the meeting.",
+    "options": ["Neither the manager", "nor the employees", "was present", "at the meeting"],
+    "answer": 2,
+    "explanation": "Subject-verb agreement rule with \"neither... nor\": the verb agrees with the subject closest to it (\"employees\" is plural, so it requires \"were\")."
+  },
+  {
+    "id": 95,
+    "subject": "English Comprehension",
+    "question": "Choose the idiom meaning \"To face a difficult situation courageously\":",
+    "options": ["Bite the bullet", "Break the ice", "Cry over spilt milk", "Call it a day"],
+    "answer": 0,
+    "explanation": "\"Bite the bullet\" means to endure a painful or difficult situation with fortitude."
+  },
+  {
+    "id": 96,
+    "subject": "English Comprehension",
+    "question": "Select the correctly spelt word:",
+    "options": ["Concensus", "Consensus", "Consensiss", "Concesus"],
+    "answer": 1,
+    "explanation": "The correct spelling is C-O-N-S-E-N-S-U-S."
+  },
+  {
+    "id": 97,
+    "subject": "English Comprehension",
+    "question": "Choose the word opposite in meaning to OBSTINATE:",
+    "options": ["Stubborn", "Flexible", "Rigid", "Firm"],
+    "answer": 1,
+    "explanation": "\"Obstinate\" means stubborn/inflexible, making \"Flexible\" its exact antonym."
+  },
+  {
+    "id": 98,
+    "subject": "English Comprehension",
+    "question": "One-word substitution:<br>A remedy for all diseases.",
+    "options": ["Panacea", "Antidote", "Panache", "Elixir"],
+    "answer": 0,
+    "explanation": "A \"Panacea\" is defined as a universal cure/remedy for all illnesses or difficulties."
+  },
+  {
+    "id": 99,
+    "subject": "English Comprehension",
+    "question": "Fill in the blank with the appropriate preposition:<br>She is proficient ______ three languages.",
+    "options": ["at", "in", "with", "on"],
+    "answer": 1,
+    "explanation": "The adjective \"proficient\" correctly takes the preposition \"in\" when referring to skills, subjects, or languages."
+  },
+  {
+    "id": 100,
+    "subject": "English Comprehension",
+    "question": "Select the correct passive form:<br>They are constructing a new highway bridge.",
+    "options": ["A new highway bridge is built by them.", "A new highway bridge was being constructed by them.", "A new highway bridge is being constructed by them.", "A new highway bridge has been constructed."],
+    "answer": 2,
+    "explanation": "Present Continuous Active (is/are + V-ing) converts to Present Continuous Passive (is/are + being + V3)."
+  }
+]
