@@ -122,7 +122,7 @@
   {
     "id": 16,
     "subject": "General Intelligence & Reasoning",
-    "question": "If $\# = +$, $@ = \\times$, $\% = -$, then $(5 \\# 2) @ 3 \\% 4 = ?$",
+    "question": "If $\\# = +$, $@ = \\times$, $\\% = -$, then $(5 \\# 2) @ 3 \\% 4 = ?$",
     "options": ["20", "17", "18", "21"],
     "answer": 1,
     "explanation": "$(5 + 2) \\times 3 - 4 = 7 \\times 3 - 4 = 21 - 4 = 17$."
